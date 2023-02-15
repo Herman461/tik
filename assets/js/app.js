@@ -216,20 +216,21 @@ function changeSliderSideVisible(strElement) {
     }
 }
 const firstSlider = new Swiper('.slider__body_first', {
-    speed: 400,
+    speed: 800,
     spaceBetween: 16,
-    slidesPerView: 2,
+    slidesPerView: 'auto',
+    slidesPerGroup: 2,
     breakpoints: {
         1300.98: {
-            slidesPerView: 5,
 
+            slidesPerGroup: 5
         },
         767.98: {
-            slidesPerView: 4,
+            slidesPerGroup: 4,
 
         },
         575.98: {
-            slidesPerView: 3,
+            slidesPerGroup: 3,
         }
     },
     on: {
@@ -251,26 +252,30 @@ const firstSlider = new Swiper('.slider__body_first', {
 })
 
 const secondSlider = new Swiper('.slider__body_second', {
-    speed: 400,
+    speed: 800,
     spaceBetween: 16,
     slidesPerView: 2,
+    slidesPerGroup: 2,
     breakpoints: {
         1300.98: {
             slidesPerView: 7,
-
+            slidesPerGroup: 7
         },
         1100.98: {
             slidesPerView: 6,
+            slidesPerGroup: 6
         },
         900.98: {
             slidesPerView: 5,
+            slidesPerGroup: 5
         },
         767.98: {
             slidesPerView: 4,
-
+            slidesPerGroup: 4
         },
         575.98: {
             slidesPerView: 3,
+            slidesPerGroup: 3
         }
     },
     on: {
@@ -292,20 +297,21 @@ const secondSlider = new Swiper('.slider__body_second', {
 })
 
 const thirdSlider = new Swiper('.slider__body_third', {
-    speed: 400,
+    speed: 800,
     spaceBetween: 16,
-    slidesPerView: 2.5,
+    slidesPerView: 'auto',
+    slidesPerGroup: 2,
     breakpoints: {
         1300.98: {
-            slidesPerView: 5,
 
+            slidesPerGroup: 5
         },
         767.98: {
-            slidesPerView: 4,
+            slidesPerGroup: 4,
 
         },
         575.98: {
-            slidesPerView: 3,
+            slidesPerGroup: 3,
         }
     },
     on: {
@@ -327,20 +333,21 @@ const thirdSlider = new Swiper('.slider__body_third', {
 })
 
 const fourthSlider = new Swiper('.slider__body_fourth', {
-    speed: 400,
+    speed: 800,
     spaceBetween: 16,
-    slidesPerView: 2,
+    slidesPerView: 'auto',
+    slidesPerGroup: 2,
     breakpoints: {
         1300.98: {
-            slidesPerView: 5,
 
+            slidesPerGroup: 5
         },
         767.98: {
-            slidesPerView: 4,
+            slidesPerGroup: 4,
 
         },
         575.98: {
-            slidesPerView: 3,
+            slidesPerGroup: 3,
         }
     },
     on: {
