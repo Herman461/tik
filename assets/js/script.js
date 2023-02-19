@@ -475,3 +475,169 @@ const isMobile = {
 		return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 	}
 };
+
+function prependChild(parentEle, newFirstChildEle) {
+	parentEle.insertBefore(newFirstChildEle, parentEle.firstChild)
+}
+
+// Табы
+// const tabLinks = document.querySelectorAll("[data-tab-title]");
+// const tabContent = document.querySelectorAll("[data-tab-content]");
+//
+//
+// if (tabContent.length > 0)  {
+// 	tabLinks.forEach(function(el) {
+// 		el.addEventListener("click", openTabs);
+// 	});
+//
+// }
+//
+// function openTabs(el) {
+// 	el.preventDefault()
+// 	const btnTarget = el.currentTarget;
+// 	const title = btnTarget.dataset.tabTitle;
+// 	const category = btnTarget.dataset.tabCategory
+//
+// 	const tabContent = document.querySelectorAll(`[data-tab-content][data-tab-category="${category}"]`);
+// 	const tabLinks = document.querySelectorAll(`[data-tab-title][data-tab-category="${category}"]`);
+//
+// 	tabContent.forEach(function(el) {
+// 		el.classList.remove("active");
+// 	});
+//
+// 	tabLinks.forEach(function(el) {
+// 		el.classList.remove("active");
+// 	});
+//
+// 	const activeContent = document.querySelectorAll(`[data-tab-content="${title}"][data-tab-category="${category}"]`)
+//
+// 	activeContent.forEach(function(el) {
+// 		el.classList.add('active')
+// 	})
+// 	document.querySelector(`[data-tab-content="${title}"]`).classList.add("active");
+//
+// 	btnTarget.classList.add("active");
+//
+// }
+
+// Select
+// const select = document.querySelectorAll('.select')
+// let activeSelect
+// if (select.length > 0) {
+// 	for (let index = 0; index < select.length; ++index) {
+// 		const item = select[index]
+//
+// 		const selectOption = item.querySelectorAll('option')
+//
+// 		const selectOptionLength = selectOption.length
+//
+// 		const selectedOption = item.querySelector('option[selected]')
+// 		const disabledOption = item.querySelector('option[disabled]')
+// 		const duration = 400
+//
+// 		item.querySelector('select').hidden = true
+//
+// 		const head = document.createElement('div')
+// 		const text = document.createElement('span')
+//
+// 		head.classList.add('select__head')
+//
+// 		text.textContent = disabledOption ? disabledOption.textContent : selectedOption.textContent
+//
+// 		head.append(text)
+// 		item.append(head)
+//
+// 		// Добавление иконки
+// 		const icon = item.querySelector('.select__icon')
+//
+// 		if (icon) {
+// 			head.append(icon)
+// 		}
+//
+// 		// Создание списка
+// 		const selectList = document.createElement('ul')
+// 		selectList.classList.add('select__list')
+//
+// 		item.append(selectList)
+//
+// 		if (!disabledOption) {
+// 			const newOption = document.createElement('li')
+// 			newOption.textContent = selectedOption ? selectedOption.textContent : selectOption[0].textContent
+// 			newOption.classList.add('select__item')
+// 			newOption.dataset.value = selectedOption ? selectedOption.value : selectOption[0].textContent
+// 			selectList.append(newOption)
+// 		}
+// 		for (let index = 1; index < selectOptionLength; index++) {
+// 			const newOption = document.createElement('li')
+// 			newOption.textContent = selectOption[index].textContent
+// 			newOption.classList.add('select__item')
+// 			newOption.dataset.value = selectOption[index].value
+// 			selectList.append(newOption)
+// 		}
+//
+// 		selectList.hidden = true
+// 		head.addEventListener('click', function(e) {
+// 			if (!document.querySelector('.select__list.slide') && e.target.closest('.select__head')) {
+// 				if (activeSelect && !e.target.closest('.select__head').nextElementSibling.isEqualNode(activeSelect)) {
+// 					slideUp(activeSelect)
+// 					activeSelect.closest('.select').querySelector('.select__head').classList.remove('active')
+// 				}
+// 				activeSelect = e.target.closest('.select__head').nextElementSibling
+// 				e.currentTarget.classList.toggle('active')
+// 				slideToggle(selectList)
+// 			}
+// 		})
+// 		selectList.addEventListener('click', function(e) {
+// 			if (e.target.closest('.select__item')) {
+// 				const target = e.target.closest('.select__item')
+//
+// 				const value = target.dataset.value
+// 				let newSelectedEl = item.querySelector(`option[value="${value}"]`)
+// 				const oldSelectedEl = item.querySelector('option[selected]')
+// 				if (!newSelectedEl) {
+// 					for (let index = 1; index < selectOptionLength; index++) {
+// 						const option = selectOption[index]
+// 						if (option.textContent === value) {
+// 							newSelectedEl = option
+// 						}
+// 					}
+// 				}
+//
+// 				if (oldSelectedEl) {
+// 					oldSelectedEl.removeAttribute('selected')
+// 				}
+// 				if (newSelectedEl) {
+// 					newSelectedEl.setAttribute('selected', 'selected')
+// 					text.textContent = newSelectedEl.textContent
+// 				}
+// 				head.classList.remove('active')
+// 				activeSelect = null
+//
+// 				if (document.querySelector('.select__item.active')) {
+// 					document.querySelector('.select__item.active').classList.remove('active')
+// 				}
+//
+//
+// 				target.classList.add('active')
+// 				e.target.closest('.select').querySelector('select').dispatchEvent(new Event('change'))
+// 				slideUp(selectList)
+// 			}
+// 		})
+// 	}
+// }
+
+
+window.addEventListener('click', function(e) {
+
+	if (
+		document.querySelector('.select__head.active')
+		&& !e.target.closest('.select')
+		&& !document.querySelector('.select__list.slide')
+	) {
+		activeSelect.closest('.select').querySelector('.select__head').classList.remove('active')
+		slideUp(activeSelect)
+		activeSelect = null
+	}
+})
+
+

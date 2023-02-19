@@ -74,519 +74,262 @@ window.addEventListener('DOMContentLoaded', function() {
             lock = false
         }, delay)
     })
+
     function toggleMenu() {
         burger.classList.toggle('active')
         menu.classList.toggle('active')
         lockBody()
     }
 
+    const header = document.querySelector('.header')
 
-    // Воспроизведение видео
+    header.addEventListener('click', function(e) {
+        if (
+            document.querySelector('.header__menu.active')
+            && !e.target.closest('a')
+            && !e.target.closest('.burger')
+        ) {
+            toggleMenu()
+        }
+    })
 
-    const videoSliders = document.querySelectorAll('.page__slider')
-
-    if (videoSliders.length > 0) {
-        for (let index = 0; index < videoSliders.length; index++) {
-            const videoSlider = videoSliders[index]
-
-            videoSlider.addEventListener('mousemove', debounce(playVideo, 50))
-            videoSlider.addEventListener('touchmove', playVideo)
-            videoSlider.addEventListener('touchstart', playVideo)
-
-
+    function addOrRemoveMobileClass() {
+        if (isMobile.any() && !document.body.classList.contains('mobile')) {
+            document.body.classList.add('mobile')
         }
 
+        if (!isMobile.any() && document.body.classList.contains('mobile')) {
+            document.body.classList.remove('mobile')
+        }
     }
-    function playVideo(e) {
-        if (e.target.closest('.block-video')) {
-            const video = e.target.closest('.block-video').querySelector('video')
+    addOrRemoveMobileClass()
+    window.addEventListener('resize', debounce(addOrRemoveMobileClass, 150))
 
-            if (video.classList.contains('lazy-video')) {
-                for (let source in video.children) {
 
-                    const videoSource = video.children[source];
 
-                    if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                        videoSource.src = videoSource.dataset.src;
-                    }
-                }
-                video.load();
-                video.classList.remove("lazy-video");
+    const searchResponse = {
+        tags: [
+            {
+                id: '1',
+                value: 'Tag 1',
+                link: '/'
+            },
+            {
+                id: '2',
+                value: 'Tag 1',
+                link: '/'
+            },
+            {
+                id: '3',
+                value: 'Tranding1',
+                link: '/'
+            },
+            {
+                id: '4',
+                value: 'Tag 1',
+                link: '/'
+            },
+            {
+                id: '5',
+                value: 'Tag 1',
+                link: '/'
+            },
+            {
+                id: '6',
+                value: 'Tag 1',
+                link: '/'
+            },
+            {
+                id: '7',
+                value: 'Tranding1',
+                link: ''
+            },
+            {
+                id: '8',
+                value: 'Tag 1',
+                link: ''
+            },
+            {
+                id: '9',
+                value: 'Tag 1',
+                link: ''
+            },
+            {
+                id: '10',
+                value: 'Tranding1',
+                link: ''
+            },
+            {
+                id: '11',
+                value: 'Tag 1',
+                link: ''
+            },
+            {
+                id: '12',
+                value: 'Tag 1',
+                link: ''
+            },
+        ],
+        users: [
+            {
+                id: '1',
+                username: 'asian_sexdoll',
+                isVerified: true,
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/users/01.webp',
+                jpgImageSrc: 'assets/images/users/01.jpg',
+            },
+            {
+                id: '2',
+                username: 'asian_sexdoll',
+                isVerified: false,
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: '',
+                jpgImageSrc: '',
+            },
+            {
+                id: '3',
+                username: 'asian_sexdoll',
+                isVerified: true,
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/users/01.webp',
+                jpgImageSrc: 'assets/images/users/01.jpg',
+            },
+            {
+                id: '4',
+                username: 'asian_sexdoll',
+                isVerified: true,
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/users/01.webp',
+                jpgImageSrc: 'assets/images/users/01.jpg',
+            },
+            {
+                id: '5',
+                username: 'asian_sexdoll',
+                isVerified: false,
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: '',
+                jpgImageSrc: '',
+            },
+        ],
+        videos: [
+            {
+                id: '1',
+                name: 'bunny-girl-challenge',
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/preview.webp',
+                jpgImageSrc: 'assets/images/preview.jpg',
+                isVertical: false
+            },
+            {
+                id: '2',
+                name: 'bunny-girl-challenge',
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/preview.webp',
+                jpgImageSrc: 'assets/images/preview.jpg',
+                isVertical: true
+            },
+            {
+                id: '3',
+                name: 'bunny-girl-challenge',
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/preview.webp',
+                jpgImageSrc: 'assets/images/preview.jpg',
+                isVertical: true
+            },
+            {
+                id: '4',
+                name: 'bunny-girl-challenge',
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/preview.webp',
+                jpgImageSrc: 'assets/images/preview.jpg',
+                isVertical: false
+            },
+            {
+                id: '5',
+                name: 'bunny-girl-challenge',
+                info: '(12K followers   34K views)',
+                link: '',
+                webpImageSrc: 'assets/images/preview.webp',
+                jpgImageSrc: 'assets/images/preview.jpg',
+                isVertical: false
+            },
+        ]
+    }
 
+    const headerSearch = document.querySelector('#header-search')
+
+    headerSearch.addEventListener('input', debounce(onSearchInputChange, 150))
+
+    function onSearchInputChange(e) {
+        const value = document.querySelector('#header-search').value
+        const searchClearButton = document.querySelector('.search-header__clear')
+
+        const resultSearchContainer = document.querySelector('.result-search__container')
+        if (value !== '') {
+
+            if (!searchClearButton.classList.contains('show')) {
+                searchClearButton.classList.add('show')
             }
-            video.play()
-            video.classList.add('active')
-        }
-    }
-    function pauseVideo(e) {
-        if (!e.currentTarget.querySelector('video').classList.contains('active')) return
+            // fetch data and build DOM
 
-        const video = e.currentTarget.querySelector('video')
-        video.pause()
-        video.currentTime = 0
-        video.src = ""
-        video.removeAttribute('src')
-        video.classList.remove('active')
-    }
-    const videoBlocks = document.querySelectorAll('.block-video')
+            const response = searchResponse
 
-    if (videoBlocks.length > 0) {
-        for (let index = 0; index < videoBlocks.length; index++) {
-            const videoBlock = videoBlocks[index]
-            videoBlock.addEventListener('mouseleave', pauseVideo)
-            videoBlock.addEventListener('touchend', pauseVideo)
-        }
-    }
+            resultSearchContainer.innerHTML = ''
 
+            if (response.tags.length > 0) {
+                const tagsList = document.createElement('ul')
+                tagsList.className = 'result-search__tags tags'
 
-    // Ленивая загрузка видео
+                for (let index = 0; index < response.tags.length; index++) {
+                    const tagObj = response.tags[index]
 
-    // const lazyLoadVideos = [].slice.call(document.querySelectorAll("video.lazy-video"));
-    // if ("IntersectionObserver" in window) {
-    //
-    //     const lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
-    //         entries.forEach(function(video) {
-    //             if (video.isIntersecting) {
-    //                 for (let source in video.target.children) {
-    //
-    //                     const videoSource = video.target.children[source];
-    //
-    //                     if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-    //                         videoSource.src = videoSource.dataset.src;
-    //                     }
-    //                 }
-    //                 video.target.load();
-    //                 video.target.classList.remove("lazy-video");
-    //
-    //                 lazyVideoObserver.unobserve(video.target);
-    //             }
-    //         });
-    //     });
-    //     lazyLoadVideos.forEach(function(lazyVideo) {
-    //         lazyVideoObserver.observe(lazyVideo);
-    //     });
-    // }
-})
+                    const tagItem = document.createElement('li')
+                    tagItem.className = 'tags__item'
 
-function addOrRemoveMobileClass() {
-    if (isMobile.any() && !document.body.classList.contains('mobile')) {
-        document.body.classList.add('mobile')
-    }
-
-    if (!isMobile.any() && document.body.classList.contains('mobile')) {
-        document.body.classList.remove('mobile')
-    }
-}
-addOrRemoveMobileClass()
-window.addEventListener('resize', debounce(addOrRemoveMobileClass, 150))
-
-function changeSliderSideVisible(strElement) {
-    const slider = document.querySelector(strElement)
-
-    if (!slider) return
-
-    const sliderWrapper = slider.closest('.slider__main')
-
-    if (
-        sliderWrapper.querySelector('.slider-button-prev.swiper-button-disabled')
-        && !sliderWrapper.classList.contains('prev-disabled')
-    ) {
-        sliderWrapper.classList.add('prev-disabled')
-    }
-
-    if (
-        sliderWrapper.querySelector('.slider-button-next.swiper-button-disabled')
-        && !sliderWrapper.classList.contains('next-disabled')
-    ) {
-        sliderWrapper.classList.add('next-disabled')
-    }
-
-    if (
-        !sliderWrapper.querySelector('.slider-button-prev.swiper-button-disabled')
-        && sliderWrapper.classList.contains('prev-disabled')
-    ) {
-        sliderWrapper.classList.remove('prev-disabled')
-    }
-
-    if (
-        !sliderWrapper.querySelector('.slider-button-next.swiper-button-disabled')
-        && sliderWrapper.classList.contains('next-disabled')
-    ) {
-        sliderWrapper.classList.remove('next-disabled')
-    }
-}
-const firstSlider = new Swiper('.slider__body_first', {
-    speed: 800,
-    spaceBetween: 16,
-    slidesPerView: 'auto',
-    slidesPerGroup: 2,
-    breakpoints: {
-        1300.98: {
-
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerGroup: 4,
-
-        },
-        575.98: {
-            slidesPerGroup: 3,
-        }
-    },
-    on: {
-        afterInit() {
-            changeSliderSideVisible('.slider__body_first')
-        },
-        slideChange() {
-            changeSliderSideVisible('.slider__body_first')
-        }
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_first').closest('.slider__main')
-            .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_first').closest('.slider__main')
-            .querySelector('.slider-button-prev')
-    },
-})
-
-const secondSlider = new Swiper('.slider__body_second', {
-    speed: 800,
-    spaceBetween: 16,
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    breakpoints: {
-        1300.98: {
-            slidesPerView: 7,
-            slidesPerGroup: 7
-        },
-        1100.98: {
-            slidesPerView: 6,
-            slidesPerGroup: 6
-        },
-        900.98: {
-            slidesPerView: 5,
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerView: 4,
-            slidesPerGroup: 4
-        },
-        575.98: {
-            slidesPerView: 3,
-            slidesPerGroup: 3
-        }
-    },
-    on: {
-        afterInit() {
-            changeSliderSideVisible('.slider__body_second')
-        },
-        slideChange() {
-            changeSliderSideVisible('.slider__body_second')
-        }
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_second').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_second').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
-})
-
-const thirdSlider = new Swiper('.slider__body_third', {
-    speed: 800,
-    spaceBetween: 16,
-    slidesPerView: 'auto',
-    slidesPerGroup: 2,
-    breakpoints: {
-        1300.98: {
-
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerGroup: 4,
-
-        },
-        575.98: {
-            slidesPerGroup: 3,
-        }
-    },
-    on: {
-        afterInit() {
-            changeSliderSideVisible('.slider__body_third')
-        },
-        slideChange() {
-            changeSliderSideVisible('.slider__body_third')
-        }
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_third').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_third').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
-})
-
-const fourthSlider = new Swiper('.slider__body_fourth', {
-    speed: 800,
-    spaceBetween: 16,
-    slidesPerView: 'auto',
-    slidesPerGroup: 2,
-    breakpoints: {
-        1300.98: {
-
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerGroup: 4,
-
-        },
-        575.98: {
-            slidesPerGroup: 3,
-        }
-    },
-    on: {
-        afterInit() {
-            changeSliderSideVisible('.slider__body_fourth')
-        },
-        slideChange() {
-            changeSliderSideVisible('.slider__body_fourth')
-        }
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_fourth').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_fourth').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
-})
-
-
-const searchResponse = {
-    tags: [
-        {
-            id: '1',
-            value: 'Tag 1',
-            link: '/'
-        },
-        {
-            id: '2',
-            value: 'Tag 1',
-            link: '/'
-        },
-        {
-            id: '3',
-            value: 'Tranding1',
-            link: '/'
-        },
-        {
-            id: '4',
-            value: 'Tag 1',
-            link: '/'
-        },
-        {
-            id: '5',
-            value: 'Tag 1',
-            link: '/'
-        },
-        {
-            id: '6',
-            value: 'Tag 1',
-            link: '/'
-        },
-        {
-            id: '7',
-            value: 'Tranding1',
-            link: ''
-        },
-        {
-            id: '8',
-            value: 'Tag 1',
-            link: ''
-        },
-        {
-            id: '9',
-            value: 'Tag 1',
-            link: ''
-        },
-        {
-            id: '10',
-            value: 'Tranding1',
-            link: ''
-        },
-        {
-            id: '11',
-            value: 'Tag 1',
-            link: ''
-        },
-        {
-            id: '12',
-            value: 'Tag 1',
-            link: ''
-        },
-    ],
-    users: [
-        {
-            id: '1',
-            username: 'asian_sexdoll',
-            isVerified: true,
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/users/01.webp',
-            jpgImageSrc: 'assets/images/users/01.jpg',
-        },
-        {
-            id: '2',
-            username: 'asian_sexdoll',
-            isVerified: false,
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: '',
-            jpgImageSrc: '',
-        },
-        {
-            id: '3',
-            username: 'asian_sexdoll',
-            isVerified: true,
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/users/01.webp',
-            jpgImageSrc: 'assets/images/users/01.jpg',
-        },
-        {
-            id: '4',
-            username: 'asian_sexdoll',
-            isVerified: true,
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/users/01.webp',
-            jpgImageSrc: 'assets/images/users/01.jpg',
-        },
-        {
-            id: '5',
-            username: 'asian_sexdoll',
-            isVerified: false,
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: '',
-            jpgImageSrc: '',
-        },
-    ],
-    videos: [
-        {
-            id: '1',
-            name: 'bunny-girl-challenge',
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/preview.webp',
-            jpgImageSrc: 'assets/images/preview.jpg',
-            isVertical: false
-        },
-        {
-            id: '2',
-            name: 'bunny-girl-challenge',
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/preview.webp',
-            jpgImageSrc: 'assets/images/preview.jpg',
-            isVertical: true
-        },
-        {
-            id: '3',
-            name: 'bunny-girl-challenge',
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/preview.webp',
-            jpgImageSrc: 'assets/images/preview.jpg',
-            isVertical: true
-        },
-        {
-            id: '4',
-            name: 'bunny-girl-challenge',
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/preview.webp',
-            jpgImageSrc: 'assets/images/preview.jpg',
-            isVertical: false
-        },
-        {
-            id: '5',
-            name: 'bunny-girl-challenge',
-            info: '(12K followers   34K views)',
-            link: '',
-            webpImageSrc: 'assets/images/preview.webp',
-            jpgImageSrc: 'assets/images/preview.jpg',
-            isVertical: false
-        },
-    ]
-}
-
-const headerSearch = document.querySelector('#header-search')
-
-headerSearch.addEventListener('input', debounce(onSearchInputChange, 150))
-
-function onSearchInputChange() {
-    const value = document.querySelector('#header-search').value
-
-    const resultSearchContainer = document.querySelector('.result-search__container')
-    if (value !== '') {
-        // fetch data and build DOM
-
-        const response = searchResponse
-
-        resultSearchContainer.innerHTML = ''
-
-        if (response.tags.length > 0) {
-            const tagsList = document.createElement('ul')
-            tagsList.className = 'result-search__tags tags'
-
-            for (let index = 0; index < response.tags.length; index++) {
-                const tagObj = response.tags[index]
-
-                const tagItem = document.createElement('li')
-                tagItem.className = 'tags__item'
-
-                tagItem.innerHTML = `
+                    tagItem.innerHTML = `
                     <a href="${tagObj.link}" class="tags__link">${tagObj.value}</a>
                 `
-                tagsList.appendChild(tagItem)
-                resultSearchContainer.appendChild(tagsList)
+                    tagsList.appendChild(tagItem)
+                    resultSearchContainer.appendChild(tagsList)
+                }
+
             }
 
-        }
+            if (response.users.length > 0) {
+                const usersList = document.createElement('ul')
+                usersList.className = 'result-search__users users-result-search'
 
-        if (response.users.length > 0) {
-            const usersList = document.createElement('ul')
-            usersList.className = 'result-search__users users-result-search'
+                for (let index = 0; index < response.users.length; index++) {
+                    const userObj = response.users[index]
 
-            for (let index = 0; index < response.users.length; index++) {
-                const userObj = response.users[index]
+                    const userItem = document.createElement('li')
+                    userItem.className = 'users-result-search__item'
 
-                const userItem = document.createElement('li')
-                userItem.className = 'users-result-search__item'
+                    let verifiedContent = ''
 
-                let verifiedContent = ''
-
-                if (userObj.isVerified) {
-                    verifiedContent = `
+                    if (userObj.isVerified) {
+                        verifiedContent = `
                         <div class="users-result-search__verified">
                             <svg>
                                 <use xlink:href="assets/images/icons/icons.svg#check-circle"></use>
                             </svg>
                         </div>
                     `
-                }
-                let avatarContent = ''
+                    }
+                    let avatarContent = ''
 
-                if (userObj.webpImageSrc) {
-                    avatarContent = `
+                    if (userObj.webpImageSrc) {
+                        avatarContent = `
                         <div class="users-result-search__avatar">
                             <picture>
                                 <source srcset="${userObj.webpImageSrc}" type="image/webp">
@@ -595,8 +338,8 @@ function onSearchInputChange() {
                             </picture>
                         </div>
                     `
-                } else {
-                    avatarContent = `
+                    } else {
+                        avatarContent = `
                         <div class="users-result-search__avatar">
                             <picture>
                                 <source srcset="assets/images/users/02.webp" type="image/webp">
@@ -605,9 +348,9 @@ function onSearchInputChange() {
                             </picture>
                         </div>
                     `
-                }
+                    }
 
-                userItem.innerHTML = `
+                    userItem.innerHTML = `
                     <a class="users-result-search__link" href="">
                         ${avatarContent}
                         <div class="users-result-search__content">
@@ -618,25 +361,25 @@ function onSearchInputChange() {
                     </a>
                 `
 
-                usersList.appendChild(userItem)
-                resultSearchContainer.appendChild(usersList)
+                    usersList.appendChild(userItem)
+                    resultSearchContainer.appendChild(usersList)
+                }
+
             }
 
-        }
+
+            if (response.videos.length > 0) {
+                const videosList = document.createElement('ul')
+                videosList.className = 'result-search__videos videos-result-search'
+
+                for (let index = 0; index < response.videos.length; index++) {
+                    const videoObj = response.videos[index]
+
+                    const videoItem = document.createElement('li')
+                    videoItem.className = 'videos-result-search__item'
 
 
-        if (response.videos.length > 0) {
-            const videosList = document.createElement('ul')
-            videosList.className = 'result-search__videos videos-result-search'
-
-            for (let index = 0; index < response.videos.length; index++) {
-                const videoObj = response.videos[index]
-
-                const videoItem = document.createElement('li')
-                videoItem.className = 'videos-result-search__item'
-
-
-                videoItem.innerHTML = `
+                    videoItem.innerHTML = `
                     <a href="${videoObj.link}" class="videos-result-search__link">
                         <div class="videos-result-search__preview ${videoObj.isVertical ? 'videos-result-search__preview_vertical' : ''}">
                             <picture>
@@ -652,22 +395,142 @@ function onSearchInputChange() {
                     </a>
                 `
 
-                videosList.appendChild(videoItem)
-                resultSearchContainer.appendChild(videosList)
+                    videosList.appendChild(videoItem)
+                    resultSearchContainer.appendChild(videosList)
+                }
+
+            }
+        } else {
+            if (searchClearButton.classList.contains('show')) {
+                searchClearButton.classList.remove('show')
             }
 
-        }
-    } else {
-        resultSearchContainer.innerHTML = `
+            resultSearchContainer.innerHTML = `
             <div class="result-search__empty">No results</div>
         `
+        }
     }
+
+    function lockBody() {
+        const scrollWidth = window.innerWidth - document.body.clientWidth
+
+        document.body.classList.toggle('lock')
+
+        document.body.style.paddingRight = scrollWidth + 'px'
+    }
+
+    const inputElements = document.querySelectorAll('.input')
+
+    if (inputElements.length > 0) {
+        for (let index = 0; index < inputElements.length; index++) {
+            const element = inputElements[index]
+
+            if (element.hasAttribute('data-input')) continue
+
+            element.addEventListener('change', function(e) {
+                const input = e.currentTarget
+
+                if (input.dataset.inputMin) {
+
+                    if (Number(input.dataset.inputMin) > input.value.length) {
+                        const errorMessageText = 'This field requires at least ' + input.dataset.inputMin + ' characters.'
+
+                        const error = document.createElement('span')
+                        error.className = 'error'
+                        error.textContent = errorMessageText
+
+                        input.parentElement.appendChild(error)
+                        input.classList.add('has-error')
+
+                        setErrorAlert()
+                        return
+                    }
+                }
+
+                if (input.dataset.inputMax) {
+
+                    if (Number(input.dataset.inputMax) < input.value.length) {
+
+                        const errorMessageText = 'This field can have no more than ' + input.dataset.inputMax + ' characters.'
+
+                        const error = document.createElement('span')
+                        error.className = 'error'
+                        error.textContent = errorMessageText
+
+                        input.parentElement.appendChild(error)
+                        input.classList.add('has-error')
+
+                        setErrorAlert()
+                        return
+                    }
+                }
+
+                input.classList.add('has-no-error')
+
+
+            }, true)
+
+            element.addEventListener('focus', function(e) {
+                const input = e.currentTarget
+
+                if (input.classList.contains('has-error')) {
+                    input.classList.remove('has-error')
+
+                    const error = input.parentElement.querySelector('.error')
+                    error.remove()
+                }
+            })
+        }
+
+    }
+
+
+
+})
+function setErrorAlert() {
+    const error = document.createElement('div')
+    error.className = 'alert alert_error'
+    error.textContent = 'Remove!'
+
+    const currentAlerts = document.querySelectorAll('.alert')
+
+    const currentAlertsLength = currentAlerts.length
+
+    if (currentAlertsLength === 0) {
+        error.style.bottom = '10px'
+    } else {
+        const errorOffset = 10
+
+        error.style.bottom = (10 + (currentAlertsLength * currentAlerts[0].offsetHeight) + (errorOffset * currentAlertsLength ) ) + 'px'
+    }
+    document.body.appendChild(error)
+
+    setTimeout(function() {
+        error.remove()
+    }, 2000)
 }
 
-function lockBody() {
-    const scrollWidth = window.innerWidth - document.body.clientWidth
+function setSuccessAlert(data) {
+    const alert = document.createElement('div')
+    alert.className = 'alert alert_success'
+    alert.textContent = data
 
-    document.body.classList.toggle('lock')
+    const currentAlerts = document.querySelectorAll('.alert')
 
-    document.body.style.paddingRight = scrollWidth + 'px'
+    const currentAlertsLength = currentAlerts.length
+
+    if (currentAlertsLength === 0) {
+        alert.style.bottom = '10px'
+    } else {
+        const errorOffset = 10
+
+        alert.style.bottom = (10 + (currentAlertsLength * currentAlerts[0].offsetHeight) + (errorOffset * currentAlertsLength ) ) + 'px'
+    }
+    document.body.appendChild(alert)
+
+    setTimeout(function() {
+        alert.remove()
+    }, 2000)
 }
+
+
