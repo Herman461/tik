@@ -186,7 +186,7 @@
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding-right: 24px;
+  margin-right: 24px;
 }
 
 .message-edit-form__title {
@@ -227,6 +227,7 @@
 }
 
 .socials-edit-body__icon {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 0;
@@ -247,6 +248,8 @@
 }
 
 .socials-edit-body__icon svg {
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   fill: var(--body-white-color);
 }
 
@@ -303,9 +306,6 @@
   cursor: pointer;
   font-size: 14px;
   line-height: 17px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -314,6 +314,13 @@
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
   margin-bottom: 24px;
+  display: none;
+}
+
+.edit-body__add-button.active {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .edit-body__add-button svg {
@@ -363,7 +370,6 @@
 }
 
 .edit-body__loader {
-  max-width: 240px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -387,7 +393,13 @@
   width: 100%;
 }
 
-.edit-body__eye {
+.edit-body__close-eye {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.edit-body__eye,
+.edit-body__close-eye {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   position: absolute;
@@ -410,10 +422,22 @@
   cursor: pointer;
 }
 
-.edit-body__eye svg {
+.edit-body__eye svg,
+.edit-body__close-eye svg {
+  fill: transparent;
   color: var(--body-gray-color);
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
+}
+
+.edit-body__input.visible .edit-body__eye {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.edit-body__input.visible .edit-body__close-eye {
+  opacity: 1;
+  visibility: visible;
 }
 
 .edit-body__socials {
@@ -603,6 +627,10 @@
     color: #fff;
   }
 
+  .socials-edit-body__icon:hover svg {
+    fill: var(--body-pink-color);
+  }
+
   .socials-edit-body__trash:hover svg {
     color: var(--body-pink-color);
   }
@@ -615,7 +643,8 @@
     color: #A52CDE;
   }
 
-  .edit-body__eye:hover svg {
+  .edit-body__eye:hover svg,
+  .edit-body__close-eye:hover svg {
     color: var(--body-pink-color);
   }
 }

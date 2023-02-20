@@ -88,6 +88,8 @@ window.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.header__menu.active')
             && !e.target.closest('a')
             && !e.target.closest('.burger')
+            && !e.target.closest('.main-menu__title')
+            && !e.target.closest('.tags-menu__title')
         ) {
             toggleMenu()
         }
@@ -428,6 +430,7 @@ window.addEventListener('DOMContentLoaded', function() {
             if (element.hasAttribute('data-input')) continue
 
             element.addEventListener('change', function(e) {
+
                 const input = e.currentTarget
 
                 if (input.dataset.inputMin) {

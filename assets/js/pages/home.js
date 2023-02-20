@@ -14,12 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (document.querySelector('video.active')) {
                     pauseCurrentVideo(document.querySelector('video.active'))
                 }
+                if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
+                    e.preventDefault()
+                }
                 playVideo(e)
             })
             videoSlider.addEventListener('touchstart', function(e) {
                 if (document.querySelector('video.active')) {
                     pauseCurrentVideo(document.querySelector('video.active'))
                 }
+                if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
+                    e.preventDefault()
+                }
+
                 playVideo(e)
             })
 

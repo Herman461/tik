@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 setSuccessAlert(data)
                 button.classList.remove('hide')
                 loader.classList.add('hide')
-
+                submitButton.setAttribute('disabled', '')
                 clearEditForm()
             })
         localStorage.setItem('user', JSON.stringify(user))
@@ -75,61 +75,73 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const socials = [
         {
+
             value: 'chaturbate',
             text: 'Chaturbate',
-            icon: 'chaturbate'
+            icon: 'chaturbate',
+            relativeUrl: 'm.chaturbate.com/'
         },
         {
             value: 'fansly',
             text: 'Fansly',
-            icon: 'fansly'
+            icon: 'fansly',
+            relativeUrl: 'fansly.com/'
         },
         {
             value: 'instagram',
             text: 'Instagram',
-            icon: 'instagram'
+            icon: 'instagram',
+            relativeUrl: 'instagram.com/'
         },
         {
 
             value: 'manyvids',
             text: 'Manyvids',
-            icon: 'manyvids'
+            icon: 'manyvids',
+            relativeUrl: 'manyvids.com/'
         },
         {
 
             value: 'MyFreeCams',
             text: 'MyFreeCams',
-            icon: 'MyFreeCams'
+            icon: 'MyFreeCams',
+            relativeUrl: 'm.myfreecams.com/'
         },
         {
             value: 'onlyfans',
             text: 'OnlyFans',
-            icon: 'onlyfans'
+            icon: 'onlyfans',
+            relativeUrl: 'onlyfans.com/'
         },
         {
             value: 'patreon',
             text: 'Patreon',
-            icon: 'patreon'
+            icon: 'patreon',
+            relativeUrl: 'patreon.com/'
         },
         {
             value: 'pornhub',
             text: 'PornHub',
-            icon: 'pornhub'
+            icon: 'pornhub',
+            relativeUrl: 'pornhub.com/'
         },
         {
             value: 'reddit',
             text: 'Reddit',
-            icon: 'reddit'
+            icon: 'reddit',
+            relativeUrl: 'reddit.com/'
         },
         {
             value: 'twitter',
             text: 'Twitter',
-            icon: 'twitter'
+            icon: 'twitter',
+            relativeUrl: 'twitter.com/'
         },
         {
             value: 'xhamster',
             text: 'xHamster',
-            icon: 'xhamster'
+            icon: 'xhamster',
+            relativeUrl: 'xhamster.com/'
         },
     ]
 
@@ -174,13 +186,21 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `
             socialsWrapper.appendChild(socialInput)
+            socialInput.querySelector('input').value = currentSocial.relativeUrl
             socialInput.querySelector('input').focus()
+            addSocialButton.classList.add('active')
+
+            updateSocialList()
+
+            if (accessSocials.length === 0) {
+                addSocialButton.classList.add('hide')
+            }
         }
     }
 
     function setSocialSelect() {
-        if (accessSocials.length === 0) {
-            addSocialButton.classList.add('hide')
+        if (addSocialButton.classList.contains('active')) {
+            addSocialButton.classList.remove('active')
         }
         if (accessSocials.length > 0) {
             const select = document.createElement('div')
@@ -199,32 +219,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
             select.appendChild(selectHead)
 
-            const selectList = document.createElement('ul')
+            let selectList = document.createElement('ul')
             selectList.hidden = true
             selectList.className = 'select__list'
 
-            for (let index = 0; index < accessSocials.length; index++) {
-                const social = accessSocials[index]
+            selectList = setSocialList(selectList)
+            select.appendChild(selectList)
+            document.querySelector('.edit-body__socials').appendChild(select)
+        }
+    }
 
-                if (social === undefined) continue
+    function setSocialList(socialList) {
+        for (let index = 0; index < accessSocials.length; index++) {
+            const social = accessSocials[index]
 
-                const selectItem = document.createElement('li')
+            if (social === undefined) continue
 
-                selectItem.dataset.value = social.value
-                selectItem.className = 'select__item'
-                selectItem.innerHTML = `
+            const selectItem = document.createElement('li')
+
+            selectItem.dataset.value = social.value
+            selectItem.className = 'select__item'
+            selectItem.innerHTML = `
                     <svg>
                         <use xlink:href="assets/images/icons/icons.svg#${social.icon}"></use>
                     </svg>
                     ${social.text}
                 `
 
-                selectList.appendChild(selectItem)
-
-            }
-            select.appendChild(selectList)
-            document.querySelector('.edit-body__socials').appendChild(select)
+            socialList.appendChild(selectItem)
         }
+        return socialList
     }
 
     function deleteSocialItem(e) {
@@ -250,11 +274,25 @@ document.addEventListener('DOMContentLoaded', function () {
         if (addSocialButton.classList.contains('hide')) {
             addSocialButton.classList.remove('hide')
         }
+
+        updateSocialList()
+    }
+
+    function updateSocialList() {
+        const socialLists = document.querySelectorAll('.edit-body .select__list')
+        if (socialLists.length > 0) {
+            for (let index = 0; index < socialLists.length; index++) {
+                const socialList = socialLists[index]
+                socialList.innerHTML = ''
+                setSocialList(socialList)
+            }
+        }
     }
 
     if (addSocialButton) {
         addSocialButton.addEventListener('click', setSocialSelect)
     }
+    setSocialSelect()
 
     window.addEventListener('click', deleteSocialItem)
     // Аватар пользователя
@@ -349,6 +387,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             element.addEventListener('change', function (e) {
 
+                // if (e.target.closest('.edit-body__eye') || e.target.closest('.edit-body__close-eye')) {
+                //     e.stopPropagation()
+                // }
+
                 const submitButton = document.querySelector('.edit-body__submit')
 
                 if (document.querySelector('.input.has-error') && !submitButton.hasAttribute('disabled')) {
@@ -372,6 +414,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
             activeSelectHead.classList.remove('active')
             slideToggle(activeSelectHead.nextElementSibling)
+        }
+    })
+
+    const editLine = document.querySelector('.edit-body__line')
+    if (editLine) {
+        editLine.addEventListener('click', function(e) {
+            if (e.target.closest('.edit-body__eye')) {
+                const eye = e.target.closest('.edit-body__eye')
+                const inputWrapper = eye.closest('.edit-body__input')
+
+                inputWrapper.classList.add('visible')
+
+                inputWrapper.querySelector('.input').setAttribute('type', 'text')
+                inputWrapper.querySelector('.input').focus()
+                e.stopPropagation()
+            }
+
+            if (e.target.closest('.edit-body__close-eye')) {
+                const closeEye = e.target.closest('.edit-body__close-eye')
+                const inputWrapper = closeEye.closest('.edit-body__input')
+
+                inputWrapper.classList.remove('visible')
+
+                inputWrapper.querySelector('.input').setAttribute('type', 'password')
+                inputWrapper.querySelector('.input').focus()
+                e.stopPropagation()
+            }
+        })
+    }
+
+    const editBody = document.querySelector('.edit-body')
+
+    editBody.addEventListener('click', function(e) {
+        if (e.target.closest('.socials-edit-body__icon')) {
+            const inputIcon = e.target.closest('.socials-edit-body__icon')
+            const inputWrapper = inputIcon.closest('.socials-edit-body__input')
+            inputWrapper.querySelector('input').focus()
         }
     })
 })

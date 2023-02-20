@@ -634,9 +634,12 @@ window.addEventListener('click', function(e) {
 		&& !e.target.closest('.select')
 		&& !document.querySelector('.select__list.slide')
 	) {
-		activeSelect.closest('.select').querySelector('.select__head').classList.remove('active')
-		slideUp(activeSelect)
-		activeSelect = null
+		if (activeSelect) {
+			activeSelect.closest('.select').querySelector('.select__head').classList.remove('active')
+			slideUp(activeSelect)
+			activeSelect = null
+		}
+
 	}
 })
 
