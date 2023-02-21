@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function setSocialSelect() {
-        if (addSocialButton.classList.contains('active')) {
+        if (addSocialButton && addSocialButton.classList.contains('active')) {
             addSocialButton.classList.remove('active')
         }
         if (accessSocials.length > 0) {
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         inputWrapper.remove()
 
-        if (addSocialButton.classList.contains('hide')) {
+        if (addSocialButton && addSocialButton.classList.contains('hide')) {
             addSocialButton.classList.remove('hide')
         }
 
