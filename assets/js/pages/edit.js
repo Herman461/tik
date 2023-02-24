@@ -418,32 +418,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    const editLine = document.querySelector('.edit-body__line')
-    if (editLine) {
-        editLine.addEventListener('click', function(e) {
-            if (e.target.closest('.edit-body__eye')) {
-                const eye = e.target.closest('.edit-body__eye')
-                const inputWrapper = eye.closest('.edit-body__input')
 
-                inputWrapper.classList.add('visible')
-
-                inputWrapper.querySelector('.input').setAttribute('type', 'text')
-                inputWrapper.querySelector('.input').focus()
-                e.stopPropagation()
-            }
-
-            if (e.target.closest('.edit-body__close-eye')) {
-                const closeEye = e.target.closest('.edit-body__close-eye')
-                const inputWrapper = closeEye.closest('.edit-body__input')
-
-                inputWrapper.classList.remove('visible')
-
-                inputWrapper.querySelector('.input').setAttribute('type', 'password')
-                inputWrapper.querySelector('.input').focus()
-                e.stopPropagation()
-            }
-        })
-    }
 
     const editBody = document.querySelector('.edit-body')
 

@@ -464,8 +464,70 @@ window.addEventListener('DOMContentLoaded', function() {
                         input.classList.add('has-error')
 
                         setErrorAlert()
+
+                        if (e.target.closest('.password')) {
+                            e.target.closest('.password').classList.add('has-error')
+                        }
                         return
                     }
+                }
+
+                if (input.hasAttribute('data-input-username')) {
+                    const format = /^[A-Za-z0-9@_\-]+$/
+                    if (!format.test(input.value)) {
+                        const errorMessageText = 'This field contains forbidden characters'
+
+                        const error = document.createElement('span')
+                        error.className = 'error'
+                        error.textContent = errorMessageText
+
+                        input.parentElement.appendChild(error)
+                        input.classList.add('has-error')
+
+                        setErrorAlert()
+                        return
+                    }
+
+
+                }
+
+                if (input.hasAttribute('data-input-email')) {
+                    const format = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+                    if (!format.test(input.value)) {
+                        const errorMessageText = 'Email is not correct'
+
+                        const error = document.createElement('span')
+                        error.className = 'error'
+                        error.textContent = errorMessageText
+
+                        input.parentElement.appendChild(error)
+                        input.classList.add('has-error')
+
+                        setErrorAlert()
+                        return
+                    }
+
+
+                }
+
+                if (input.hasAttribute('data-input-confirmed-password')) {
+                    const mainPasswordField = document.querySelector('.main-password')
+
+                    if (mainPasswordField.value !== input.value) {
+                        const errorMessageText = 'The password is not confirmed'
+
+                        const error = document.createElement('span')
+                        error.className = 'error'
+                        error.textContent = errorMessageText
+
+                        input.parentElement.appendChild(error)
+                        input.classList.add('has-error')
+
+                        setErrorAlert()
+                        return
+                    }
+
+
                 }
 
                 input.classList.add('has-no-error')
@@ -481,6 +543,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
                     const error = input.parentElement.querySelector('.error')
                     error.remove()
+
+                    if (e.target.closest('.password')) {
+                        e.target.closest('.password').classList.remove('has-error')
+                    }
                 }
             })
         }
@@ -488,7 +554,47 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    const userHeaderAction = document.querySelector('.user-action-header')
 
+    if (userHeaderAction) {
+        userHeaderAction.addEventListener('click', function(e) {
+            if (e.target.closest('.user-action-header__exit')) return
+
+            if (document.querySelector('.menu.active')) {
+                toggleMenu()
+            }
+            const userHeader = document.querySelector('.user-header')
+            const userHeaderBlock = document.querySelector('.user-header__block')
+
+            userHeader.classList.add('active')
+            userHeaderBlock.classList.add('active')
+        })
+    }
+
+    const userHeaderClose = document.querySelector('.user-header__close')
+
+    if (userHeaderClose) {
+        userHeaderClose.addEventListener('click', closeUserHeader)
+    }
+
+    const userHeader = document.querySelector('.user-header')
+
+    if (userHeader) {
+        userHeader.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-header__block')) {
+                closeUserHeader()
+            }
+        })
+    }
+
+
+    function closeUserHeader() {
+        const userHeader = document.querySelector('.user-header')
+        const userHeaderBlock = document.querySelector('.user-header__block')
+
+        userHeader.classList.remove('active')
+        userHeaderBlock.classList.remove('active')
+    }
 })
 function setErrorAlert() {
     const error = document.createElement('div')
@@ -536,4 +642,34 @@ function setSuccessAlert(data) {
     }, 2000)
 }
 
+const passwordFields = document.querySelectorAll('.password')
+if (passwordFields.length > 0) {
+    for (let index = 0; index < passwordFields.length; index++) {
+        const passwordField = passwordFields[index]
+        passwordField.addEventListener('click', function(e) {
+            if (e.target.closest('.password__eye')) {
+                const eye = e.target.closest('.password__eye')
+                const inputWrapper = eye.closest('.password')
+
+                inputWrapper.classList.add('visible')
+
+                inputWrapper.querySelector('.input').setAttribute('type', 'text')
+                inputWrapper.querySelector('.input').focus()
+                e.stopPropagation()
+            }
+
+            if (e.target.closest('.password__close-eye')) {
+                const closeEye = e.target.closest('.password__close-eye')
+                const inputWrapper = closeEye.closest('.password')
+
+                inputWrapper.classList.remove('visible')
+
+                inputWrapper.querySelector('.input').setAttribute('type', 'password')
+                inputWrapper.querySelector('.input').focus()
+                e.stopPropagation()
+            }
+        })
+    }
+
+}
 

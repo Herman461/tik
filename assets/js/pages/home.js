@@ -10,24 +10,38 @@ document.addEventListener('DOMContentLoaded', function() {
             const videoSlider = videoSliders[index]
 
             videoSlider.addEventListener('mousemove', debounce(playVideo, 50))
-            videoSlider.addEventListener('touchmove', function(e) {
-                if (document.querySelector('video.active')) {
-                    pauseCurrentVideo(document.querySelector('video.active'))
-                }
-                if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
-                    e.preventDefault()
-                }
-                playVideo(e)
-            })
+            // videoSlider.addEventListener('touchmove', function(e) {
+            //
+            //
+            //     if (document.querySelector('video.active')) {
+            //         pauseCurrentVideo(document.querySelector('video.active'))
+            //     }
+            //     // if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
+            //     //     e.preventDefault()
+            //     // }
+            //     playVideo(e)
+            // })
             videoSlider.addEventListener('touchstart', function(e) {
-                if (document.querySelector('video.active')) {
-                    pauseCurrentVideo(document.querySelector('video.active'))
-                }
-                if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
-                    e.preventDefault()
-                }
 
-                playVideo(e)
+
+                function detectOffset(e) {
+                    if (!e.target.closest('.block-video')) return
+                    if (e.target.closest('.block-video').querySelector('video.active')) return
+
+                    if (document.querySelector('video.active')) {
+                        pauseCurrentVideo(document.querySelector('video.active'))
+                    }
+                    e.preventDefault()
+                    playVideo(e)
+                }
+                e.currentTarget.addEventListener('touchmove', debounce(detectOffset, 50), {once: true})
+
+
+                // if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
+                //     e.preventDefault()
+                // }
+
+
             })
 
 
@@ -55,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             video.play()
             video.classList.add('active')
+            video.closest('.block-video').classList.add('active')
         }
     }
     function pauseVideo(e) {
@@ -77,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         video.src = ""
         video.removeAttribute('src')
         video.classList.remove('active')
+        video.closest('.block-video').classList.remove('active')
     }
     const videoBlocks = document.querySelectorAll('.block-video')
 
@@ -108,7 +124,7 @@ const firstSlider = new Swiper('.slider__body_first', {
     speed: 500,
     spaceBetween: 16,
     slidesPerView: 'auto',
-    slidesPerGroup: 2,
+    slidesPerGroup: 1,
     breakpoints: {
         1300.98: {
 
@@ -186,7 +202,7 @@ const thirdSlider = new Swiper('.slider__body_third', {
     speed: 500,
     spaceBetween: 16,
     slidesPerView: 'auto',
-    slidesPerGroup: 2,
+    slidesPerGroup: 1,
     breakpoints: {
         1300.98: {
 
@@ -220,7 +236,7 @@ const fourthSlider = new Swiper('.slider__body_fourth', {
     speed: 500,
     spaceBetween: 16,
     slidesPerView: 'auto',
-    slidesPerGroup: 2,
+    slidesPerGroup: 1,
     breakpoints: {
         1300.98: {
 

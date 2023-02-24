@@ -9,58 +9,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.edit__buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.edit__button {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 1 50%;
-  flex: 0 1 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  text-align: center;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 23px;
-  color: var(--body-white-color);
-  min-height: 51px;
-  position: relative;
-  -webkit-transition: all var(--transition) ease 0s;
-  transition: all var(--transition) ease 0s;
-}
-
-.edit__button::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  -webkit-transition: all var(--transition) ease 0s;
-  transition: all var(--transition) ease 0s;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.edit__button.active {
-  cursor: auto;
-  pointer-events: none;
-}
-
-.edit__button.active::before {
-  height: 2px;
-  background: linear-gradient(223.97deg, #E82BD5 -20.81%, #322EED 118.24%);
-}
-
 .avatar-edit-body {
   position: relative;
 }
@@ -369,75 +317,8 @@
   margin: 0;
 }
 
-.edit-body__loader {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.edit-body__loader img {
-  width: 40px;
-  height: 40px;
-  -webkit-animation: loader 0.8s infinite ease;
-  animation: loader 0.8s infinite ease;
-}
-
 .edit-body__line {
   width: 100%;
-}
-
-.edit-body__close-eye {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.edit-body__eye,
-.edit-body__close-eye {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  position: absolute;
-  top: 50%;
-  background: #0d0d0d;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 36px;
-  right: 8px;
-  height: 40px;
-  cursor: pointer;
-}
-
-.edit-body__eye svg,
-.edit-body__close-eye svg {
-  fill: transparent;
-  color: var(--body-gray-color);
-  -webkit-transition: all var(--transition) ease 0s;
-  transition: all var(--transition) ease 0s;
-}
-
-.edit-body__input.visible .edit-body__eye {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.edit-body__input.visible .edit-body__close-eye {
-  opacity: 1;
-  visibility: visible;
 }
 
 .edit-body__socials {
@@ -597,14 +478,6 @@
 }
 
 @media (any-hover: hover) {
-  .edit__button:hover {
-    color: var(--body-pink-color);
-  }
-
-  .edit__button.active:hover {
-    color: #fff;
-  }
-
   .avatar-edit-body__upload-button:hover {
     color: var(--body-pink-color);
     border-color: var(--body-pink-color);
@@ -641,10 +514,5 @@
 
   .edit-body__add-button:hover svg {
     color: #A52CDE;
-  }
-
-  .edit-body__eye:hover svg,
-  .edit-body__close-eye:hover svg {
-    color: var(--body-pink-color);
   }
 }

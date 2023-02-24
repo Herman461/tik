@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/style.css?_v=20230224103932">
 
-    <link rel="stylesheet" href="assets/css/pages/edit.css?_v=20230224103932">
-    <title>Edit Account</title>
+    <link rel="stylesheet" href="assets/css/pages/auth.css?_v=20230224103932">
+    <title>Log in</title>
 </head>
 
 <body>
@@ -93,20 +93,12 @@
                         </svg>
                         <span>Upload</span>
                     </a>
-                    <div class="header__button user-action-header">
-                        <div class="user-action-header__avatar">
-                            <img src="assets/images/default-avatar.svg" alt="">
-                        </div>
-                        <div class="user-action-header__content">
-                            <div class="user-action-header__name">
-                                username
-                                <svg>
-                                    <use xlink:href="assets/images/icons/icons.svg#check-circle"></use>
-                                </svg>
-                            </div>
-                            <a href="" class="user-action-header__exit">Exit</a>
-                        </div>
-                    </div>
+                    <a href="./login.html" class="header__button button button_primary">
+                        <svg>
+                            <use xlink:href="assets/images/icons/icons.svg#user-circle"></use>
+                        </svg>
+                        <span>Login</span>
+                    </a>
                 </div>
             </div>
             <div class="header__menu menu">
@@ -447,178 +439,93 @@
         </header>
 
         <main class="page">
-            <div class="edit">
-                <div class="edit__container container">
-                    <h1 class="edit__title title">Heading 1</h1>
-                    <div class="edit__buttons buttons">
-                        <a href="./edit-profile.html" class="buttons__item">Edit Profile</a>
-                        <a href="./edit-account.html" class="buttons__item active">Edit Account</a>
+            <div class="auth">
+                <div class="auth__container container">
+                    <div class="auth__buttons buttons">
+                        <a href="./login.html" class="buttons__item active">
+                            <h1>Log In</h1>
+                        </a>
+                        <a href="./signup.html" class="buttons__item">
+                            <h2>Sign Up</h2>
+                        </a>
                     </div>
-                    <div class="edit__body">
-                        <form class="edit-body">
-                            <div class="edit-body__avatar avatar-edit-body">
-                                <input name="avatar" type="file" accept=".jpeg,.jpg,.png,.svg">
-                                <div class="avatar-edit-body__empty">
-                                    <div class="avatar-edit-body__icon">
+                    <div class="auth__title">Account Login
+                        <br>
+                        Enhance your porn GIF viewing experience
+                    </div>
+                    <form action="#" class="auth__form form-auth">
+                        <div class="form-auth__row">
+                            <div class="form-auth__column">
+                                <div class="form-auth__input">
+                                    <input name="username" data-input-username="" data-input-max="50" class="input" type="text" placeholder="User name">
+                                </div>
+                            </div>
+                            <div class="form-auth__column form-auth__column_flex">
+                                <div class="form-auth__input password">
+                                    <input data-input-max="50" name="password" data-password="" type="password" class="input" placeholder="Password">
+                                    <div class="password__eye">
                                         <svg>
-                                            <use xlink:href="assets/images/icons/icons.svg#camera"></use>
+                                            <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
                                         </svg>
                                     </div>
-                                    <div class="avatar-edit-body__label">Add or upload photo</div>
-                                </div>
-                                <div class="avatar-edit-body__upload-button">
-                                    <svg>
-                                        <use xlink:href="assets/images/icons/icons.svg#upload"></use>
-                                    </svg>
-                                    Change photo
-                                </div>
-                            </div>
-                            <div class="edit-body__block">
-                                <div class="edit-body__label">Change email</div>
-                                <div class="edit-body__input">
-                                    <input name="email" data-input-email="" data-input-min="6" data-input-max="256" type="text" class="input" placeholder="E-mail">
-                                </div>
-                                <div class="edit-body__label">Select Notifications</div>
-                                <div class="edit-body__categories categories-edit-body">
-                                    <div class="categories-edit-body__column">
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                    </div>
-                                    <div class="categories-edit-body__column">
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
+                                    <div class="password__close-eye">
+                                        <svg>
+                                            <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
+                                        </svg>
                                     </div>
                                 </div>
-                                <div class="edit-body__label">Select Preferences</div>
-                                <div class="edit-body__categories categories-edit-body">
-                                    <div class="categories-edit-body__column">
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                    </div>
-                                    <div class="categories-edit-body__column">
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                        <label class="categories-edit-body__checkbox checkbox">
-                                            <span class="checkbox__circle"></span>
-                                            <input class="checkbox__input" type="checkbox">
-                                            <span class="checkbox__text">New video from my favorite Creators</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="edit-body__label">Change password</div>
-                                <div class="edit-body__line">
-                                    <div class="edit-body__input password">
-                                        <input name="old_password" data-input="" type="password" class="input" placeholder="Old password">
-                                        <div class="password__eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="password__close-eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="edit-body__input password">
-                                        <input name="new_password" data-input="" type="password" class="input" placeholder="New password">
-                                        <div class="password__eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="password__close-eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="edit-body__input password">
-                                        <input name="password2" data-input="" type="password" class="input" placeholder="Repeat password">
-                                        <div class="password__eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
-                                            </svg>
-                                        </div>
-                                        <div class="password__close-eye">
-                                            <svg>
-                                                <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button disabled class="edit-body__submit button button_primary">
-                                    <span>Save changes</span>
-                                </button>
-                                <div class="edit-body__loader loader hide">
-                                    <img src="assets/images/loader.svg" alt="">
-                                </div>
-                            </div>
-
-                        </form>
-                        <div class="edit-account">
-                            <div class="edit-account__body">
-
+                                <a href="./recovery-password.html" class="form-auth__forgot">Forgot password?</a>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-auth__label">or</div>
+                        <ul class="form-auth__socials socials-auth">
+                            <li class="socials-auth__item">
+                                <a href="" class="socials-auth__link">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#account-apple"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials-auth__item">
+                                <a href="" class="socials-auth__link">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#account-google"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials-auth__item">
+                                <a href="" class="socials-auth__link">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#account-twitter"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="socials-auth__item">
+                                <a href="" class="socials-auth__link">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#account-facebook"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="" class="form-auth__captcha">
+                            <img src="assets/images/captcha.jpg" alt="">
+                        </a>
+                        <label class="form-auth__checkbox checkbox">
+                            <span class="checkbox__circle"></span>
+                            <input class="checkbox__input" checked type="checkbox">
+                            <span class="checkbox__text">New video from my favorite Creators</span>
+                        </label>
+                        <button type="submit" disabled class="form-auth__button button button_primary">
+                            <span>Login</span>
+                            <svg>
+                                <use xlink:href="assets/images/icons/icons.svg#arrow-right"></use>
+                            </svg>
+                        </button>
+                        <div class="form-auth__loader loader hide">
+                            <img src="assets/images/loader.svg" alt="">
+                        </div>
+                    </form>
 
                 </div>
             </div>
@@ -671,7 +578,7 @@
     <script src="assets/js/app.js?_v=20230224103932"></script>
 
 
-    <script src="assets/js/pages/edit.js?_v=20230224103932"></script>
+    <script src="assets/js/pages/auth.js?_v=20230224103932"></script>
 </body>
 
 </html>
