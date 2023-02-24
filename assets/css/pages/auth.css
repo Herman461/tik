@@ -144,10 +144,9 @@
   }
 
   .form-auth__column {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    max-width: 50%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
     padding: 0 12px;
     margin-bottom: 24px;
   }
