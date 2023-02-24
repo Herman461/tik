@@ -473,7 +473,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (input.hasAttribute('data-input-username')) {
-                    const format = /^[A-Za-z0-9@_\-]+$/
+                    const format = /^[A-Za-z0-9@_\-]+$/;
                     if (!format.test(input.value)) {
                         const errorMessageText = 'This field contains forbidden characters'
 
@@ -492,7 +492,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (input.hasAttribute('data-input-email')) {
-                    const format = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+                    const format = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
                     if (!format.test(input.value)) {
                         const errorMessageText = 'Email is not correct'
 
