@@ -113,6 +113,8 @@
 .slider__main .slider-button-prev.swiper-button-disabled::before {
   opacity: 0 !important;
   visibility: hidden !important;
+  width: 0;
+  height: 0;
 }
 
 .slider__main .slider-button-next {

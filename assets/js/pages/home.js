@@ -125,6 +125,9 @@ const firstSlider = new Swiper('.slider__body_first', {
     spaceBetween: 16,
     slidesPerView: 'auto',
     slidesPerGroup: 1,
+    lazy: {
+        loadPrevNext: true,
+    },
     breakpoints: {
         1300.98: {
 
@@ -159,6 +162,9 @@ const secondSlider = new Swiper('.slider__body_second', {
     spaceBetween: 16,
     slidesPerView: 2,
     slidesPerGroup: 2,
+    lazy: {
+        loadPrevNext: true,
+    },
     breakpoints: {
         1300.98: {
             slidesPerView: 7,
@@ -203,6 +209,9 @@ const thirdSlider = new Swiper('.slider__body_third', {
     spaceBetween: 16,
     slidesPerView: 'auto',
     slidesPerGroup: 1,
+    lazy: {
+        loadPrevNext: true,
+    },
     breakpoints: {
         1300.98: {
 
@@ -237,7 +246,10 @@ const fourthSlider = new Swiper('.slider__body_fourth', {
     spaceBetween: 16,
     slidesPerView: 'auto',
     slidesPerGroup: 1,
-    breakpoints: {
+    lazy: {
+        loadPrevNext: true,
+    },
+        breakpoints: {
         1300.98: {
 
             slidesPerGroup: 5
