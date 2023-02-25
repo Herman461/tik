@@ -318,8 +318,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return
         }
 
+        // const body = new FormData()
+        // body.append( 'file', avatar )
+        //
+        // fetch('/your-endpoint', {
+        //     method: 'POST',
+        //     body: body
+        // }).then(function(response) {
+        //     // ... если результат успешный, то url созданой картинки цепляем на тег img
+        // })
+        // reader можно удалить ...
+
         const reader = new FileReader();
         reader.readAsDataURL(avatar);
+
 
         reader.onloadend = function () {
 
@@ -346,6 +358,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             emptyAvatar.classList.add('hide')
         }
+
+        // ... до этого момента
 
         e.target.value = null
         uploadButton.classList.add('show')
