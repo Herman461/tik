@@ -1,0 +1,142 @@
+.page__container {
+  margin-top: 48px;
+}
+
+.top-banner {
+  margin: 0 auto 64px;
+  display: block;
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.top-banner img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+}
+
+.content h1 {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 127.7777777778%;
+  color: var(--body-white-color);
+  margin-bottom: 24px;
+}
+
+.content h1:last-child {
+  margin: 0;
+}
+
+.content p {
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 121.4285714286%;
+}
+
+.content p:last-child {
+  margin: 0;
+}
+
+.bottom-banners {
+  margin-top: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 96px;
+}
+
+.bottom-banners__item {
+  max-width: 300px;
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bottom-banners__item img {
+  width: 300px;
+  height: 250px;
+  -o-object-position: center;
+  object-position: center;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@media (min-width: 768.98px) {
+  .bottom-banners {
+    margin-left: -33px;
+    margin-right: -33px;
+  }
+
+  .bottom-banners__column {
+    padding: 0 33px;
+  }
+}
+
+@media (min-width: 991.98px) {
+  .top-banner {
+    max-width: 728px;
+  }
+
+  .bottom-banners {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .bottom-banners {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .bottom-banners__column {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .page__container {
+    margin-top: 24px;
+  }
+
+  .top-banner {
+    margin: 0 0 48px;
+    height: 110px;
+  }
+
+  .bottom-banners {
+    margin-top: 48px;
+  }
+
+  .bottom-banners__column:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 768.98px) {
+  .page__container {
+    margin-top: 16px;
+  }
+
+  .top-banner {
+    margin: 0 0 31px;
+  }
+
+  .bottom-banners__column:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .bottom-banners {
+    margin-bottom: 48px;
+  }
+}
