@@ -127,6 +127,7 @@ a {
   --body-font-size: 12px;
   --body-gray-color: #7D7D7D;
   --body-pink-color: #E82BD5;
+  --body-violet-color: #662DE6;
   --transition: 0.4s;
   --button-transition: 0.3s;
 }
@@ -545,7 +546,7 @@ svg {
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500 !important;
   font-size: 18px;
   line-height: 23px;
   color: var(--body-white-color);
@@ -1342,8 +1343,8 @@ svg {
   color: var(--body-gray-color);
   width: 35px;
   height: 35px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .user-header__top {
@@ -1407,8 +1408,8 @@ svg {
   fill: var(--body-main-color);
   width: 14px;
   height: 14px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .user-header__link {
@@ -1420,8 +1421,8 @@ svg {
   -ms-flex-align: center;
   align-items: center;
   min-height: 60px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .user-header__link span {
@@ -1433,13 +1434,13 @@ svg {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 0 14px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .user-header__arrow svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 14px;
   height: 14px;
   fill: var(--body-gray-color);
@@ -1543,8 +1544,8 @@ svg {
 .user-action-header__exit {
   line-height: 15px;
   color: var(--body-gray-color);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 input[type=text],

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/style.css?_v=20230228233037">
-
-    <link rel="stylesheet" href="assets/css/pages/auth.css?_v=20230228233037">
-    <title>Log in</title>
+    <link rel="stylesheet" href="assets/css/pages/content.css?_v=20230228233037">
+    <link rel="stylesheet" href="assets/css/pages/following.css?_v=20230228233037">
+    <title>Following</title>
 </head>
 
 <body>
@@ -439,81 +439,227 @@
         </header>
 
         <main class="page">
-            <div class="auth">
-                <div class="auth__container container">
-                    <div class="auth__buttons buttons">
-                        <a href="./login.html" class="buttons__item">
-                            <h2>Log In</h2>
-                        </a>
-                        <a href="./signup.html" class="buttons__item active">
-                            <h1>Sign Up</h1>
-                        </a>
-                    </div>
-                    <div class="auth__title">Account Login
-                        <br>
-                        Enhance your porn GIF viewing experience
-                    </div>
-                    <form action="#" class="auth__form form-auth">
-                        <div class="form-auth__row">
-                            <div class="form-auth__column">
-                                <div class="form-auth__input">
-                                    <input data-input-email="" data-input-max="50" class="input" type="text" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-auth__column">
-                                <div class="form-auth__input">
-                                    <input data-input-username="" data-input-max="50" class="input" type="text" placeholder="User name">
-                                </div>
-                            </div>
-                            <div class="form-auth__column">
-                                <div class="form-auth__input password">
-                                    <input data-input-max="50" name="password" data-password="" type="password" class="input main-password" placeholder="Password">
-                                    <div class="password__eye">
-                                        <svg>
-                                            <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="password__close-eye">
-                                        <svg>
-                                            <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-auth__column">
-                                <div class="form-auth__input password">
-                                    <input data-input-confirmed-password="" data-input-max="50" name="password2" data-password="" type="password" class="input" placeholder="Password Confirm">
-                                    <div class="password__eye">
-                                        <svg>
-                                            <use xlink:href="assets/images/icons/icons.svg#eye-stroke"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="password__close-eye">
-                                        <svg>
-                                            <use xlink:href="assets/images/icons/icons.svg#eye-close"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="page__container container">
+                <a href="" class="top-banner">
+                    <img src="assets/images/top-banner.jpg" alt="">
+                </a>
 
-                        <a href="" class="form-auth__captcha">
-                            <img src="assets/images/captcha.jpg" alt="">
-                        </a>
-
-                        <button type="submit" disabled class="form-auth__button button button_primary">
-                            <span>Send</span>
+                <div class="following">
+                    <div class="following__top">
+                        <a href="" class="following__prev">
                             <svg>
-                                <use xlink:href="assets/images/icons/icons.svg#arrow-right"></use>
+                                <use xlink:href="assets/images/icons/icons.svg#angle-right"></use>
                             </svg>
-                        </button>
-                        <div class="form-auth__loader loader hide">
-                            <img src="assets/images/loader.svg" alt="">
-                        </div>
-                    </form>
+                            <span>Profile</span>
+                        </a>
+                        <div class="following__username">USERNAME</div>
 
+
+                    </div>
+                    <div class="following__buttons buttons">
+                        <a href="" class="buttons__item active">
+                            <h1>Following</h1>
+                        </a>
+                        <a href="" class="buttons__item">Followers</a>
+                    </div>
+                    <div class="following__items">
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                    <div class="item-following__verified">
+                                        <svg>
+                                            <use xlink:href="assets/images/icons/icons.svg#check-circle"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button item-following__button_unfollowing button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#close"></use>
+                                </svg>
+                                <span>Unfollowing</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info item-following__info_single">
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                        <div class="following__item item-following">
+                            <a href="" class="item-following__image">
+                                <img src="assets/images/following.jpg" alt="">
+                            </a>
+                            <div class="item-following__block">
+                                <div class="item-following__info">
+                                    <div class="item-following__fullname">Full Name</div>
+                                    <a href="" class="item-following__username">@Username</a>
+                                </div>
+                            </div>
+                            <button type="button" class="item-following__button button button_stroke">
+                                <svg>
+                                    <use xlink:href="assets/images/icons/icons.svg#user-plus"></use>
+                                </svg>
+                                <span>Follow</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="following__paging paging">
+
+                        <ul class="paging__list">
+                            <li class="paging__item">
+                                <a href="" class="paging__link paging__link_prev">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#angle-right"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="paging__item">
+                                <a href="" class="paging__link paging__link_current">1</a>
+                            </li>
+                            <li class="paging__item">
+                                <a href="" class="paging__link">2</a>
+                            </li>
+                            <li class="paging__item">
+                                <a href="" class="paging__link">3</a>
+                            </li>
+                            <li class="paging__item paging__item_more">
+                                <a href="" class="paging__link paging__link_more">...</a>
+                            </li>
+                            <li class="paging__item paging__item_last">
+                                <a href="" class="paging__link paging__link_last">45</a>
+                            </li>
+                            <li class="paging__item">
+                                <a href="" class="paging__link paging__link_next active">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons.svg#angle-right"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="bottom-banners">
+                    <a href="" class="bottom-banners__column">
+                        <div class="bottom-banners__item">
+                            <img src="assets/images/banner.jpg" alt="">
+                        </div>
+                    </a>
+                    <a href="" class="bottom-banners__column">
+                        <div class="bottom-banners__item">
+                            <img src="assets/images/banner.jpg" alt="">
+                        </div>
+                    </a>
+                    <a href="" class="bottom-banners__column">
+                        <div class="bottom-banners__item">
+                            <img src="assets/images/banner.jpg" alt="">
+                        </div>
+                    </a>
+                </div>
+
+
             </div>
+
         </main>
         <div class="footer">
             <div class="footer__container container">
@@ -563,7 +709,8 @@
     <script src="assets/js/app.js?_v=20230228233037"></script>
 
 
-    <script src="assets/js/pages/auth.js?_v=20230228233037"></script>
+
+
 </body>
 
 </html>
