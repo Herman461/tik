@@ -312,8 +312,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     avatarInput.addEventListener('change', function (e) {
         const avatar = e.currentTarget.files[0]
+        const avatarBody = avatarInput.closest('.avatar-edit-body')
+        if (avatarBody.querySelector('.error')) {
+            avatarBody.querySelector('.error').remove()
+        }
+        if (avatar.size < 204800) {
+            const errorMessageText = 'The image size cannot be less than 200 kb.'
 
-        if (avatar.size < 204800 || avatar.size > 52428800) {
+            const error = document.createElement('span')
+            error.className = 'error'
+            error.textContent = errorMessageText
+            avatarBody.appendChild(error)
+
+            setErrorAlert()
+            return
+        }
+
+        if (avatar.size > 52428800) {
+            const errorMessageText = 'The image size cannot be more than 50 mb.'
+
+            const error = document.createElement('span')
+            error.className = 'error'
+            error.textContent = errorMessageText
+            avatarBody.appendChild(error)
+
             setErrorAlert()
             return
         }
