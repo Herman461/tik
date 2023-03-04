@@ -1,4 +1,7 @@
-function swiperBuild(slider) {
+let sliders = document.querySelectorAll(".swiper");
+if (sliders) {
+	for (let index = 0; index < sliders.length; index++) {
+		let slider = sliders[index];
 		if (!slider.classList.contains('swiper-build')) {
 			let slider_items = slider.children;
 			if (slider_items) {
@@ -15,10 +18,12 @@ function swiperBuild(slider) {
 			slider.appendChild(slider_wrapper);
 			slider.classList.add('swiper-build');
 		}
-
-		sliders_build_callback();
+		if (slider.classList.contains('_gallery')) {
+			//slider.data('lightGallery').destroy(true);
+		}
+	}
+	sliders_build_callback();
 }
-
 
 function sliders_build_callback() { }
 
