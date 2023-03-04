@@ -21,27 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
             //     // }
             //     playVideo(e)
             // })
-            videoSlider.addEventListener('touchstart', function(e) {
+            videoSlider.addEventListener('swiped', function(e) {
+                if (!e.target.closest('.block-video')) return
+                if (e.target.closest('.block-video').querySelector('video.active')) return
 
-
-                function detectOffset(e) {
-                    if (!e.target.closest('.block-video')) return
-                    if (e.target.closest('.block-video').querySelector('video.active')) return
-
-                    if (document.querySelector('video.active')) {
-                        pauseCurrentVideo(document.querySelector('video.active'))
-                    }
-                    e.preventDefault()
-                    playVideo(e)
+                if (document.querySelector('video.active')) {
+                    pauseCurrentVideo(document.querySelector('video.active'))
                 }
-                e.currentTarget.addEventListener('touchmove', debounce(detectOffset, 50), {once: true})
 
+                e.preventDefault()
 
-                // if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
-                //     e.preventDefault()
-                // }
-
-
+                playVideo(e)
             })
 
 
@@ -280,3 +270,39 @@ const fourthSlider = new Swiper('.slider__body_fourth', {
 })
 
 
+const animItems = document.querySelectorAll('._anim-items');
+
+if (animItems.length > 0) {
+    window.addEventListener('scroll', uploadVideosOnScroll);
+
+    function uploadVideosOnScroll() {
+        for (let index = 0; index < animItems.length; index++) {
+            const animItem = animItems[index];
+            const animItemHeight = animItem.offsetHeight;
+            const animItemOffset = offset(animItem).top;
+            const animStart = 10;
+
+            let animItemPoint = window.innerHeight - animItemHeight / animStart;
+            if (animItemHeight > window.innerHeight) {
+                animItemPoint = window.innerHeight - window.innerHeight / animStart;
+            }
+
+            if (
+                pageYOffset > animItemOffset - animItemPoint &&
+                pageYOffset < animItemOffset + animItemHeight
+            ) {
+                animItem.classList.add('active');
+            }
+        }
+    }
+
+    function offset(el) {
+        const rect = el.getBoundingClientRect();
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+    }
+    setTimeout(() => {
+        uploadVideosOnScroll();
+    }, 300);
+}
