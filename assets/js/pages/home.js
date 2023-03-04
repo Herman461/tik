@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pageSlider = pageSliders[index];
                 const pageSliderHeight = pageSlider.offsetHeight;
                 const pageSliderOffset = offset(pageSlider).top;
-                const animStart = 10;
+                const animStart = 4;
 
                 let pageSliderPoint = window.innerHeight - pageSliderHeight / animStart;
                 if (pageSliderHeight > window.innerHeight) {
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         setTimeout(async () => {
             await uploadVideosOnScroll();
-        }, 300);
+        }, 500);
 
         async function buildSlider(sliderWrapper) {
 
