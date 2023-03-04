@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         setTimeout(async () => {
             await uploadVideosOnScroll();
-        }, 500);
+        }, 700);
 
         async function buildSlider(sliderWrapper) {
 
