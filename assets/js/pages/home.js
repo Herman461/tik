@@ -1,3 +1,243 @@
+// Гит не поддерживает fetch запросы
+const fetchVideos = {
+    "videos": [
+    {
+        "id": "1",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "2",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "3",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "big"
+    },
+    {
+        "id": "4",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "vertical"
+    },
+    {
+        "id": "5",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "6",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "7",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "horizontal"
+    },
+    {
+        "id": "8",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "9",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "1",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "2",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "3",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "big"
+    },
+    {
+        "id": "4",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "vertical"
+    },
+    {
+        "id": "5",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "6",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "7",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "horizontal"
+    },
+    {
+        "id": "8",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    },
+    {
+        "id": "9",
+        "poster": "assets/images/preview.webp",
+        "videoSrc": "assets/video/video2.mp4",
+        "views": 456,
+        "likesCount": 123,
+        "type": "small"
+    }
+]
+}
+const fetchLastVideos = {
+    "videos": [
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        },
+        {
+            "id": "1",
+            "webpImageSrc": "assets/images/preview.webp",
+            "jpgImageSrc": "assets/images/preview.jpg",
+            "views": 456,
+            "username": "asian_sexdoll"
+        }
+    ]
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
 
 
@@ -137,10 +377,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const slider = sliderWrapper.querySelector('.slider__body')
 
             if (sliderWrapper.classList.contains('newly')) {
-                const response = await fetch('/assets/database/lastVideos.json')
-                const json = await response.json()
-
-                const lastVideos = json.videos
+                // const response = await fetch('/assets/database/lastVideos.json')
+                // const json = await response.json()
+                //
+                // const lastVideos = json.videos
+                const lastVideos = JSON.parse(JSON.stringify(fetchLastVideos)).videos
 
                 for (let index = 0; index < lastVideos.length; index++) {
                     const lastVideo = lastVideos[index]
@@ -188,10 +429,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-                const response = await fetch('/assets/database/videos.json')
-                const json = await response.json()
+                // const response = await fetch('/assets/database/videos.json')
+                // const json = await response.json()
+                //
+                // let videos = json.videos
+                let videos = JSON.parse(JSON.stringify(fetchVideos)).videos
 
-                let videos = json.videos
 
 
                 while (videos.length > 0) {
