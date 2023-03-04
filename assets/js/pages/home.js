@@ -21,17 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
             //     // }
             //     playVideo(e)
             // })
-            videoSlider.addEventListener('touchmove', function(e) {
-                if (!e.target.closest('.block-video')) return
-                if (e.target.closest('.block-video').querySelector('video.active')) return
+            videoSlider.addEventListener('touchstart', function(e) {
 
-                if (document.querySelector('video.active')) {
-                    pauseCurrentVideo(document.querySelector('video.active'))
+
+                function detectOffset(e) {
+                    if (!e.target.closest('.block-video')) return
+                    if (e.target.closest('.block-video').querySelector('video.active')) return
+
+                    if (document.querySelector('video.active')) {
+                        pauseCurrentVideo(document.querySelector('video.active'))
+                    }
+                    e.preventDefault()
+                    playVideo(e)
                 }
+                e.currentTarget.addEventListener('touchmove', debounce(detectOffset, 50), {once: true})
 
-                e.preventDefault()
 
-                e.target.closest('.block-video').querySelector('video').play()
+                // if (!e.target.closest('.slider-button-prev') && !e.target.closest('.slider-button-next')) {
+                //     e.preventDefault()
+                // }
+
+
             })
 
 
@@ -110,171 +120,151 @@ function onSliderInit(strElement) {
     const slider = document.querySelector(strElement).closest('.slider')
     slider.classList.add('init')
 }
-if (document.querySelector('.slider__body_first')) {
-    const firstSlider = new Swiper('.slider__body_first', {
-        speed: 500,
-        spaceBetween: 16,
-        slidesPerView: 'auto',
-        slidesPerGroup: 1,
-        lazy: {
-            loadPrevNext: true,
-        },
-        breakpoints: {
-            1300.98: {
-
-                slidesPerGroup: 5
-            },
-            767.98: {
-                slidesPerGroup: 4,
-
-            },
-            575.98: {
-                slidesPerGroup: 3,
-            }
-        },
-        on: {
-            afterInit() {
-                onSliderInit('.slider__body_first')
-            },
-
-        },
-        navigation: {
-            nextEl:
-                document.querySelector('.slider__body_first').closest('.slider__main')
-                    .querySelector('.slider-button-next'),
-            prevEl:
-                document.querySelector('.slider__body_first').closest('.slider__main')
-                    .querySelector('.slider-button-prev')
-        },
-    })
-
-}
-
-if (document.querySelector('.slider__body_second')) {
-    const secondSlider = new Swiper('.slider__body_second', {
-        speed: 500,
-        spaceBetween: 16,
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-        lazy: {
-            loadPrevNext: true,
-        },
-        breakpoints: {
-            1300.98: {
-                slidesPerView: 7,
-                slidesPerGroup: 7
-            },
-            1100.98: {
-                slidesPerView: 6,
-                slidesPerGroup: 6
-            },
-            900.98: {
-                slidesPerView: 5,
-                slidesPerGroup: 5
-            },
-            767.98: {
-                slidesPerView: 4,
-                slidesPerGroup: 4
-            },
-            575.98: {
-                slidesPerView: 3,
-                slidesPerGroup: 3
-            }
-        },
-        on: {
-            afterInit() {
-
-                onSliderInit('.slider__body_second')
-            },
-
-        },
-        navigation: {
-            nextEl:
-                document.querySelector('.slider__body_second').closest('.slider__main')
-                    .querySelector('.slider-button-next'),
-            prevEl:
-                document.querySelector('.slider__body_second').closest('.slider__main')
-                    .querySelector('.slider-button-prev')
-        },
-    })
-}
-
-if (document.querySelector('.slider__body_third')) {
-    const thirdSlider = new Swiper('.slider__body_third', {
-        speed: 500,
-        spaceBetween: 16,
-        slidesPerView: 'auto',
-        slidesPerGroup: 1,
-        lazy: {
-            loadPrevNext: true,
-        },
-        breakpoints: {
-            1300.98: {
-
-                slidesPerGroup: 5
-            },
-            767.98: {
-                slidesPerGroup: 4,
-
-            },
-            575.98: {
-                slidesPerGroup: 3,
-            }
-        },
-        on: {
-            afterInit() {
-                onSliderInit('.slider__body_third')
-            },
-
-        },
-        navigation: {
-            nextEl:
-                document.querySelector('.slider__body_third').closest('.slider__main')
-                    .querySelector('.slider-button-next'),
-            prevEl:
-                document.querySelector('.slider__body_third').closest('.slider__main')
-                    .querySelector('.slider-button-prev')
-        },
-    })
-}
-
-if (document.querySelector('.slider__body_fourth')) {
-    const fourthSlider = new Swiper('.slider__body_fourth', {
-        speed: 500,
-        spaceBetween: 16,
-        slidesPerView: 'auto',
-        slidesPerGroup: 1,
-        lazy: {
-            loadPrevNext: true,
-        },
-        breakpoints: {
-            1300.98: {
-
-                slidesPerGroup: 5
-            },
-            767.98: {
-                slidesPerGroup: 4,
-
-            },
-            575.98: {
-                slidesPerGroup: 3,
-            }
-        },
-        on: {
-            afterInit() {
-
-                onSliderInit('.slider__body_fourth')
-            },
-
-        },
-        navigation: {
-            nextEl:
-                document.querySelector('.slider__body_fourth').closest('.slider__main')
-                    .querySelector('.slider-button-next'),
-            prevEl:
-                document.querySelector('.slider__body_fourth').closest('.slider__main')
-                    .querySelector('.slider-button-prev')
-        },
-    })
-}
+// const firstSlider = new Swiper('.slider__body_first', {
+//     speed: 500,
+//     spaceBetween: 16,
+//     slidesPerView: 'auto',
+//     slidesPerGroup: 1,
+//     breakpoints: {
+//         1300.98: {
+//
+//             slidesPerGroup: 5
+//         },
+//         767.98: {
+//             slidesPerGroup: 4,
+//
+//         },
+//         575.98: {
+//             slidesPerGroup: 3,
+//         }
+//     },
+//     on: {
+//         afterInit() {
+//             onSliderInit('.slider__body_first')
+//         },
+//
+//     },
+//     navigation: {
+//         nextEl:
+//             document.querySelector('.slider__body_first').closest('.slider__main')
+//                 .querySelector('.slider-button-next'),
+//         prevEl:
+//             document.querySelector('.slider__body_first').closest('.slider__main')
+//                 .querySelector('.slider-button-prev')
+//     },
+// })
+//
+// const secondSlider = new Swiper('.slider__body_second', {
+//     speed: 500,
+//     spaceBetween: 16,
+//     slidesPerView: 2,
+//     slidesPerGroup: 2,
+//     breakpoints: {
+//         1300.98: {
+//             slidesPerView: 7,
+//             slidesPerGroup: 7
+//         },
+//         1100.98: {
+//             slidesPerView: 6,
+//             slidesPerGroup: 6
+//         },
+//         900.98: {
+//             slidesPerView: 5,
+//             slidesPerGroup: 5
+//         },
+//         767.98: {
+//             slidesPerView: 4,
+//             slidesPerGroup: 4
+//         },
+//         575.98: {
+//             slidesPerView: 3,
+//             slidesPerGroup: 3
+//         }
+//     },
+//     on: {
+//         afterInit() {
+//
+//             onSliderInit('.slider__body_second')
+//         },
+//
+//     },
+//     navigation: {
+//         nextEl:
+//             document.querySelector('.slider__body_second').closest('.slider__main')
+//                 .querySelector('.slider-button-next'),
+//         prevEl:
+//             document.querySelector('.slider__body_second').closest('.slider__main')
+//                 .querySelector('.slider-button-prev')
+//     },
+// })
+//
+// const thirdSlider = new Swiper('.slider__body_third', {
+//     speed: 500,
+//     spaceBetween: 16,
+//     slidesPerView: 'auto',
+//     slidesPerGroup: 1,
+//     breakpoints: {
+//         1300.98: {
+//
+//             slidesPerGroup: 5
+//         },
+//         767.98: {
+//             slidesPerGroup: 4,
+//
+//         },
+//         575.98: {
+//             slidesPerGroup: 3,
+//         }
+//     },
+//     on: {
+//         afterInit() {
+//             onSliderInit('.slider__body_third')
+//         },
+//
+//     },
+//     navigation: {
+//         nextEl:
+//             document.querySelector('.slider__body_third').closest('.slider__main')
+//                 .querySelector('.slider-button-next'),
+//         prevEl:
+//             document.querySelector('.slider__body_third').closest('.slider__main')
+//                 .querySelector('.slider-button-prev')
+//     },
+// })
+//
+// const fourthSlider = new Swiper('.slider__body_fourth', {
+//     speed: 500,
+//     spaceBetween: 16,
+//     slidesPerView: 'auto',
+//     slidesPerGroup: 1,
+//     breakpoints: {
+//         1300.98: {
+//
+//             slidesPerGroup: 5
+//         },
+//         767.98: {
+//             slidesPerGroup: 4,
+//
+//         },
+//         575.98: {
+//             slidesPerGroup: 3,
+//         }
+//     },
+//     on: {
+//         afterInit() {
+//
+//             onSliderInit('.slider__body_fourth')
+//         },
+//
+//     },
+//     navigation: {
+//         nextEl:
+//             document.querySelector('.slider__body_fourth').closest('.slider__main')
+//                 .querySelector('.slider-button-next'),
+//         prevEl:
+//             document.querySelector('.slider__body_fourth').closest('.slider__main')
+//                 .querySelector('.slider-button-prev')
+//     },
+// })
+//
 
