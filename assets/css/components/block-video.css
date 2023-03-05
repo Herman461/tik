@@ -232,6 +232,7 @@
 }
 
 .block-video__count svg {
+  margin-right: 6px;
   fill: transparent;
   width: 16px;
   height: 16px;

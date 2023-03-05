@@ -1,3 +1,32 @@
+.verification__add-button {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 17px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 20px;
+  color: var(--body-pink-color);
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
+  margin-bottom: 24px;
+  display: none;
+}
+
+.verification__add-button.active {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.verification__add-button svg {
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
+  margin-right: 12px;
+  color: var(--body-pink-color);
+}
+
 .verification__title {
   text-align: center;
   font-weight: 700;
@@ -178,6 +207,10 @@
 }
 
 @media (max-width: 768.98px) {
+  .verification {
+    padding-top: 24px;
+  }
+
   .step-verification {
     padding: 12px;
   }

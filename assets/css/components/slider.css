@@ -300,7 +300,7 @@ body.mobile .slider-button-next::after {
   }
 
   .slider__main .slider-button-next::before {
-    right: -11px;
+    right: -17px;
   }
 
   .slider__main .slider-button-prev {
@@ -308,7 +308,7 @@ body.mobile .slider-button-next::after {
   }
 
   .slider__main .slider-button-prev::before {
-    left: -11px;
+    left: -17px;
   }
 
   .slider__body .swiper-wrapper {

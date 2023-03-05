@@ -1,5 +1,5 @@
 // Социальные сети
-const addSocialButton = document.querySelector('.edit-body__add-button')
+const addSocialButton = document.querySelector('.add-button')
 const socials = [
     {
 
@@ -208,7 +208,7 @@ function deleteSocialItem(e) {
 }
 
 function updateSocialList() {
-    const socialLists = document.querySelectorAll('.edit-body .select__list')
+    const socialLists = document.querySelectorAll('.socials .select__list')
     if (socialLists.length > 0) {
         for (let index = 0; index < socialLists.length; index++) {
             const socialList = socialLists[index]
@@ -242,14 +242,10 @@ window.addEventListener('click', function(e) {
 
 
 
-const editBody = document.querySelector('.edit-body')
-
-if (editBody) {
-    editBody.addEventListener('click', function(e) {
-        if (e.target.closest('.socials__icon')) {
-            const inputIcon = e.target.closest('.socials__icon')
-            const inputWrapper = inputIcon.closest('.socials__input')
-            inputWrapper.querySelector('input').focus()
-        }
-    })
-}
+window.addEventListener('click', function(e) {
+    if (e.target.closest('.socials__icon')) {
+        const inputIcon = e.target.closest('.socials__icon')
+        const inputWrapper = inputIcon.closest('.socials__input')
+        inputWrapper.querySelector('input').focus()
+    }
+})
