@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let index = 0; index < videoSliders.length; index++) {
             const videoSlider = videoSliders[index]
 
-            videoSlider.addEventListener('mousemove', debounce(playVideo, 50))
+            videoSlider.addEventListener('mousemove', playVideo)
             // videoSlider.addEventListener('touchmove', function(e) {
             //
             //
@@ -54,19 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!video) return
 
-            // if (video.classList.contains('lazy-video')) {
-            //     for (let source in video.children) {
-            //
-            //         const videoSource = video.children[source];
-            //
-            //         if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-            //             videoSource.src = videoSource.dataset.src;
-            //         }
-            //     }
-            //     video.load();
-            //     video.classList.remove("lazy-video");
-            //
-            // }
+            if (video.classList.contains('lazy-video')) {
+                for (let source in video.children) {
+
+                    const videoSource = video.children[source];
+
+                    if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                        videoSource.src = videoSource.dataset.src;
+                    }
+                }
+                video.load();
+                video.classList.remove("lazy-video");
+
+            }
             video.play()
             video.classList.add('active')
             video.closest('.block-video').classList.add('active')
@@ -235,42 +235,42 @@ const thirdSlider = new Swiper('.slider__body_third', {
     },
 })
 
-const fourthSlider = new Swiper('.slider__body_fourth', {
-    speed: 500,
-    spaceBetween: 16,
-    slidesPerView: 'auto',
-    slidesPerGroup: 1,
-    breakpoints: {
-        1300.98: {
 
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerGroup: 4,
-
-        },
-        575.98: {
-            slidesPerGroup: 3,
-        }
-    },
-    on: {
-        afterInit() {
-
-            onSliderInit('.slider__body_fourth')
-        },
-
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_fourth').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_fourth').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
-})
 if (document.querySelector('.slider__body_fourth')) {
+    const fourthSlider = new Swiper('.slider__body_fourth', {
+        speed: 500,
+        spaceBetween: 16,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        breakpoints: {
+            1300.98: {
 
+                slidesPerGroup: 5
+            },
+            767.98: {
+                slidesPerGroup: 4,
+
+            },
+            575.98: {
+                slidesPerGroup: 3,
+            }
+        },
+        on: {
+            afterInit() {
+
+                onSliderInit('.slider__body_fourth')
+            },
+
+        },
+        navigation: {
+            nextEl:
+                document.querySelector('.slider__body_fourth').closest('.slider__main')
+                    .querySelector('.slider-button-next'),
+            prevEl:
+                document.querySelector('.slider__body_fourth').closest('.slider__main')
+                    .querySelector('.slider-button-prev')
+        },
+    })
 }
 
 

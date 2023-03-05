@@ -9,15 +9,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.avatar-edit-body {
+.avatar-edit-body,
+.avatar {
   position: relative;
 }
 
-.avatar-edit-body input {
+.avatar-edit-body input,
+.avatar input {
   display: none;
 }
 
-.avatar-edit-body img {
+.avatar-edit-body img,
+.avatar img {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -31,7 +34,8 @@
   border-radius: 10px;
 }
 
-.avatar-edit-body__upload-button {
+.avatar-edit-body__upload-button,
+.avatar__upload-button {
   cursor: pointer;
   position: absolute;
   bottom: 24px;
@@ -59,12 +63,14 @@
   transition: all var(--transition) ease 0s;
 }
 
-.avatar-edit-body__upload-button.show {
+.avatar-edit-body__upload-button.show,
+.avatar__upload-button.show {
   opacity: 1;
   visibility: visible;
 }
 
-.avatar-edit-body__upload-button svg {
+.avatar-edit-body__upload-button svg,
+.avatar__upload-button svg {
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
   color: var(--body-white-color);
@@ -72,13 +78,15 @@
   fill: transparent;
 }
 
-.avatar-edit-body__icon {
+.avatar-edit-body__icon,
+.avatar__icon {
   position: relative;
   z-index: 3;
   margin-bottom: 16px;
 }
 
-.avatar-edit-body__icon svg {
+.avatar-edit-body__icon svg,
+.avatar__icon svg {
   width: 56px;
   height: 56px;
   fill: transparent;
@@ -87,7 +95,8 @@
   transition: all var(--transition) ease 0s;
 }
 
-.avatar-edit-body__label {
+.avatar-edit-body__label,
+.avatar__label {
   position: relative;
   z-index: 3;
   line-height: 121.4285714286%;
@@ -96,7 +105,8 @@
   transition: all var(--transition) ease 0s;
 }
 
-.avatar-edit-body__empty {
+.avatar-edit-body__empty,
+.avatar__empty {
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -165,16 +175,19 @@
   color: var(--body-main-color);
 }
 
-.socials-edit-body__select {
+.socials-edit-body__select,
+.socials__select {
   position: relative;
   margin-bottom: 24px;
 }
 
-.socials-edit-body__select:last-child {
+.socials-edit-body__select:last-child,
+.socials__select:last-child {
   margin: 0;
 }
 
-.socials-edit-body__icon {
+.socials-edit-body__icon,
+.socials__icon {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -195,33 +208,39 @@
   transform: translate(0, -50%);
 }
 
-.socials-edit-body__icon svg {
+.socials-edit-body__icon svg,
+.socials__icon svg {
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
   fill: var(--body-white-color);
 }
 
-.socials-edit-body__input {
+.socials-edit-body__input,
+.socials__input {
   display: none;
   margin-bottom: 24px;
   position: relative;
 }
 
-.socials-edit-body__input:last-child {
+.socials-edit-body__input:last-child,
+.socials__input:last-child {
   margin: 0;
 }
 
-.socials-edit-body__input .input {
+.socials-edit-body__input .input,
+.socials__input .input {
   padding-left: 42px;
 }
 
-.socials-edit-body__input_flex {
+.socials-edit-body__input_flex,
+.socials__input_flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
 }
 
-.socials-edit-body__trash {
+.socials-edit-body__trash,
+.socials__trash {
   -ms-flex-item-align: center;
   -ms-grid-row-align: center;
   align-self: center;
@@ -232,7 +251,8 @@
   cursor: pointer;
 }
 
-.socials-edit-body__trash svg {
+.socials-edit-body__trash svg,
+.socials__trash svg {
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
   color: var(--body-gray-color);
@@ -478,33 +498,42 @@
 }
 
 @media (any-hover: hover) {
-  .avatar-edit-body__upload-button:hover {
+  .avatar-edit-body__upload-button:hover,
+  .avatar__upload-button:hover {
     color: var(--body-pink-color);
     border-color: var(--body-pink-color);
   }
 
-  .avatar-edit-body__upload-button:hover svg {
+  .avatar-edit-body__upload-button:hover svg,
+  .avatar__upload-button:hover svg {
     color: var(--body-pink-color);
   }
 
-  .avatar-edit-body__empty:hover {
+  .avatar-edit-body__empty:hover,
+  .avatar__empty:hover {
     background: #190722;
     border-color: var(--body-pink-color);
   }
 
-  .avatar-edit-body__empty:hover svg {
+  .avatar-edit-body__empty:hover svg,
+  .avatar__empty:hover svg {
     color: #fff;
   }
 
-  .avatar-edit-body__empty:hover .avatar-edit-body__label {
+  .avatar-edit-body__empty:hover .avatar-edit-body__label,
+  .avatar-edit-body__empty:hover .avatar,
+  .avatar__empty:hover .avatar-edit-body__label,
+  .avatar__empty:hover .avatar {
     color: #fff;
   }
 
-  .socials-edit-body__icon:hover svg {
+  .socials-edit-body__icon:hover svg,
+  .socials__icon:hover svg {
     fill: var(--body-pink-color);
   }
 
-  .socials-edit-body__trash:hover svg {
+  .socials-edit-body__trash:hover svg,
+  .socials__trash:hover svg {
     color: var(--body-pink-color);
   }
 

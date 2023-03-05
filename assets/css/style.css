@@ -1731,13 +1731,15 @@ textarea.input {
   transition: all var(--transition) ease 0s;
 }
 
-.select {
+.select,
+.base-select {
   display: block;
   width: 100%;
   position: relative;
 }
 
-.select__head {
+.select__head,
+.base-select__head {
   min-height: 44px;
   padding: 2px 12px;
   cursor: pointer;
@@ -1759,7 +1761,8 @@ textarea.input {
   border-radius: 6px;
 }
 
-.select__head svg {
+.select__head svg,
+.base-select__head svg {
   -webkit-transition: -webkit-transform var(--transition) ease 0s;
   transition: -webkit-transform var(--transition) ease 0s;
   transition: transform var(--transition) ease 0s;
@@ -1770,12 +1773,14 @@ textarea.input {
   fill: #fff;
 }
 
-.select__head.active svg {
+.select__head.active svg,
+.base-select__head.active svg {
   -webkit-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
 
-.select__list {
+.select__list,
+.base-select__list {
   padding: 12px 8px;
   position: absolute;
   top: calc(100% + 1px);
@@ -1792,7 +1797,8 @@ textarea.input {
   overflow: auto;
 }
 
-.select__item {
+.select__item,
+.base-select__item {
   padding: 12px;
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
@@ -1809,7 +1815,8 @@ textarea.input {
   align-items: center;
 }
 
-.select__item svg {
+.select__item svg,
+.base-select__item svg {
   -ms-flex-item-align: start;
   align-self: flex-start;
   fill: #fff;
@@ -2371,7 +2378,8 @@ textarea.input {
     border-color: #4c4c4c;
   }
 
-  .select__item:hover {
+  .select__item:hover,
+  .base-select__item:hover {
     background: rgba(50, 46, 237, 0.15);
   }
 
