@@ -1787,7 +1787,7 @@ textarea.input {
   left: 0;
   width: 100%;
   height: auto;
-  z-index: 5;
+  z-index: 10;
   background: #0D0D0E;
   border: 1px solid rgba(255, 255, 255, 0.05);
   -webkit-box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
@@ -1821,6 +1821,46 @@ textarea.input {
   align-self: flex-start;
   fill: #fff;
   margin-right: 12px;
+}
+
+.base-select {
+  width: auto;
+  min-width: 120px;
+}
+
+.base-select__list {
+  z-index: 10;
+}
+
+.base-select__icon {
+  margin-top: 2px;
+  margin-left: 15px;
+}
+
+.base-select__icon svg {
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
+  fill: transparent;
+  color: var(--body-gray-color);
+  width: 16px;
+  height: 16px;
+}
+
+.base-select__item {
+  color: var(--body-gray-color);
+}
+
+.base-select__head {
+  padding: 1px 8px 1px 12px;
+  color: var(--body-white-color);
+}
+
+.base-select__head.active {
+  border-color: var(--body-white-color);
+}
+
+.base-select__head.active svg {
+  color: var(--body-white-color);
 }
 
 .footer {
@@ -2381,6 +2421,11 @@ textarea.input {
   .select__item:hover,
   .base-select__item:hover {
     background: rgba(50, 46, 237, 0.15);
+  }
+
+  .base-select__item:hover {
+    background: var(--body-background);
+    color: var(--body-white-color);
   }
 
   .socials-footer__link:hover svg {
