@@ -59,9 +59,7 @@ const modelTags = [
     {link: "", text: "Tag1"},
     {link: "", text: "Tag1"},
     {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
+
 ]
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -128,16 +126,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         tagsItems.appendChild(togglerItem)
     }
 
-    window.addEventListener('resize', updateTags)
+    window.addEventListener('resize', function() {
+        if (!tagsToggler.classList.contains('more')) return
+
+        updateTags()
+    })
 
     function addTags() {
         if (tags.length === 0) return
 
-        for (let index = diff; index < tags.length; index++) {
 
-            if (!tags[index]) break;
+        for (let j = tags.length - diff - 1; j < tags.length; j++) {
 
-            const tag = tags[index]
+            if (!tags[j]) break;
+
+            const tag = tags[j]
 
             const element = createHTMLTag(tag)
 
@@ -152,6 +155,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (tags.length === 0) {
             document.querySelector('.model__tags').classList.add('hide')
         }
+
+
 
         const width = tagsItems.offsetWidth * 2 - tagsToggler.offsetWidth
 
@@ -175,16 +180,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             index++
         }
-        // for (let index = 0; index < limit; index++) {
-        //     if (!tags[index]) break;
-        //
-        //     const tag = tags[index]
-        //
-        //     const element = createHTMLTag(tag)
-        //
-        //
-        //     prependChild(tagsItems, element)
-        // }
+
         diff = tags.length - (index + 1);
         tagsToggler.textContent = `+${diff}`
         tagsToggler.classList.add('more')
@@ -205,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     })
 
 
-    const videosRow = document.querySelector('.videos-model__row')
+    const videosRow = document.querySelector('.videos-model__items')
 
     if (videosRow) {
 
