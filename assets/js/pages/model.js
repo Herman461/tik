@@ -69,8 +69,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     const tagsItems = document.querySelector('.tags-model__items')
     const tagsToggler = document.querySelector('.tags-model__toggler')
 
+
     let tags = []
-    const limit = 25
+    let diff = 0
 
     async function initTags() {
         // Запрос на сервер
@@ -79,11 +80,19 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         tags = modelTags
 
-
         minimizeTags()
+
+
     }
 
+
+
+
+    await initTags()
+
     function createHTMLTag(tag) {
+        if (tags.length === 0) return
+
         const itemEl = document.createElement('li')
 
         itemEl.className = 'tags-model__item'
@@ -91,28 +100,40 @@ document.addEventListener('DOMContentLoaded', async function() {
                  <a href="${tag.link}" class="tags-model__link">${tag.text}</a>
             `
 
-       return itemEl
+        return itemEl
     }
 
     function toggleTags(e) {
+        if (tags.length === 0) return
 
         if (tagsToggler.classList.contains('more')) {
             addTags()
         } else {
-            tagsItems.innerHTML = ''
+            updateTags()
 
-            minimizeTags()
-
-            const togglerItem = document.createElement('li')
-            togglerItem.className = 'tags-model__item'
-            togglerItem.appendChild(tagsToggler)
-
-            tagsItems.appendChild(togglerItem)
         }
     }
 
+    function updateTags() {
+        if (tags.length === 0) return
+
+        tagsItems.innerHTML = ''
+
+        minimizeTags()
+
+        const togglerItem = document.createElement('li')
+        togglerItem.className = 'tags-model__item'
+        togglerItem.appendChild(tagsToggler)
+
+        tagsItems.appendChild(togglerItem)
+    }
+
+    window.addEventListener('resize', updateTags)
+
     function addTags() {
-        for (let index = limit; index < tags.length; index++) {
+        if (tags.length === 0) return
+
+        for (let index = diff; index < tags.length; index++) {
 
             if (!tags[index]) break;
 
@@ -128,25 +149,47 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
     function minimizeTags() {
-        const diff = tags.length - limit;
-        for (let index = 0; index < limit; index++) {
-            if (!tags[index]) break;
+        if (tags.length === 0) {
+            document.querySelector('.model__tags').classList.add('hide')
+        }
 
+        const width = tagsItems.offsetWidth * 2 - tagsToggler.offsetWidth
+
+        let acc = 0
+        let index = 0
+        let offset = 12
+
+        if (matchMedia('(max-width: 991.98px)').matches) {
+            offset = 24
+        }
+
+        while (acc < width) {
             const tag = tags[index]
 
             const element = createHTMLTag(tag)
 
 
             prependChild(tagsItems, element)
-        }
 
+            acc += element.offsetWidth + offset
+
+            index++
+        }
+        // for (let index = 0; index < limit; index++) {
+        //     if (!tags[index]) break;
+        //
+        //     const tag = tags[index]
+        //
+        //     const element = createHTMLTag(tag)
+        //
+        //
+        //     prependChild(tagsItems, element)
+        // }
+        diff = tags.length - (index + 1);
         tagsToggler.textContent = `+${diff}`
         tagsToggler.classList.add('more')
     }
     tagsToggler.addEventListener('click', toggleTags)
-
-
-    await initTags()
 
 
     const modelAvatar = document.querySelector('.body-model__avatar')
