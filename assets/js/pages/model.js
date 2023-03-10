@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     if (videosRow) {
 
-        videosRow.addEventListener('mousemove', playVideo)
+        videosRow.addEventListener('mousemove', debounce(playVideo, 100))
 
         videosRow.addEventListener('touchstart', function(e) {
 
@@ -270,6 +270,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         video.pause()
         video.currentTime = 0
         video.src = ""
+
+
         video.removeAttribute('src')
         video.classList.remove('active')
         video.closest('.block-video').classList.remove('active')
