@@ -1,4 +1,4 @@
-@-webkit-keyframes target-box-wave {
+@-webkit-keyframes ad-box-wave {
   0% {
     width: 100%;
     height: 100%;
@@ -15,7 +15,7 @@
   }
 }
 
-@keyframes target-box-wave {
+@keyframes ad-box-wave {
   0% {
     width: 100%;
     height: 100%;
@@ -32,18 +32,18 @@
   }
 }
 
-.target-box {
+.ad-box {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 10;
 }
 
-.target-box__body {
+.ad-box__body {
   position: relative;
 }
 
-.target-box__count {
+.ad-box__count {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -64,11 +64,11 @@
   color: #fff;
 }
 
-.target-box__image {
+.ad-box__image {
   position: relative;
 }
 
-.target-box__image::before {
+.ad-box__image::before {
   content: "";
   top: 50%;
   left: 50%;
@@ -82,7 +82,7 @@
   background: linear-gradient(223.97deg, #E82BD5 -20.81%, #322EED 118.24%);
 }
 
-.target-box__image::after {
+.ad-box__image::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -92,12 +92,12 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -webkit-animation: target-box-wave 1.5s infinite ease;
-  animation: target-box-wave 1.5s infinite ease;
+  -webkit-animation: ad-box-wave 1.5s infinite ease;
+  animation: ad-box-wave 1.5s infinite ease;
   background: rgba(232, 43, 213, 0.3);
 }
 
-.target-box__image img {
+.ad-box__image img {
   position: relative;
   z-index: 3;
   width: 61px;
@@ -105,7 +105,7 @@
   border-radius: 50%;
 }
 
-.target-box__online {
+.ad-box__online {
   width: 16px;
   height: 16px;
   display: block;
@@ -120,14 +120,14 @@
   z-index: 4;
 }
 
-.target-box__online div {
+.ad-box__online div {
   position: relative;
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.target-box__online div::before {
+.ad-box__online div::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -141,7 +141,7 @@
 }
 
 @media (max-width: 991.98px) {
-  .target-box {
+  .ad-box {
     bottom: 10px;
     right: 10px;
   }
