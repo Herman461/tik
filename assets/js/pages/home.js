@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let index = 0; index < videoSliders.length; index++) {
             const videoSlider = videoSliders[index]
 
-            videoSlider.addEventListener('mousemove', playVideo)
+            videoSlider.addEventListener('mousemove', debounce(playVideo, 100))
             // videoSlider.addEventListener('touchmove', function(e) {
             //
             //
