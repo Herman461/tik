@@ -166,8 +166,8 @@
 }
 
 .socials-model__link svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 16px;
   height: 16px;
   fill: var(--body-pink-color);
@@ -248,8 +248,8 @@
 }
 
 .avatar-model__body {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .avatar-model__body img {

@@ -189,16 +189,18 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
     const modelAvatar = document.querySelector('.body-model__avatar')
+    if (modelAvatar) {
+        modelAvatar.addEventListener('click', function() {
+            modelAvatar.classList.toggle('active')
+        })
 
-    modelAvatar.addEventListener('click', function() {
-        modelAvatar.classList.toggle('active')
-    })
+        window.addEventListener('click', function(e) {
+            if (!e.target.closest('.body-model__avatar')) {
+                modelAvatar.classList.remove('active')
+            }
+        })
+    }
 
-    window.addEventListener('click', function(e) {
-        if (!e.target.closest('.body-model__avatar')) {
-            modelAvatar.classList.remove('active')
-        }
-    })
 
 
     const videosRow = document.querySelector('.videos-model__items')

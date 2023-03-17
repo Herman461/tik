@@ -248,8 +248,8 @@
   color: var(--body-white-color);
   font-size: 14px;
   line-height: 121.4285714286%;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .paging__link_current {
@@ -273,8 +273,8 @@
 .paging__link_prev svg,
 .paging__link_next svg {
   color: var(--body-gray-color);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   fill: transparent;
 }
 
