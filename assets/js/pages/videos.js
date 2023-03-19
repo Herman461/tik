@@ -1,9 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    if (document.querySelector('.item-videos_full.video-js')) {
+        const fullVideo = document.querySelector('.item-videos_full.video-js')
+        const fullVideoItem = videojs(fullVideo.id);
+        fullVideoItem.play()
+    }
+
+    function resetCurrentVideo() {
+        const currentVideoElement = document.querySelector('.video-js.vjs-has-started')
+        if (!currentVideoElement) return
+
+        const currentVideo = videojs(currentVideoElement.id)
+        if (!currentVideo) return
+
+        currentVideo.pause()
+        currentVideoElement.querySelector('video').currentTime = 0
+        currentVideoElement.querySelector('video').src = ""
+        currentVideoElement.querySelector('video').removeAttribute('src')
+
+        currentVideoElement.classList.remove('vjs-has-started')
+
+    }
     window.addEventListener('click', function(e) {
+
+        if (e.target.closest('.vjs-play-control')) {
+            const currentVideo = e.target.closest('.video-js')
+
+            const videos = document.querySelectorAll('.video-js.vjs-has-started')
+            for (let index = 0; index < videos.length; index++) {
+                const video = videos[index]
+
+                if (currentVideo.isEqualNode(video)) continue
+
+                const videoEl = videojs(video.id)
+
+                videoEl.pause()
+                video.querySelector('video').currentTime = 0
+                video.querySelector('video').src = ""
+                video.querySelector('video').removeAttribute('src')
+
+                video.classList.remove('vjs-has-started')
+            }
+        }
+
         if (e.target.closest('.actions-item-videos__button')) {
             const shareButton = e.target.closest('.actions-item-videos__button')
             shareButton.nextElementSibling.classList.toggle('active')
+        }
+
+        if (e.target.closest('.actions-item-videos__link_red')) {
+            e.target.closest('.actions-item-videos__list').classList.remove('active')
         }
 
         if (
@@ -58,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
 
-    const videoItems = document.querySelector('.videos').querySelectorAll('.video-js');
+    const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
         document.body.addEventListener('scroll', debounce(playOnScroll, 40));
@@ -81,17 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (videoItem.classList.contains('vjs-has-started')) continue
 
 
-                    const currentVideoElement = document.querySelector('.video-js.vjs-has-started')
 
-                    if (currentVideoElement) {
-                        const currentVideo = videojs(currentVideoElement.id)
-                        currentVideo.pause()
-                        currentVideoElement.querySelector('video').currentTime = 0
-                        currentVideoElement.querySelector('video').src = ""
-                        currentVideoElement.querySelector('video').removeAttribute('src')
-
-                        currentVideoElement.classList.remove('vjs-has-started')
-                    }
+                    resetCurrentVideo()
 
 
                     const baseVideo = videojs(videoItem.id);

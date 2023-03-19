@@ -152,27 +152,20 @@
   margin: 0;
 }
 
-@media (min-width: 991.98px) {
-  .modal {
-    padding: 30px;
-  }
-
+@media (min-width: 575.98px) {
   .modal__content {
     max-width: 360px;
   }
 }
 
+@media (min-width: 991.98px) {
+  .modal {
+    padding: 30px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .modal {
-    padding: 30px 0 0 0;
-  }
-
-  .modal__content {
-    margin: auto auto 0 auto;
-  }
-
-  .modal__content {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    padding: 30px 0 30px 0;
   }
 }

@@ -2,13 +2,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     const modalLinks = document.querySelectorAll('[data-modal-link]')
 
+    const modals = document.querySelectorAll('.modal')
+
+    const scrollWidth = window.innerWidth - document.body.clientWidth
+
+    for (let index = 0; index < modals.length; index++) {
+        const modal = modals[index]
+        modal.addEventListener('click', function(e) {
+            if (!e.target.closest('.modal__content')) {
+                e.target.closest('.modal').classList.remove('active')
+
+                setTimeout(() => {
+                    document.body.classList.remove('lock')
+                    document.body.style.paddingRight = 0
+                }, 400)
+            }
+        })
+    }
     if (modalLinks.length > 0) {
         for (let index = 0; index < modalLinks.length; index++) {
             const link = modalLinks[index]
             link.addEventListener('click', function(e) {
                 e.preventDefault()
 
-                const scrollWidth = window.innerWidth - document.body.clientWidth
 
                 const modalTitle = '#' + e.currentTarget.dataset.modalLink
 
