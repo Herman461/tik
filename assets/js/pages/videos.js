@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    if (document.querySelector('.item-videos_full.video-js')) {
-        const fullVideo = document.querySelector('.item-videos_full.video-js')
-        const fullVideoItem = videojs(fullVideo.id);
-        fullVideoItem.play()
+    // Воспроизведение главного видео после загрузки страницы
+    if (document.querySelector('.item-videos_main.video-js')) {
+        const mainVideo = document.querySelector('.item-videos_main.video-js')
+        const mainVideoItem = videojs(mainVideo.id);
+        mainVideoItem.play()
     }
 
+    // Сброс воспроизведения текущего видео
     function resetCurrentVideo() {
         const currentVideoElement = document.querySelector('.video-js.vjs-has-started')
         if (!currentVideoElement) return
@@ -21,8 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
         currentVideoElement.classList.remove('vjs-has-started')
 
     }
+
     window.addEventListener('click', function(e) {
 
+        // Скрытие/показ тегов на видео
+        if (e.target.closest('.tags-item-videos__toggler')) {
+            e.preventDefault()
+
+            const videoTagsToggler = e.target.closest('.tags-item-videos__toggler')
+
+            const tagsList = videoTagsToggler.closest('.info-item-videos__tags')
+            const visibleTagsCount = Number(tagsList.dataset.visibleCount)
+            const tags = document.querySelectorAll('.tags-item-videos__item_hidden')
+
+            for (let index = 0; index < tags.length; index++) {
+                const tag = tags[index]
+                tag.classList.toggle('hide')
+            }
+        }
+
+        // Кнопка Play. Логика остановки видео, которое воспроизводилось до нажатия
         if (e.target.closest('.vjs-play-control')) {
             const currentVideo = e.target.closest('.video-js')
 
@@ -43,10 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        // Открытия выпадающего списка по клику на кнопку Share
         if (e.target.closest('.actions-item-videos__button')) {
             const shareButton = e.target.closest('.actions-item-videos__button')
             shareButton.nextElementSibling.classList.toggle('active')
         }
+
 
         if (e.target.closest('.actions-item-videos__link_red')) {
             e.target.closest('.actions-item-videos__list').classList.remove('active')
@@ -103,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 
-
+    // Рассчет положения в окне браузера и воспроизведение видео по клику
     const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
@@ -166,4 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Эта функция добавляем блок с дополнительными опциями
+    // (кнопка скачать, просмотры, качества, ссылка на стрим канал) в обертку
+    function appendActionsToVideo() {
+        const actions = document.querySelectorAll('.item-videos__block')
+
+        for (let index = 0; index < actions.length; index++) {
+            const actionBlock = actions[index]
+            actionBlock.parentElement.querySelector('.video-js').appendChild(actionBlock)
+        }
+    }
+    appendActionsToVideo()
 })
