@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentVideo.pause()
         currentVideoElement.querySelector('video').currentTime = 0
         currentVideoElement.querySelector('video').src = ""
+        currentVideoElement.querySelector('video').autoplay = false
         currentVideoElement.querySelector('video').removeAttribute('src')
 
         currentVideoElement.classList.remove('vjs-has-started')
@@ -156,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
                     const baseVideo = videojs(videoItem.id);
+                    videoItem.querySelector('video').autoplay = true
                     baseVideo.play()
                     break;
                 }
