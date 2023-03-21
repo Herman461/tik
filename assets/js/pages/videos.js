@@ -129,7 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
-        document.body.addEventListener('scroll', playOnScroll);
+        document.body.addEventListener('scroll', debounce(playOnScroll, 20));
+        document.addEventListener('scroll', debounce(playOnScroll, 20));
+        window.addEventListener('scroll', debounce(playOnScroll, 20));
         function playOnScroll() {
             for (let index = 0; index < videoItems.length; index++) {
                 const videoItem = videoItems[index];
