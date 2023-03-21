@@ -129,13 +129,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
-        document.body.addEventListener('scroll', debounce(playOnScroll, 10));
+        document.body.addEventListener('scroll', playOnScroll);
         function playOnScroll() {
             for (let index = 0; index < videoItems.length; index++) {
                 const videoItem = videoItems[index];
                 const videoItemHeight = videoItem.offsetHeight;
                 const videoItemOffset = offset(videoItem).top;
-                const playStart = 1.2;
+                const playStart = 1;
 
                 let videoItemPoint = window.innerHeight - videoItemHeight / playStart;
                 if (videoItemHeight > window.innerHeight) {
