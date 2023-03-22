@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             video.src = srcValue
             video.currentTime = 0
+
             video.play()
         }
     })
