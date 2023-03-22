@@ -144,6 +144,10 @@ body.lock {
   overflow: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 *::-moz-selection {
   color: #fff;
   background: var(--body-pink-color);

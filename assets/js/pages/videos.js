@@ -9,17 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Сброс воспроизведения текущего видео
     function resetCurrentVideo() {
-        const currentVideoElement = document.querySelector('.video-js.vjs-has-started')
+        const currentVideoElement = document.querySelector('.video-js.vjs-playing')
         if (!currentVideoElement) return
 
         const currentVideo = videojs(currentVideoElement.id)
         if (!currentVideo) return
 
+
         currentVideo.pause()
-        currentVideoElement.querySelector('video').currentTime = 0
-        currentVideoElement.querySelector('video').src = ""
         currentVideoElement.querySelector('video').pause()
-        currentVideoElement.querySelector('video').removeAttribute('src')
+
 
         currentVideoElement.classList.remove('vjs-has-started')
 
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoEl.pause()
                 video.querySelector('video').currentTime = 0
                 video.querySelector('video').src = ""
-                video.querySelector('video').removeAttribute('src')
+
 
                 video.classList.remove('vjs-has-started')
             }
@@ -125,36 +124,76 @@ document.addEventListener('DOMContentLoaded', function() {
             video.play()
         }
     })
-    function elementInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-    // Рассчет положения в окне браузера и воспроизведение видео по клику
-    const videoItems = document.querySelectorAll('.video-js');
+    // function elementInViewport(element) {
+    //     const rect = element.getBoundingClientRect();
+    //     return (
+    //         rect.top >= 0 &&
+    //         rect.left >= 0 &&
+    //         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    //         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    //     );
+    // }
+    // Получаем нужный элемент
+    var element = document.querySelector('#target');
+    var Visible = function (target) {
+        // Все позиции элемента
+        var targetPosition = {
+                top: window.pageYOffset + target.getBoundingClientRect().top,
+                left: window.pageXOffset + target.getBoundingClientRect().left,
+                right: window.pageXOffset + target.getBoundingClientRect().right,
+                bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+            },
+            // Получаем позиции окна
+            windowPosition = {
+                top: window.pageYOffset,
+                left: window.pageXOffset,
+                right: window.pageXOffset + document.documentElement.clientWidth,
+                bottom: window.pageYOffset + document.documentElement.clientHeight
+            };
+        if (targetPosition.bottom > windowPosition.top && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
+            targetPosition.top < windowPosition.bottom && // Если позиция верхней части элемента меньше позиции нижней чайти окна, то элемент виден снизу
+            targetPosition.right > windowPosition.left && // Если позиция правой стороны элемента больше позиции левой части окна, то элемент виден слева
+            targetPosition.left < windowPosition.right) { // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
+            return true
+        } else {
+            return false
+        }
+    };
+
+
+
+
 
     function playOnScroll() {
+        // Рассчет положения в окне браузера и воспроизведение видео по клику
+        const videoItems = document.querySelectorAll('.video-js');
         for (let index = 0; index < videoItems.length; index++) {
             const videoItem = videoItems[index];
 
-            if (elementInViewport(videoItem)) {
+            if (Visible(videoItem)) {
+
                 if (videoItem.classList.contains('vjs-has-started')) continue
                 resetCurrentVideo()
                 const baseVideo = videojs(videoItem.id);
+                console.log(videoItem.id)
                 baseVideo.play()
                 break;
             }
         }
     }
-    if (videoItems.length > 0) {
-        window.addEventListener('scroll', playOnScroll)
-        setTimeout(() => {
+
+    if (document.querySelectorAll('.video-js').length > 0) {
+        // Запускаем функцию при прокрутке страницы
+        window.addEventListener('scroll', function() {
+            playOnScroll()
+        });
+        setTimeout(function() {
             playOnScroll();
         }, 300);
+        // window.addEventListener('scroll', playOnScroll)
+        // setTimeout(() => {
+        //     playOnScroll();
+        // }, 300);
         // $(window).scroll(debounce(playOnScroll, 20));
         //
         // function playOnScroll() {

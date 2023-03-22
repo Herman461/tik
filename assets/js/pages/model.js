@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 tagsToggler.classList.add('hide')
                 break;
             }
-            console.log(tag)
+
             const element = createHTMLTag(tag)
 
 
