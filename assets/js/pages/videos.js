@@ -126,52 +126,76 @@ document.addEventListener('DOMContentLoaded', function() {
             video.play()
         }
     })
-
+    function elementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
     // Рассчет положения в окне браузера и воспроизведение видео по клику
     const videoItems = document.querySelectorAll('.video-js');
 
-    if (videoItems.length > 0) {
-        $(window).scroll(debounce(playOnScroll, 20));
+    function playOnScroll() {
+        for (let index = 0; index < videoItems.length; index++) {
+            const videoItem = videoItems[index];
 
-        function playOnScroll() {
-            for (let index = 0; index < videoItems.length; index++) {
-                const videoItem = videoItems[index];
-                const videoItemHeight = $(videoItem).outerHeight()
-                const videoItemOffset = $(videoItem).offset().top
-                const playStart = 1;
-
-                let videoItemPoint = $(window).height() - videoItemHeight / playStart;
-                if (videoItemHeight > $(window).height()) {
-                    videoItemPoint = $(window).height() - $(window).height() / playStart;
-                }
-
-                if (
-                    $(window).scrollTop() > videoItemOffset - videoItemPoint &&
-                    $(window).scrollTop() < videoItemOffset + videoItemHeight
-                ) {
-
-                    if (videoItem.classList.contains('vjs-has-started')) continue
-
-
-
-                    // resetCurrentVideo()
-
-
-                    const baseVideo = videojs(videoItem.id);
-                    baseVideo.play()
-                    break;
-                }
+            if (elementInViewport(videoItem)) {
+                if (videoItem.classList.contains('vjs-has-started')) continue
+                resetCurrentVideo()
+                const baseVideo = videojs(videoItem.id);
+                baseVideo.play()
             }
         }
-        function offset(el) {
-            const rect = el.getBoundingClientRect();
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
-        }
+    }
+    if (videoItems.length > 0) {
+        window.addEventListener('scroll', playOnScroll)
         setTimeout(() => {
             playOnScroll();
         }, 300);
+        // $(window).scroll(debounce(playOnScroll, 20));
+        //
+        // function playOnScroll() {
+        //     for (let index = 0; index < videoItems.length; index++) {
+        //         const videoItem = videoItems[index];
+        //         const videoItemHeight = $(videoItem).outerHeight()
+        //         const videoItemOffset = $(videoItem).offset().top
+        //         const playStart = 1;
+        //
+        //         let videoItemPoint = $(window).height() - videoItemHeight / playStart;
+        //         if (videoItemHeight > $(window).height()) {
+        //             videoItemPoint = $(window).height() - $(window).height() / playStart;
+        //         }
+        //
+        //         if (
+        //             $(window).scrollTop() > videoItemOffset - videoItemPoint &&
+        //             $(window).scrollTop() < videoItemOffset + videoItemHeight
+        //         ) {
+        //
+        //             if (videoItem.classList.contains('vjs-has-started')) continue
+        //
+        //
+        //
+        //             // resetCurrentVideo()
+        //
+        //
+        //             const baseVideo = videojs(videoItem.id);
+        //             baseVideo.play()
+        //             break;
+        //         }
+        //     }
+        // }
+        // function offset(el) {
+        //     const rect = el.getBoundingClientRect();
+        //     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        //     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        //     return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+        // }
+        // setTimeout(() => {
+        //     playOnScroll();
+        // }, 300);
 
         // $(document).ready(function() {
         //     // var videos = $("video");
