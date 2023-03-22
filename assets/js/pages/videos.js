@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $(window).scrollTop() > videoItemOffset - videoItemPoint &&
                     $(window).scrollTop() < videoItemOffset + videoItemHeight
                 ) {
-        
+
                     if (videoItem.classList.contains('vjs-has-started')) continue
 
 
@@ -157,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
                     const baseVideo = videojs(videoItem.id);
-                    videoItem.querySelector('video').autoplay = true
-                    videoItem.querySelector('video').play()
+                    videoItem.autoplay = true
+                    videoItem.play()
                     // baseVideo.play()
                     break;
                 }
