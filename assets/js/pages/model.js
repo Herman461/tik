@@ -13,52 +13,7 @@ const modelTags = [
     {link: "", text: "Tag1"},
     {link: "", text: "Tag1"},
     {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
-    {link: "", text: "Tag1"},
+
 
 ]
 
@@ -171,6 +126,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         while (acc < width) {
             const tag = tags[index]
 
+            if (!tag) {
+                tagsToggler.classList.add('hide')
+                break;
+            }
+            console.log(tag)
             const element = createHTMLTag(tag)
 
 
