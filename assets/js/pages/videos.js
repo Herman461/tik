@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     pageYOffset > videoItemOffset - videoItemPoint &&
                     pageYOffset < videoItemOffset + videoItemHeight
                 ) {
-                    // if (videoItem.classList.contains('vjs-has-started')) continue
+                    if (videoItem.classList.contains('vjs-has-started')) continue
 
 
 
