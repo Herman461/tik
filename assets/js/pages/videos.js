@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!currentVideo) return
 
 
-        currentVideo.pause()
+
         currentVideoElement.querySelector('video').pause()
 
 
@@ -186,72 +186,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Запускаем функцию при прокрутке страницы
         window.addEventListener('scroll', function() {
             playOnScroll()
+            appendActionsToVideo()
         });
         setTimeout(function() {
             playOnScroll();
         }, 300);
-        // window.addEventListener('scroll', playOnScroll)
-        // setTimeout(() => {
-        //     playOnScroll();
-        // }, 300);
-        // $(window).scroll(debounce(playOnScroll, 20));
-        //
-        // function playOnScroll() {
-        //     for (let index = 0; index < videoItems.length; index++) {
-        //         const videoItem = videoItems[index];
-        //         const videoItemHeight = $(videoItem).outerHeight()
-        //         const videoItemOffset = $(videoItem).offset().top
-        //         const playStart = 1;
-        //
-        //         let videoItemPoint = $(window).height() - videoItemHeight / playStart;
-        //         if (videoItemHeight > $(window).height()) {
-        //             videoItemPoint = $(window).height() - $(window).height() / playStart;
-        //         }
-        //
-        //         if (
-        //             $(window).scrollTop() > videoItemOffset - videoItemPoint &&
-        //             $(window).scrollTop() < videoItemOffset + videoItemHeight
-        //         ) {
-        //
-        //             if (videoItem.classList.contains('vjs-has-started')) continue
-        //
-        //
-        //
-        //             // resetCurrentVideo()
-        //
-        //
-        //             const baseVideo = videojs(videoItem.id);
-        //             baseVideo.play()
-        //             break;
-        //         }
-        //     }
-        // }
-        // function offset(el) {
-        //     const rect = el.getBoundingClientRect();
-        //     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        //     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        //     return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
-        // }
-        // setTimeout(() => {
-        //     playOnScroll();
-        // }, 300);
-
-        // $(document).ready(function() {
-        //     // var videos = $("video");
-        //     // var elementPosTop = videos.position().top;
-        //     // var viewportHeight = $(window).height();
-        //     $(window).on('scroll', function() {
-        //         console.log('????')
-        //         // var scrollPos = $(window).scrollTop();
-        //         // var elementFromTop = elementPosTop - scrollPos;
-        //         //
-        //         // if (elementFromTop > 0 && elementFromTop < elementPosTop + viewportHeight) {
-        //         //     videos.addClass("active");
-        //         // } else {
-        //         //     videos.removeClass("active");
-        //         // }
-        //     });
-        // })
     }
 
     const baseVideos = document.querySelectorAll('.video-js')
@@ -275,12 +214,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Эта функция добавляем блок с дополнительными опциями
     // (кнопка скачать, просмотры, качества, ссылка на стрим канал) в обертку
     function appendActionsToVideo() {
-        const actions = document.querySelectorAll('.item-videos__block')
+        const actions = document.querySelectorAll('.videos__item.init .item-videos__block')
 
-        for (let index = 0; index < actions.length; index++) {
-            const actionBlock = actions[index]
-            actionBlock.parentElement.querySelector('.video-js').appendChild(actionBlock)
+        if (actions.length > 0) {
+            for (let index = 0; index < actions.length; index++) {
+                const actionBlock = actions[index]
+                actionBlock.closest('.videos__item.init').classList.remove('init')
+                actionBlock.parentElement.querySelector('.video-js').appendChild(actionBlock)
+            }
         }
+
     }
     appendActionsToVideo()
 })
