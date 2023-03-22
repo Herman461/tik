@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentVideo.pause()
         currentVideoElement.querySelector('video').currentTime = 0
         currentVideoElement.querySelector('video').src = ""
-        currentVideoElement.querySelector('video').autoplay = false
         currentVideoElement.querySelector('video').pause()
         currentVideoElement.querySelector('video').removeAttribute('src')
 
@@ -147,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetCurrentVideo()
                 const baseVideo = videojs(videoItem.id);
                 baseVideo.play()
+                break;
             }
         }
     }
