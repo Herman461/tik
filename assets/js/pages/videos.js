@@ -157,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const baseVideo = videojs(videoItem.id);
                     videoItem.querySelector('video').autoplay = true
-                    baseVideo.play()
+                    videoItem.querySelector('video').play()
+                    // baseVideo.play()
                     break;
                 }
             }
