@@ -130,24 +130,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
-        window.addEventListener('scroll', debounce(playOnScroll, 20));
+        $(window).scroll(debounce(playOnScroll, 20));
 
         function playOnScroll() {
             for (let index = 0; index < videoItems.length; index++) {
                 const videoItem = videoItems[index];
-                const videoItemHeight = videoItem.offsetHeight;
-                const videoItemOffset = offset(videoItem).top;
+                const videoItemHeight = $(videoItem).outerHeight()
+                const videoItemOffset = $(videoItem).offset().top
                 const playStart = 1;
 
-                let videoItemPoint = window.innerHeight - videoItemHeight / playStart;
-                if (videoItemHeight > window.innerHeight) {
-                    videoItemPoint = window.innerHeight - window.innerHeight / playStart;
+                let videoItemPoint = $(window).height() - videoItemHeight / playStart;
+                if (videoItemHeight > $(window).height()) {
+                    videoItemPoint = $(window).height() - $(window).height() / playStart;
                 }
 
                 if (
-                    pageYOffset > videoItemOffset - videoItemPoint &&
-                    pageYOffset < videoItemOffset + videoItemHeight
+                    $(window).scrollTop() > videoItemOffset - videoItemPoint &&
+                    $(window).scrollTop() < videoItemOffset + videoItemHeight
                 ) {
+        
                     if (videoItem.classList.contains('vjs-has-started')) continue
 
 
