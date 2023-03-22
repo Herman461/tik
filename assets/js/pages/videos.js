@@ -130,9 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoItems = document.querySelectorAll('.video-js');
 
     if (videoItems.length > 0) {
-        document.body.addEventListener('scroll', debounce(playOnScroll, 20));
-        document.addEventListener('scroll', debounce(playOnScroll, 20));
         window.addEventListener('scroll', debounce(playOnScroll, 20));
+
         function playOnScroll() {
             for (let index = 0; index < videoItems.length; index++) {
                 const videoItem = videoItems[index];
@@ -172,6 +171,23 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             playOnScroll();
         }, 300);
+
+        // $(document).ready(function() {
+        //     // var videos = $("video");
+        //     // var elementPosTop = videos.position().top;
+        //     // var viewportHeight = $(window).height();
+        //     $(window).on('scroll', function() {
+        //         console.log('????')
+        //         // var scrollPos = $(window).scrollTop();
+        //         // var elementFromTop = elementPosTop - scrollPos;
+        //         //
+        //         // if (elementFromTop > 0 && elementFromTop < elementPosTop + viewportHeight) {
+        //         //     videos.addClass("active");
+        //         // } else {
+        //         //     videos.removeClass("active");
+        //         // }
+        //     });
+        // })
     }
 
     const baseVideos = document.querySelectorAll('.video-js')
