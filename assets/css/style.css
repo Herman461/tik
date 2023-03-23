@@ -136,6 +136,8 @@ body {
   background: var(--body-background);
   font-family: var(--body-font-family);
   font-weight: 400;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-size: var(--body-font-size);
   color: var(--body-main-color);
 }
@@ -145,7 +147,7 @@ body.lock {
 }
 
 html {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 *::-moz-selection {

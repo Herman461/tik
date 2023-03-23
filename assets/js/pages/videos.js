@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Сброс воспроизведения текущего видео
     function resetCurrentVideo() {
+
         const currentVideoElement = document.querySelector('.video-js.vjs-playing')
+
         if (!currentVideoElement) return
 
         const currentVideo = videojs(currentVideoElement.id)
@@ -17,10 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-        currentVideoElement.querySelector('video').pause()
+        currentVideo.pause()
 
-
-        currentVideoElement.classList.remove('vjs-has-started')
 
     }
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //     );
     // }
     // Получаем нужный элемент
-    var element = document.querySelector('#target');
+
     var Visible = function (target) {
         // Все позиции элемента
         var targetPosition = {
@@ -167,17 +167,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function playOnScroll() {
         // Рассчет положения в окне браузера и воспроизведение видео по клику
-        const videoItems = document.querySelectorAll('.video-js');
+        const videoItems = document.querySelectorAll('.video-js')
         for (let index = 0; index < videoItems.length; index++) {
             const videoItem = videoItems[index];
 
             if (Visible(videoItem)) {
 
-                if (videoItem.classList.contains('vjs-has-started')) continue
+                if (videoItem.classList.contains('vjs-playing')) break;
+
                 resetCurrentVideo()
-                const baseVideo = videojs(videoItem.id);
-                console.log(videoItem.id)
-                baseVideo.play()
+
+                videoItem.querySelector('video').play()
+                if (!videoItem.classList.contains('load')) {
+                    videoItem.classList.add('load')
+                }
                 break;
             }
         }
@@ -185,10 +188,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (document.querySelectorAll('.video-js').length > 0) {
         // Запускаем функцию при прокрутке страницы
-        window.addEventListener('scroll', function() {
+        document.body.addEventListener('scroll', debounce(function() {
             playOnScroll()
             appendActionsToVideo()
-        });
+        }, 20));
         setTimeout(function() {
             playOnScroll();
         }, 300);

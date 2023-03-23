@@ -342,6 +342,11 @@
   visibility: hidden;
 }
 
+.item-videos .video-js.load .vjs-play-control.vjs-paused .vjs-icon-placeholder {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .item-videos__main {
   position: relative;
   background-color: #000;
