@@ -520,6 +520,15 @@ function prependChild(parentEle, newFirstChildEle) {
 //
 // }
 
+function getParameterByName(name, url = window.location.href) {
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 // Select
 const select = document.querySelectorAll('.base-select')
 let activeSelect
@@ -534,8 +543,15 @@ if (select.length > 0) {
 		let selectedOption = item.querySelector('option[selected]')
 
 		if (!selectedOption) {
-			item.querySelector('option').setAttribute('selected', '')
-			selectedOption = item.querySelector('option[selected]')
+			selectedOption = item.querySelector('option')
+		}
+
+		if (item.classList.contains('base-select_sort')) {
+			const queryParam = getParameterByName('sort')
+			if (queryParam) {
+				selectedOption = item.querySelector('option[value="?sort=' + queryParam + '"]')
+			}
+
 		}
 
 		const disabledOption = item.querySelector('option[disabled]')
@@ -566,14 +582,14 @@ if (select.length > 0) {
 
 		item.append(selectList)
 
-		if (!disabledOption) {
-			const newOption = document.createElement('li')
-			newOption.textContent = selectedOption ? selectedOption.textContent : selectOption[0].textContent
-			newOption.classList.add('base-select__item')
-			newOption.dataset.value = selectedOption ? selectedOption.value : selectOption[0].textContent
-			selectList.append(newOption)
-		}
-		for (let index = 1; index < selectOptionLength; index++) {
+		// if (!disabledOption) {
+		// 	const newOption = document.createElement('li')
+		// 	newOption.textContent = selectedOption ? selectedOption.textContent : selectOption[0].textContent
+		// 	newOption.classList.add('base-select__item')
+		// 	newOption.dataset.value = selectedOption ? selectedOption.value : selectOption[0].textContent
+		// 	selectList.append(newOption)
+		// }
+		for (let index = 0; index < selectOptionLength; index++) {
 			const newOption = document.createElement('li')
 			newOption.textContent = selectOption[index].textContent
 			newOption.classList.add('base-select__item')

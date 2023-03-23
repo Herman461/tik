@@ -29,8 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+    window.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.vjs-volume-panel')) {
+            allowedSound = !!e.target.closest('.vjs-vol-0');
+        }
+    })
     window.addEventListener('click', function(e) {
 
+        if (e.target.closest('.vjs-volume-panel')) {
+
+            allowedSound = !!e.target.closest('.vjs-vol-0');
+
+        }
         // Скрытие/показ тегов на видео
         if (e.target.closest('.tags-item-videos__toggler')) {
             e.preventDefault()
@@ -47,13 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        if (e.target.closest('.vjs-mute-control')) {
-            if (e.target.closest('.vjs-vol-0')) {
-                allowedSound = true
-            } else {
-                allowedSound = false
-            }
-        }
         // Кнопка Play. Логика остановки видео, которое воспроизводилось до нажатия
         if (e.target.closest('.vjs-play-control')) {
             const currentVideo = e.target.closest('.video-js')

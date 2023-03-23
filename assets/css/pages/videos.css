@@ -388,13 +388,8 @@
 }
 
 .item-videos_square .video-js .vjs-volume-panel {
-  right: 112px;
-}
-
-.item-videos_square .vjs-mute-control {
-  position: absolute;
-  top: 0;
-  right: -100px;
+  right: 10px;
+  top: 95px;
 }
 
 .item-videos_square .vjs-fullscreen-control {
@@ -421,16 +416,6 @@
 .item-videos_full .item-videos__download,
 .item-videos_full .item-videos__quality {
   right: 15px;
-}
-
-.item-videos_full .video-js .vjs-volume-panel {
-  right: 112px;
-}
-
-.item-videos_full .vjs-mute-control {
-  position: absolute;
-  top: 0;
-  right: -100px;
 }
 
 .item-videos_full .vjs-fullscreen-control {
