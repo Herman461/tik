@@ -474,6 +474,18 @@
   .videos-model__block {
     height: calc(50% - 8px);
   }
+
+  .videos-model__item {
+    max-width: 400px;
+  }
+
+  .videos-model__item_vertical {
+    max-width: 250px;
+  }
+
+  .videos-model__item_big {
+    max-width: 400px;
+  }
 }
 
 @media (min-width: 768.98px) {

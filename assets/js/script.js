@@ -531,7 +531,13 @@ if (select.length > 0) {
 
 		const selectOptionLength = selectOption.length
 
-		const selectedOption = item.querySelector('option[selected]')
+		let selectedOption = item.querySelector('option[selected]')
+
+		if (!selectedOption) {
+			item.querySelector('option').setAttribute('selected', '')
+			selectedOption = item.querySelector('option[selected]')
+		}
+
 		const disabledOption = item.querySelector('option[disabled]')
 		const duration = 400
 

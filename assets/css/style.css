@@ -1738,6 +1738,11 @@ textarea.input {
   position: relative;
 }
 
+.select__item.active,
+.base-select__item.active {
+  display: none;
+}
+
 .select__head,
 .base-select__head {
   min-height: 44px;

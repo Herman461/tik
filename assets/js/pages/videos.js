@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    let allowedSound = false
+    let allowedHd = false
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
@@ -14,7 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentVideoElement) return
 
+        if (!currentVideoElement.id) return
+
         const currentVideo = videojs(currentVideoElement.id)
+
         if (!currentVideo) return
 
 
@@ -42,6 +47,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        if (e.target.closest('.vjs-mute-control')) {
+            if (e.target.closest('.vjs-vol-0')) {
+                allowedSound = true
+            } else {
+                allowedSound = false
+            }
+        }
         // Кнопка Play. Логика остановки видео, которое воспроизводилось до нажатия
         if (e.target.closest('.vjs-play-control')) {
             const currentVideo = e.target.closest('.video-js')
@@ -52,11 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (currentVideo.isEqualNode(video)) continue
 
-                const videoEl = videojs(video.id)
 
-                videoEl.pause()
-                video.querySelector('video').currentTime = 0
-                video.querySelector('video').src = ""
+
+                video.querySelector('video').pause()
+                // video.querySelector('video').currentTime = 0
+                // video.querySelector('video').src = ""
 
 
                 video.classList.remove('vjs-has-started')
@@ -97,18 +109,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let quality = ''
 
 
-
-
-
             button.classList.remove('active')
             // Переключаем качество
             if (button.classList.contains('hd')) {
                 quality = 'sd'
 
-
+                allowedHd = false
                 button.parentElement.querySelector('.quality-item-videos__button.sd').classList.add('active')
             } else {
                 quality = 'hd'
+                allowedHd = true
                 button.parentElement.querySelector('.quality-item-videos__button.hd').classList.add('active')
             }
 
@@ -125,15 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             video.play()
         }
     })
-    // function elementInViewport(element) {
-    //     const rect = element.getBoundingClientRect();
-    //     return (
-    //         rect.top >= 0 &&
-    //         rect.left >= 0 &&
-    //         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    //         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    //     );
-    // }
+
     // Получаем нужный элемент
 
     var Visible = function (target) {
@@ -177,10 +179,88 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 resetCurrentVideo()
 
-                videoItem.querySelector('video').play()
+                if (allowedHd && !videoItem.classList.contains('hd')) {
+                    const sourceTag = videoItem.querySelector('video').querySelector('source[data-video-quality="hd"]')
+
+                    videoItem.querySelector('.item-videos__download').href = sourceTag.src
+                    videoItem.classList.add('hd')
+                    const hdButton = videoItem.querySelector('.quality-item-videos__button.hd')
+                    const sdButton = videoItem.querySelector('.quality-item-videos__button.sd')
+
+                    if (!hdButton.classList.contains('active')) {
+                        videoItem.querySelector('.quality-item-videos__button.hd').classList.add('active')
+                    }
+
+                    if (sdButton.classList.contains('active')) {
+                        videoItem.querySelector('.quality-item-videos__button.sd').classList.remove('active')
+                    }
+
+
+
+                    videoItem.querySelector('video').currentTime = 0
+                    videoItem.querySelector('video').src = sourceTag.src
+
+                } else if (!allowedHd && videoItem.classList.contains('hd')) {
+                    const sourceTag = videoItem.querySelector('video').querySelector('source[data-video-quality="sd"]')
+
+                    videoItem.querySelector('.item-videos__download').href = sourceTag.src
+                    videoItem.classList.remove('hd')
+
+                    const hdButton = videoItem.querySelector('.quality-item-videos__button.hd')
+                    const sdButton = videoItem.querySelector('.quality-item-videos__button.sd')
+
+                    if (!sdButton.classList.contains('active')) {
+                        videoItem.querySelector('.quality-item-videos__button.sd').classList.add('active')
+                    }
+
+                    if (hdButton.classList.contains('active')) {
+                        videoItem.querySelector('.quality-item-videos__button.hd').classList.remove('active')
+                    }
+
+                    videoItem.querySelector('video').currentTime = 0
+                    videoItem.querySelector('video').src = sourceTag.src
+                }
+
+
+
                 if (!videoItem.classList.contains('load')) {
                     videoItem.classList.add('load')
+                    if (!allowedHd) {
+                        const sourceTag = videoItem.querySelector('video').querySelector('source[data-video-quality="sd"]')
+
+                        videoItem.querySelector('.item-videos__download').href = sourceTag.src
+                        videoItem.classList.remove('hd')
+
+                        videoItem.querySelector('.quality-item-videos__button.sd').classList.add('active')
+                    }
                 }
+                if (allowedSound) {
+                    videojs(videoItem.id).ready(function(){
+                        window.myPlayer = this;
+
+                        myPlayer.volume(1);
+                        myPlayer.muted( false );
+                        myPlayer.play();
+
+
+                    });
+                } else {
+                    videoItem.querySelector('video').setAttribute('muted', 'muted')
+                    videojs(videoItem.id).ready(function(){
+                        window.myPlayer = this;
+
+                        myPlayer.volume(0);
+                        myPlayer.muted( true );
+                        myPlayer.play();
+
+
+                    });
+                }
+
+                // videoItem.querySelector('video').play()
+
+
+
                 break;
             }
         }
@@ -191,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.addEventListener('scroll', debounce(function() {
             playOnScroll()
             appendActionsToVideo()
-        }, 20));
+        }, 50));
         setTimeout(function() {
             playOnScroll();
         }, 300);

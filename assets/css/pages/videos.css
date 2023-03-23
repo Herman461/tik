@@ -33,14 +33,10 @@
 }
 
 .item-videos {
-  border-radius: 10px;
-  overflow: hidden;
   max-width: 500px;
   width: 100%;
   padding: 16px;
-  border-radius: 10px;
   background: var(--body-background);
-  overflow: hidden;
 }
 
 .item-videos__views {
@@ -99,7 +95,6 @@
 }
 
 .item-videos__backdrop {
-  border-radius: 10px;
   height: 100%;
   overflow: hidden;
   position: absolute;
@@ -124,9 +119,7 @@
 }
 
 .item-videos .vjs-poster {
-  border-radius: 10px;
   height: 100%;
-  overflow: hidden;
   position: absolute;
   width: 100%;
   z-index: 1;
@@ -161,7 +154,7 @@
 
 .item-videos .video-js .vjs-mute-control {
   width: 32px !important;
-  background: url("../../images/icons/muted-control-on.svg") center center/contain no-repeat;
+  background: url("../../images/icons/sound.svg") center center/contain no-repeat;
 }
 
 .item-videos .video-js .vjs-volume-panel.vjs-volume-panel-horizontal.vjs-hover,
@@ -172,7 +165,7 @@
 }
 
 .item-videos .video-js .vjs-mute-control.vjs-vol-0 {
-  background: url("../../images/icons/muted-control-off.svg") center center/contain no-repeat;
+  background: url("../../images/icons/muted.svg") center center/contain no-repeat;
 }
 
 .item-videos .video-js .vjs-mute-control .vjs-icon-placeholder:before,
@@ -231,13 +224,11 @@
 
 .item-videos .video-js .vjs-play-progress {
   background: #BFC0C0 !important;
-  border-radius: 2px;
 }
 
 .item-videos .video-js .vjs-progress-control .vjs-progress-holder {
   height: 2px !important;
   margin: 0 !important;
-  border-radius: 2px;
 }
 
 .item-videos .video-js .vjs-load-progress {
@@ -284,7 +275,11 @@
   height: 32px;
   bottom: auto !important;
   left: auto !important;
-  background: url("../../images/icons/fullscreen-control.svg") center center/contain no-repeat;
+  background: url("../../images/icons/fs-open.svg") center center/contain no-repeat;
+}
+
+.item-videos .vjs-fullscreen .vjs-fullscreen-control {
+  background: url("../../images/icons/fs-opened.svg") center center/contain no-repeat;
 }
 
 .item-videos .video-js .vjs-fullscreen-control .vjs-icon-placeholder:before,
@@ -372,7 +367,6 @@
 }
 
 .item-videos_square .item-videos__main {
-  overflow: hidden;
   min-height: 428px;
 }
 
@@ -419,12 +413,7 @@
 }
 
 .item-videos_full .item-videos__main {
-  overflow: hidden;
   min-height: 428px;
-}
-
-.item-videos_full video {
-  border-radius: 10px;
 }
 
 .item-videos_full .item-videos__views,

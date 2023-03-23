@@ -17,6 +17,7 @@ const modelTags = [
 
 ]
 
+
 document.addEventListener('DOMContentLoaded', async function() {
 
     const tagsItems = document.querySelector('.tags-model__items')
@@ -259,6 +260,25 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     })
 
+    const gridViewButton = document.querySelector('.actions-videos-model__view_grid')
+
+    gridViewButton.addEventListener('click', function() {
+        document.querySelector('.actions-videos-model__view_grid').classList.add('active')
+        document.querySelector('.actions-videos-model__view_list').classList.remove('active')
+
+        document.querySelector('.videos-model__items_grid').classList.remove('hide')
+        document.querySelector('.videos-model__items_list').classList.add('hide')
+    })
+
+    const listViewButton = document.querySelector('.actions-videos-model__view_list')
+
+    listViewButton.addEventListener('click', function() {
+        document.querySelector('.actions-videos-model__view_grid').classList.remove('active')
+        document.querySelector('.actions-videos-model__view_list').classList.add('active')
+
+        document.querySelector('.videos-model__items_grid').classList.add('hide')
+        document.querySelector('.videos-model__items_list').classList.remove('hide')
+    })
 })
 
 
