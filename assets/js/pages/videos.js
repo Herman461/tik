@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (baseVideos.length > 0) {
         for (let index = 0; index < baseVideos.length; index++) {
             const video = baseVideos[index]
-            videojs(video, {
 
-            });
             videojs(
                 video.id,
                 {
                     preload: 'auto',
-                    autoplay: true,
+                    inactivityTimeout: 0,
                     userActions: {
                         doubleClick: onVideoDoubleClick
                     }
@@ -32,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
-        const mainVideoItem = videojs(mainVideo.id);
+        const mainVideoItem = players[mainVideo.id];
         mainVideoItem.play()
     }
 
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentVideoElement.id) return
 
-        const currentVideo = videojs(currentVideoElement.id)
+        const currentVideo = players[currentVideoElement.id]
 
         if (!currentVideo) return
 
@@ -204,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const videoItem = videoItems[index];
 
             if (Visible(videoItem)) {
-
+         
                 if (videoItem.classList.contains('vjs-playing')) break;
 
                 resetCurrentVideo()
@@ -264,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         videoItem.querySelector('.quality-item-videos__button.sd').classList.add('active')
                     }
                 }
+                console.log(allowedSound)
                 if (allowedSound) {
                     if (players[videoItem.id]) {
                         const player = players[videoItem.id]
@@ -289,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         player.play()
                         player.volume(0);
                         player.muted( true );
-                        console.log('???000')
+
                     } else {
                         videojs(videoItem.id).ready(function(){
                             window.customPlayer = this;
@@ -305,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 }
 
-                videoItem.querySelector('video').play()
+                // videoItem.querySelector('video').play()
 
 
 
