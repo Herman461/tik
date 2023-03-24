@@ -550,6 +550,7 @@ if (select.length > 0) {
 			const queryParam = getParameterByName('sort')
 			if (queryParam) {
 				selectedOption = item.querySelector('option[value="?sort=' + queryParam + '"]')
+				selectedOption.setAttribute('selected', 'selected')
 			}
 
 		}
@@ -595,6 +596,10 @@ if (select.length > 0) {
 			newOption.classList.add('base-select__item')
 			newOption.dataset.value = selectOption[index].value
 			selectList.append(newOption)
+
+			if (selectOption[index].hasAttribute('selected')) {
+				newOption.classList.add('active')
+			}
 		}
 
 		selectList.hidden = true

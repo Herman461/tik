@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
         const mainVideoItem = videojs(mainVideo.id);
+        if (allowedSound) {
+            mainVideo.querySelector('video').removeAttribute('muted')
+
+        } else {
+            mainVideo.querySelector('video').setAttribute('muted', 'muted')
+
+        }
         mainVideoItem.play()
     }
 
@@ -238,29 +245,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 if (allowedSound) {
-                    videojs(videoItem.id).ready(function(){
-                        window.myPlayer = this;
-
-                        myPlayer.volume(1);
-                        myPlayer.muted( false );
-                        myPlayer.play();
-
-
-                    });
+                    videoItem.querySelector('video').removeAttribute('muted')
+                    videoItem.querySelector('video').volume = 1
+                    // videojs(videoItem.id).ready(function(){
+                    //     window.myPlayer = this;
+                    //
+                    //     myPlayer.volume(1);
+                    //     myPlayer.muted( false );
+                    //     myPlayer.play();
+                    //
+                    //
+                    // });
                 } else {
                     videoItem.querySelector('video').setAttribute('muted', 'muted')
-                    videojs(videoItem.id).ready(function(){
-                        window.myPlayer = this;
+                    videoItem.querySelector('video').volume = 0
 
-                        myPlayer.volume(0);
-                        myPlayer.muted( true );
-                        myPlayer.play();
-
-
-                    });
+                    // videojs(videoItem.id).ready(function(){
+                    //     window.myPlayer = this;
+                    //
+                    //     myPlayer.volume(0);
+                    //     myPlayer.muted( true );
+                    //     myPlayer.play();
+                    //
+                    //
+                    // });
                 }
 
-                // videoItem.querySelector('video').play()
+                videoItem.querySelector('video').play()
 
 
 
