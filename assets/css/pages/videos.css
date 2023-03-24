@@ -418,6 +418,16 @@
   right: 15px;
 }
 
+.item-videos_full .video-js .vjs-volume-panel {
+  right: 112px;
+}
+
+.item-videos_full .vjs-mute-control {
+  position: absolute;
+  top: 0;
+  right: -100px;
+}
+
 .item-videos_full .vjs-fullscreen-control {
   right: 15px !important;
 }

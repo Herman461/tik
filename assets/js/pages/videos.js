@@ -2,17 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let allowedSound = false
     let allowedHd = false
+    const players = {}
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
         const mainVideoItem = videojs(mainVideo.id);
-        if (allowedSound) {
-            mainVideo.querySelector('video').removeAttribute('muted')
-
-        } else {
-            mainVideo.querySelector('video').setAttribute('muted', 'muted')
-
-        }
         mainVideoItem.play()
     }
 
@@ -46,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('.vjs-volume-panel')) {
 
             allowedSound = !!e.target.closest('.vjs-vol-0');
-
+            console.log(allowedSound)
         }
         // Скрытие/показ тегов на видео
         if (e.target.closest('.tags-item-videos__toggler')) {
@@ -245,30 +239,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 if (allowedSound) {
-                    videoItem.querySelector('video').removeAttribute('muted')
-                    videoItem.querySelector('video').volume = 1
-                    // videojs(videoItem.id).ready(function(){
-                    //     window.myPlayer = this;
-                    //
-                    //     myPlayer.volume(1);
-                    //     myPlayer.muted( false );
-                    //     myPlayer.play();
-                    //
-                    //
-                    // });
-                } else {
-                    videoItem.querySelector('video').setAttribute('muted', 'muted')
-                    videoItem.querySelector('video').volume = 0
+                    if (players[videoItem.id]) {
+                        const player = players[videoItem.id]
+                        player.play()
+                    } else {
+                        videoItem.querySelector('video').removeAttribute('muted')
+                        videoItem.querySelector('video').volume = 1
+                        videojs(videoItem.id).ready(function(){
+                            window.customPlayer = this;
 
-                    // videojs(videoItem.id).ready(function(){
-                    //     window.myPlayer = this;
-                    //
-                    //     myPlayer.volume(0);
-                    //     myPlayer.muted( true );
-                    //     myPlayer.play();
-                    //
-                    //
-                    // });
+                            customPlayer.volume(1);
+                            customPlayer.muted( false );
+                            customPlayer.play();
+
+                            players[videoItem.id] = customPlayer
+                        });
+                    }
+
+                } else {
+                    if (players[videoItem.id]) {
+                        const player = players[videoItem.id]
+                        player.play()
+                    } else {
+                        videoItem.querySelector('video').volume = 0
+                        videoItem.querySelector('video').setAttribute('muted', 'muted')
+                        videojs(videoItem.id).ready(function(){
+                            window.customPlayer = this;
+
+                            customPlayer.volume(0);
+                            customPlayer.muted( true );
+                            customPlayer.play();
+
+                            players[videoItem.id] = customPlayer
+                        });
+                    }
+
+
                 }
 
                 videoItem.querySelector('video').play()
