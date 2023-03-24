@@ -3,6 +3,30 @@ document.addEventListener('DOMContentLoaded', function() {
     let allowedSound = false
     let allowedHd = false
     const players = {}
+
+
+    const baseVideos = document.querySelectorAll('.video-js')
+
+    if (baseVideos.length > 0) {
+        for (let index = 0; index < baseVideos.length; index++) {
+            const video = baseVideos[index]
+            videojs(video, {
+
+            });
+            videojs(
+                video.id,
+                {
+                    userActions: {
+                        doubleClick: onVideoDoubleClick
+                    }
+                }
+            ).ready(function(){
+                window.customPlayer = this;
+                players[video.id] = customPlayer
+            });
+        }
+    }
+
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
@@ -242,9 +266,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (players[videoItem.id]) {
                         const player = players[videoItem.id]
                         player.play()
+                        player.volume(1);
+                        player.muted( false );
+                        console.log('???111')
                     } else {
-                        videoItem.querySelector('video').removeAttribute('muted')
-                        videoItem.querySelector('video').volume = 1
                         videojs(videoItem.id).ready(function(){
                             window.customPlayer = this;
 
@@ -260,9 +285,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (players[videoItem.id]) {
                         const player = players[videoItem.id]
                         player.play()
+                        player.volume(0);
+                        player.muted( true );
+                        console.log('???000')
                     } else {
-                        videoItem.querySelector('video').volume = 0
-                        videoItem.querySelector('video').setAttribute('muted', 'muted')
                         videojs(videoItem.id).ready(function(){
                             window.customPlayer = this;
 
@@ -297,23 +323,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
 
-    const baseVideos = document.querySelectorAll('.video-js')
 
     function onVideoDoubleClick(event) {
         this.pause();
     }
 
 
-    if (baseVideos.length > 0) {
-        for (let index = 0; index < baseVideos.length; index++) {
-            const video = baseVideos[index]
-            videojs(video, {
-                userActions: {
-                    doubleClick: onVideoDoubleClick
-                }
-            });
-        }
-    }
 
     // Эта функция добавляем блок с дополнительными опциями
     // (кнопка скачать, просмотры, качества, ссылка на стрим канал) в обертку
