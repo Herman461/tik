@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
             videojs(
                 video.id,
                 {
+                    preload: 'auto',
+                    autoplay: true,
                     userActions: {
                         doubleClick: onVideoDoubleClick
                     }
