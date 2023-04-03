@@ -550,7 +550,12 @@ if (select.length > 0) {
 			const queryParam = getParameterByName('sort')
 			if (queryParam) {
 				selectedOption = item.querySelector('option[value="?sort=' + queryParam + '"]')
-				selectedOption.setAttribute('selected', 'selected')
+                if (selectedOption) {
+					selectedOption.setAttribute('selected', 'selected')
+				} else {
+					selectedOption = item.querySelector('option')
+				}
+
 			}
 
 		}
@@ -559,7 +564,13 @@ if (select.length > 0) {
 			const queryParam = getParameterByName('per-page')
 			if (queryParam) {
 				selectedOption = item.querySelector('option[value="?per-page=' + queryParam + '"]')
-				selectedOption.setAttribute('selected', 'selected')
+
+				if (selectedOption) {
+					selectedOption.setAttribute('selected', 'selected')
+				} else {
+					selectedOption = item.querySelector('option')
+				}
+
 			}
 
 		}
