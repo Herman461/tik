@@ -555,6 +555,15 @@ if (select.length > 0) {
 
 		}
 
+		if (item.classList.contains('base-select_per-page')) {
+			const queryParam = getParameterByName('per-page')
+			if (queryParam) {
+				selectedOption = item.querySelector('option[value="?per-page=' + queryParam + '"]')
+				selectedOption.setAttribute('selected', 'selected')
+			}
+
+		}
+
 		const disabledOption = item.querySelector('option[disabled]')
 		const duration = 400
 
