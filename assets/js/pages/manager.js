@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const randomTags = [
+    let randomTags = [
         { id: '1', value: 'Tagname' },
         { id: '2', value: 'Tagname' },
         { id: '3', value: 'Tagname' },
@@ -216,29 +216,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const foundIndex = randomTags.findIndex(item => id === item.id)
 
 
-            const newTag = document.createElement('div')
-            newTag.className = 'tags-item-manager__tag'
 
-            newTag.innerHTML = `
-                          <input type="hidden" value="">
-                          <span>${text}</span>
-                          <div class="tags-item-manager__close">
-                              <svg>
-                                  <use xlink:href="assets/images/icons/icons.svg#close"></use>
-                              </svg>
-                          </div>
-            `
+            const newTag = createItemTag({text})
 
             const wrapper = currentTag.closest('.item-manager').querySelector('.tags-item-manager__body .simplebar-content')
             wrapper.appendChild(newTag)
 
-            randomTags.splice(foundIndex, 1)
+            randomTags = []
+            currentTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
             currentTag.remove()
         }
     }
 
     onTagsScroll()
 
+
+    function createItemTag(data) {
+        const newTag = document.createElement('div')
+        newTag.className = 'tags-item-manager__tag'
+
+        newTag.innerHTML = `
+                          <input type="hidden" value="">
+                          <span>${data.text}</span>
+                          <div class="tags-item-manager__close">
+                              <svg>
+                                  <use xlink:href="assets/images/icons/icons.svg#close"></use>
+                              </svg>
+                          </div>
+            `
+        return newTag
+    }
 
     const itemTagsInputs = document.querySelectorAll('.tags-item-manager__input input')
 
@@ -295,6 +302,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
             }
 
+        })
+        input.addEventListener('keydown', function(e) {
+            if (e.keyCode === 13) {
+
+                const resultsWrapper = e.currentTarget.parentElement.querySelector('.manager-tags-results')
+
+                const firstTag = resultsWrapper.querySelector('.manager-tags-results__item')
+
+                if (firstTag) {
+                    const text = firstTag.textContent
+                    const newTag = createItemTag({text})
+                    const wrapper = e.currentTarget.closest('.item-manager').querySelector('.tags-item-manager__body .simplebar-content')
+                    wrapper.appendChild(newTag)
+                    randomTags = []
+                    firstTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
+                    firstTag.remove()
+                }
+            }
+            return false
         })
     }
 })

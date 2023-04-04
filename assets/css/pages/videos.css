@@ -927,6 +927,22 @@
   fill: #E82B2B;
 }
 
+.videos-model__items .quality-item-videos__button:first-child {
+  display: block !important;
+}
+
+.videos-model__items .quality-item-videos__button:last-child {
+  display: none !important;
+}
+
+.videos-model__items.hd .quality-item-videos__button:first-child {
+  display: none !important;
+}
+
+.videos-model__items.hd .quality-item-videos__button:last-child {
+  display: block !important;
+}
+
 @media (min-width: 660.98px) {
   .item-videos_full .vjs-progress-control {
     width: 100%;

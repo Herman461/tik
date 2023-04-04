@@ -3,7 +3,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const players = {}
+    const players = new Map()
     let allowedSound = false
     let allowedHd = false
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             ).ready(function(){
                 window.customPlayer = this;
-                players[video.id] = customPlayer
+                players.set(video.id, customPlayer)
             });
         }
     }
@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
         const mainVideo = document.querySelector('.item-videos_main.video-js')
-        const mainVideoItem = players[mainVideo.id];
+        const mainVideoItem = players.get(mainVideo.id);
         mainVideoItem.play()
+
     }
 
     // Сброс воспроизведения текущего видео
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentVideoElement.id) return
 
-        const currentVideo = players[currentVideoElement.id]
+        const currentVideo = players.get(currentVideoElement.id)
 
         if (!currentVideo) return
 
@@ -147,10 +148,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 quality = 'sd'
 
                 allowedHd = false
+
+                if (button.closest('.videos-model__items')) {
+                    button.closest('.videos-model__items').classList.remove('hd')
+                }
+
                 button.parentElement.querySelector('.quality-item-videos__button.sd').classList.add('active')
             } else {
                 quality = 'hd'
                 allowedHd = true
+
+                if (button.closest('.videos-model__items')) {
+                    button.closest('.videos-model__items').classList.add('hd')
+                }
                 button.parentElement.querySelector('.quality-item-videos__button.hd').classList.add('active')
             }
 
@@ -269,8 +279,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (allowedSound) {
-                    if (players[videoItem.id]) {
-                        const player = players[videoItem.id]
+                    if (players.has(videoItem.id)) {
+                        const player = players.get(videoItem.id)
                         player.play()
                         player.volume(1);
                         player.muted( false );
@@ -282,13 +292,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             customPlayer.muted( false );
                             customPlayer.play();
 
-                            players[videoItem.id] = customPlayer
+                            players.set(videoItem.id, customPlayer)
                         });
                     }
 
                 } else {
-                    if (players[videoItem.id]) {
-                        const player = players[videoItem.id]
+                    if (players.has(videoItem.id)) {
+                        const player = players.get(videoItem.id)
                         player.play()
                         player.volume(0);
                         player.muted( true );
@@ -301,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             customPlayer.muted( true );
                             customPlayer.play();
 
-                            players[videoItem.id] = customPlayer
+                            players.set(videoItem.id, customPlayer)
                         });
                     }
 
