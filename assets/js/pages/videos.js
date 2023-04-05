@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Открытия выпадающего списка по клику на кнопку Share
+        // Открытие выпадающего списка по клику на кнопку Share
         if (e.target.closest('.actions-item-videos__button')) {
             const shareButton = e.target.closest('.actions-item-videos__button')
             shareButton.nextElementSibling.classList.toggle('active')
@@ -148,19 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 quality = 'sd'
 
                 allowedHd = false
-
-                if (button.closest('.videos-model__items')) {
-                    button.closest('.videos-model__items').classList.remove('hd')
-                }
-
+                button.closest('.videos-model__items').classList.remove('hd')
                 button.parentElement.querySelector('.quality-item-videos__button.sd').classList.add('active')
             } else {
                 quality = 'hd'
                 allowedHd = true
-
-                if (button.closest('.videos-model__items')) {
-                    button.closest('.videos-model__items').classList.add('hd')
-                }
+                button.closest('.videos-model__items').classList.add('hd')
                 button.parentElement.querySelector('.quality-item-videos__button.hd').classList.add('active')
             }
 
@@ -266,17 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-                if (!videoItem.classList.contains('load')) {
-                    videoItem.classList.add('load')
-                    if (!allowedHd) {
-                        const sourceTag = videoItem.querySelector('video').querySelector('source[data-video-quality="sd"]')
 
-                        videoItem.querySelector('.item-videos__download').href = sourceTag.src
-                        videoItem.classList.remove('hd')
-
-                        videoItem.querySelector('.quality-item-videos__button.sd').classList.add('active')
-                    }
-                }
 
                 if (allowedSound) {
                     if (players.has(videoItem.id)) {
@@ -318,9 +301,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 }
 
+                if (videoItem instanceof HTMLMediaElement) return
                 // videoItem.querySelector('video').play()
 
+                if (!videoItem.classList.contains('load')) {
+                    videoItem.classList.add('load')
 
+                    if (!allowedHd) {
+                        const sourceTag = videoItem.querySelector('video').querySelector('source[data-video-quality="sd"]')
+
+                        videoItem.querySelector('.item-videos__download').href = sourceTag.src
+                        videoItem.classList.remove('hd')
+
+                        videoItem.querySelector('.quality-item-videos__button.sd').classList.add('active')
+                    }
+                }
 
                 break;
             }
@@ -361,7 +356,198 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     appendActionsToVideo()
 
-
-
-
 })
+
+setTimeout(() => {
+    const el = document.createElement('div')
+    el.className = 'videos__item init item-videos item-videos_vertical'
+    el.innerHTML = `
+                                <div class="item-videos__main">
+                                    <div class="item-videos__backdrop">
+                                        <img loading="lazy" src="https://tiktits.com/assets/uploads/2023-03-20_9-07-36-1665679008_1.webp" alt="">
+                                    </div>
+                                    <div class="item-videos__block">
+                                        <div class="item-videos__views">
+                                            <svg>
+                                                <use xlink:href="assets/images/icons/icons.svg#eye"></use>
+                                            </svg>
+                                            <span>435</span>
+                                        </div>
+                                        <a download href="https://tiktits.com/assets/uploads/2023-03-20_9-07-36-1665679008_1_720.mp4" class="item-videos__download">
+                                            <svg>
+                                                <use xlink:href="assets/images/icons/icons-2.svg#download"></use>
+                                            </svg>
+                                        </a>
+                                        <div class="item-videos__quality quality-item-videos">
+                                            <div class="quality-item-videos__button sd">
+                                                <svg>
+                                                    <use xlink:href="assets/images/icons/icons-2.svg#button-sd"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="quality-item-videos__button hd">
+                                                <svg>
+                                                    <use xlink:href="assets/images/icons/icons-2.svg#button-hd"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <a href="" class="item-videos__live live-block">
+                                            <div class="live-block__body">
+                                                <div class="live-block__image">
+                                                    <img src="assets/images/01.webp" alt="">
+                                                </div>
+                                                <div class="live-block__label">
+                                                    <img src="assets/images/icons/live.svg" alt="">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <video loop playsinline
+                                           muted
+                                           id="video-10"
+                                           class="video-js"
+                                           controls
+                                           preload="auto"
+                                           poster="assets/video/video6.webp"
+                                    >
+                                        <source src="assets/video/video6_720.mp4" data-video-quality="sd" type="video/mp4">
+                                        <source src="assets/video/video6_1080.mp4" data-video-quality="hd" type="video/mp4">
+                                        <p class="vjs-no-js">
+                                            To view this video please enable JavaScript, and consider upgrading to a
+                                            web browser that
+                                            <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                            >supports HTML5 video</a>
+                                        </p>
+                                    </video>
+
+                                    <div class="item-videos__info info-item-videos">
+                                        <div class="info-item-videos__body">
+                                            <div class="info-item-videos__avatar">
+                                                <picture>
+                                                    <source srcset="assets/images/users/01.webp" type="image/webp">
+                                                    <source srcset="assets/images/users/01.jpg" type="image/jpeg">
+                                                    <img src="assets/images/users/01.jpg">
+                                                </picture>
+                                                <div class="info-item-videos__plus"><span></span></div>
+                                            </div>
+                                            <div class="info-item-videos__content">
+                                                <div class="info-item-videos__date">12.12.2022</div>
+                                                <div class="info-item-videos__name">
+                                                    <span>asian_sexdoll</span>
+                                                    <div class="info-item-videos__verified">
+                                                        <svg>
+                                                            <use xlink:href="assets/images/icons/icons.svg#check-circle"></use>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="info-item-videos__description description-item-videos">
+                                            <div class="description-item-videos__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eveniet possimus quod. Dolore ducimus eligendi eveniet facilis iste iure molestiae quasi reiciendis ullam vero.</div>
+                                            <span class="description-item-videos__more">More</span>
+                                        </div>
+                                        <ul class="info-item-videos__tags tags-item-videos">
+                                            <li class="tags-item-videos__item">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item tags-item-videos__item_hidden hide">
+                                                <a href="">Tag 1</a>
+                                            </li>
+                                            <li class="tags-item-videos__item">
+                                                <a href="" class="tags-item-videos__toggler">...</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="item-videos__bottom bottom-item-videos">
+                                    <div class="bottom-item-videos__body">
+                                        <div class="bottom-item-videos__likes">
+                                            <svg>
+                                                <use xlink:href="assets/images/icons/icons-2.svg#favorite"></use>
+                                            </svg>
+                                            <span>123</span>
+                                        </div>
+                                        <div class="bottom-item-videos__add">
+                                            <svg>
+                                                <use xlink:href="assets/images/icons/icons-2.svg#plus"></use>
+                                            </svg>
+                                            <span>Add</span>
+                                        </div>
+                                        <div class="bottom-item-videos__actions actions-item-videos">
+                                            <div class="actions-item-videos__button">
+                                                <svg>
+                                                    <use xlink:href="assets/images/icons/icons-2.svg#share"></use>
+                                                </svg>
+                                            </div>
+                                            <ul class="actions-item-videos__list">
+                                                <li>
+                                                    <a href="" class="actions-item-videos__link">
+                                                        <svg>
+                                                            <use xlink:href="assets/images/icons/icons.svg#reddit"></use>
+                                                        </svg>
+                                                        <span>Reddit</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="actions-item-videos__link">
+                                                        <svg>
+                                                            <use xlink:href="assets/images/icons/icons.svg#twitter"></use>
+                                                        </svg>
+                                                        <span>Twitter</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="actions-item-videos__link">
+                                                        <svg>
+                                                            <use xlink:href="assets/images/icons/icons-2.svg#discord"></use>
+                                                        </svg>
+                                                        <span>Discord</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" data-modal-link="report-step-1" class="actions-item-videos__link actions-item-videos__link_red">
+                                                        <svg>
+                                                            <use xlink:href="assets/images/icons/icons-2.svg#warning"></use>
+                                                        </svg>
+                                                        <span>Report</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+    `
+    document.querySelector('.videos-model__items_list').appendChild(el)
+}, 2000)
