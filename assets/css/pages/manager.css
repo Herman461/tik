@@ -517,6 +517,7 @@
 }
 
 .modal__close {
+  cursor: pointer;
   position: absolute;
   top: 24px;
   right: 24px;

@@ -404,8 +404,8 @@ window.addEventListener('click', function(e) {
 		document.body.style.paddingRight = scrollWidth + 'px'
 	}
 
-	if (e.target.closest('.model__close')) {
-		const closeButton = e.target.closest('.model__close')
+	if (e.target.closest('[data-modal-close]')) {
+		const closeButton = e.target.closest('[data-modal-close]')
 		closeButton.closest('.modal').classList.remove('active')
 
 
@@ -413,6 +413,17 @@ window.addEventListener('click', function(e) {
 			document.body.classList.remove('lock')
 			document.body.style.paddingRight = 0
 		}, 300)
+	}
+
+	if (e.target.closest('.modal')) {
+		if (!e.target.closest('.modal__content')) {
+			e.target.closest('.modal').classList.remove('active')
+
+			setTimeout(() => {
+				document.body.classList.remove('lock')
+				document.body.style.paddingRight = 0
+			}, 400)
+		}
 	}
 })
 

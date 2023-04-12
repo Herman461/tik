@@ -169,6 +169,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             video.play()
         }
+
+        if (e.target.closest('.actions-item-videos__link_red')) {
+            const button = e.target.closest('.actions-item-videos__link_red')
+
+            const currentVideoId = button.closest('.item-videos').querySelector('.video-js').id
+
+            const reportHiddenInput = document.querySelector('.report input[type="hidden"]')
+            reportHiddenInput.value = currentVideoId
+        }
     })
 
     // Получаем нужный элемент
@@ -302,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (videoItem instanceof HTMLMediaElement) return
-                // videoItem.querySelector('video').play()
+
 
                 if (!videoItem.classList.contains('load')) {
                     videoItem.classList.add('load')

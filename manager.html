@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/plugins/simplebar.css?_v=20230405135737">
-    <link rel="stylesheet" href="assets/css/components/paging.css?_v=20230405135737">
-    <link rel="stylesheet" href="assets/css/components/modal.css?_v=20230405135737">
-    <link rel="stylesheet" href="assets/css/style.css?_v=20230405135737">
-    <link rel="stylesheet" href="assets/css/pages/manager.css?_v=20230405135737">
+    <link rel="stylesheet" href="assets/css/plugins/simplebar.css?_v=20230412174826">
+    <link rel="stylesheet" href="assets/css/components/paging.css?_v=20230412174826">
+    <link rel="stylesheet" href="assets/css/components/modal.css?_v=20230412174826">
+    <link rel="stylesheet" href="assets/css/style.css?_v=20230412174826">
+    <link rel="stylesheet" href="assets/css/pages/manager.css?_v=20230412174826">
     <title>Manager</title>
 </head>
 
@@ -489,7 +489,7 @@
                         </div>
                         <div class="total-manager__actions">
                             <div class="actions-manager">
-                                <div data-modal-link="confirm-step-1" class="actions-manager__item">
+                                <div data-modal-link="confirm-step" class="actions-manager__item actions-manager__item_delete">
                                     <div class="actions-manager__icon">
                                         <svg>
                                             <use xlink:href="assets/images/icons/icons-2.svg#trash"></use>
@@ -520,7 +520,7 @@
                     </div>
                     <div class="manager__videos">
                         <div class="manager__items">
-                            <form action="#" class="manager__item item-manager">
+                            <form data-video-id="1" action="#" class="manager__item item-manager">
                                 <div class="item-manager__body">
                                     <div class="item-manager__checkbox">
                                         <label class="checkbox">
@@ -1076,7 +1076,7 @@
 
                                 <div class="item-manager__actions">
                                     <div class="actions-manager">
-                                        <div data-modal-link="confirm-step-1" class="actions-manager__item">
+                                        <div data-modal-link="confirm-step" class="actions-manager__item actions-manager__item_delete">
                                             <div class="actions-manager__icon">
                                                 <svg>
                                                     <use xlink:href="assets/images/icons/icons-2.svg#trash"></use>
@@ -1105,7 +1105,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form action="#" class="manager__item item-manager">
+                            <form data-video-id="2" action="#" class="manager__item item-manager">
                                 <div class="item-manager__body">
                                     <div class="item-manager__checkbox">
                                         <label class="checkbox">
@@ -1661,7 +1661,7 @@
 
                                 <div class="item-manager__actions">
                                     <div class="actions-manager">
-                                        <div data-modal-link="confirm-step-1" class="actions-manager__item">
+                                        <div data-modal-link="confirm-step" class="actions-manager__item actions-manager__item_delete">
                                             <div class="actions-manager__icon">
                                                 <svg>
                                                     <use xlink:href="assets/images/icons/icons-2.svg#trash"></use>
@@ -1690,7 +1690,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form action="#" class="manager__item item-manager">
+                            <form data-video-id="3" action="#" class="manager__item item-manager">
                                 <div class="item-manager__body">
                                     <div class="item-manager__checkbox">
                                         <label class="checkbox">
@@ -2246,7 +2246,7 @@
 
                                 <div class="item-manager__actions">
                                     <div class="actions-manager">
-                                        <div data-modal-link="confirm-step-1" class="actions-manager__item">
+                                        <div data-modal-link="confirm-step" class="actions-manager__item actions-manager__item_delete">
                                             <div class="actions-manager__icon">
                                                 <svg>
                                                     <use xlink:href="assets/images/icons/icons-2.svg#trash"></use>
@@ -2380,9 +2380,9 @@
                 </div>
             </div>
             <form action="#" class="confirm-modals">
-                <div id="confirm-step-1" class="modal">
+                <div id="confirm-step" class="modal">
                     <div class="modal__content confirm">
-                        <div class="modal__close">
+                        <div data-modal-close="" class="modal__close">
                             <svg>
                                 <use xlink:href="assets/images/icons/icons.svg#close"></use>
                             </svg>
@@ -2394,23 +2394,10 @@
                         </div>
                         <div class="confirm__title">Are you sure you want to delete this file?</div>
                         <div class="confirm__text">Lorem ipsum dolor sit amet consectetur. Sed sed scelerisque id integer eget sapien eu gravida sollicitudin. Egestas sodales ultricies pharetra lectus eros.</div>
-                        <button data-modal-link="confirm-step-2" type="button" class="confirm__button button modal__close">
+                        <button data-modal-close="" type="button" class="confirm__button button">
                             <span>Confirm</span>
                         </button>
                         <input type="hidden">
-                    </div>
-                </div>
-                <div id="confirm-step-2" class="modal">
-                    <div class="modal__content confirm_success confirm">
-                        <div class="confirm__icon confirm__icon_warn">
-                            <svg>
-                                <use xlink:href="assets/images/icons/icons-2.svg#check-big"></use>
-                            </svg>
-                        </div>
-                        <div class="confirm__title">File uploaded successfully</div>
-                        <button type="button" class="confirm__button button modal__close">
-                            <span>Ok</span>
-                        </button>
                     </div>
                 </div>
             </form>
@@ -2463,12 +2450,12 @@
 
     </div>
 
-    <script src="assets/js/script.js?_v=20230405135737"></script>
-    <script src="assets/js/app.js?_v=20230405135737"></script>
+    <script src="assets/js/script.js?_v=20230412174826"></script>
+    <script src="assets/js/app.js?_v=20230412174826"></script>
 
 
-    <script src="assets/js/plugins/simplebar.min.js?_v=20230405135737"></script>
-    <script src="assets/js/pages/manager.js?_v=20230405135737"></script>
+    <script src="assets/js/plugins/simplebar.min.js?_v=20230412174826"></script>
+    <script src="assets/js/pages/manager.js?_v=20230412174826"></script>
 
 </body>
 

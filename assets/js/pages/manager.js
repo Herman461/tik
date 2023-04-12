@@ -137,6 +137,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function onWindowClick(e) {
+        if (e.target.closest('.actions-manager__item_delete')) {
+            const button = e.target.closest('.actions-manager__item_delete')
+
+            let value = ''
+
+            const currentVideo = button.closest('.manager__item')
+
+
+            if (currentVideo) {
+                // удаляем одно видео
+                value = currentVideo.dataset.videoId
+            } else {
+                // если нажали общую корзину
+                value = 'all'
+            }
+
+            const modal = document.querySelector('#confirm-step input[type="hidden"]')
+            modal.value = value
+        }
+
         if (e.target.closest('.copy-item-manager__button')) {
             const copyUrlBtn = e.target.closest('.copy-item-manager__button')
             const link = copyUrlBtn.parentElement.querySelector('span').textContent
