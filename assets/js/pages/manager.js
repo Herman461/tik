@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentTag.closest('.tags-item-manager__input').querySelector('input').value = ''
             currentTag.closest('.tags-item-manager__input').querySelector('.tags-item-manager__clear').classList.remove('active')
 
-            currentTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
+            currentTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').remove()
             currentTag.remove()
         }
     }
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     randomTags = []
                     firstTag.closest('.tags-item-manager__input').querySelector('input').value = ''
                     firstTag.closest('.tags-item-manager__input').querySelector('.tags-item-manager__clear').classList.remove('active')
-                    firstTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
+                    firstTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').remove()
 
 
                     firstTag.remove()
