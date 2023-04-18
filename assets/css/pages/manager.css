@@ -26,6 +26,10 @@
   margin-top: 24px;
 }
 
+.manager__per-page {
+  z-index: 3;
+}
+
 .manager__paging {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
@@ -177,7 +181,7 @@
   -ms-flex-align: center;
   align-items: center;
   border-radius: 6px;
-  min-height: 23px;
+  height: 23px;
   border: 1px solid var(--body-pink-color);
   margin-right: 4px;
   margin-bottom: 8px;
@@ -210,6 +214,7 @@
 }
 
 .tags-item-manager__clear {
+  cursor: pointer;
   position: absolute;
   top: calc(50% + 2px);
   -webkit-transform: translate(0, -50%);
@@ -532,9 +537,6 @@
 }
 
 .manager-tags-results {
-  opacity: 0;
-  visibility: hidden;
-  bottom: -10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -555,12 +557,6 @@
   -webkit-box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
-}
-
-.manager-tags-results.active {
-  opacity: 1;
-  visibility: visible;
-  bottom: 0;
 }
 
 .manager-tags-results__item {
@@ -680,6 +676,11 @@
     overflow-x: hidden;
     margin-bottom: 10px;
     padding-right: 10px;
+    position: relative;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
   }
 
   .tags-item-manager__input {

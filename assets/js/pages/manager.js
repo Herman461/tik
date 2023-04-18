@@ -3,11 +3,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     let randomTags = [
-        { id: '1', value: 'Tagname' },
-        { id: '2', value: 'Tagname' },
-        { id: '3', value: 'Tagname' },
-        { id: '4', value: 'Tagname' },
-        { id: '5', value: 'Tagname' },
+        { id: '1', value: 'Tagname1' },
+        { id: '2', value: 'Tagname1' },
+        { id: '3', value: 'Tagname1' },
+        { id: '4', value: 'Tagname1' },
+        { id: '5', value: 'Tagname1' },
+        { id: '6', value: 'Tag2' },
+        { id: '7', value: 'Tag2' },
+        { id: '8', value: 'Tag2' },
+        { id: '9', value: 'Tag2' },
+        { id: '10', value: 'Tag2' },
+        { id: '11', value: 'Tag3' },
+        { id: '12', value: 'Tag3' },
+        { id: '13', value: 'Tag3' },
+        { id: '14', value: 'Tag3' },
+        { id: '15', value: 'Tag3' },
     ]
 
     let selectedCheckboxesCount = 0
@@ -226,6 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
             clearButton.previousElementSibling.value = ''
 
             clearButton.classList.remove('active')
+
+            const resultsList = e.target.closest('.tags-item-manager__input').querySelector('.manager-tags-results')
+            resultsList.remove()
         }
 
         // Кидаем тег в оболочку
@@ -242,7 +255,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const wrapper = currentTag.closest('.item-manager').querySelector('.tags-item-manager__body .simplebar-content')
             wrapper.appendChild(newTag)
 
-            randomTags = []
+            randomTags = randomTags.filter(tag => tag.value !== text)
+
+            currentTag.closest('.tags-item-manager__input').querySelector('input').value = ''
+            currentTag.closest('.tags-item-manager__input').querySelector('.tags-item-manager__clear').classList.remove('active')
+
             currentTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
             currentTag.remove()
         }
@@ -276,7 +293,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentTarget = e.currentTarget
             const value = currentTarget.value
             const clearButton = currentTarget.nextElementSibling
-            const resultWrapper = e.currentTarget.closest('.tags-item-manager__input').querySelector('.manager-tags-results')
+
+
 
             const re = /^\w+$/;
 
@@ -297,13 +315,31 @@ document.addEventListener('DOMContentLoaded', function() {
             // const response = await fetch('https://your-uri')
             // const result = response.json()
 
-            const result = randomTags
+            if (value.length === 0) {
+                if (e.currentTarget.closest('.tags-item-manager__input').querySelector('.manager-tags-results')) {
+                    e.currentTarget.closest('.tags-item-manager__input').querySelector('.manager-tags-results').remove()
+                }
+                return
+            }
+            const result = randomTags.filter(tag => tag.value.toLowerCase().includes(value.toLowerCase()))
 
-            resultWrapper.innerHTML = ''
             if (result.length > 0) {
+                let resultWrapper;
 
-                for (let index = 0; index < result.length; index++) {
+                if (e.currentTarget.closest('.tags-item-manager__input').querySelector('.manager-tags-results')) {
+                    resultWrapper = e.currentTarget.closest('.tags-item-manager__input').querySelector('.manager-tags-results')
+                    resultWrapper.innerHTML = ''
+                } else {
+                    resultWrapper = document.createElement('ul')
+                    resultWrapper.classList.add('manager-tags-results')
+
+                    e.currentTarget.closest('.tags-item-manager__input').appendChild(resultWrapper)
+                }
+
+                for (let index = 0; index < 5; index++) {
                     const item = result[index]
+
+                    if (!item) break
 
                     const element = document.createElement('li')
                     element.className = 'manager-tags-results__item'
@@ -311,15 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.innerHTML = item.value
 
                     resultWrapper.appendChild(element)
-                    resultWrapper.classList.add('active')
-
                 }
-            } else {
-                if (resultWrapper.classList.contains('active')) {
-                    resultWrapper.classList.remove('active')
-                }
-
-
             }
 
         })
@@ -336,7 +364,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     const wrapper = e.currentTarget.closest('.item-manager').querySelector('.tags-item-manager__body .simplebar-content')
                     wrapper.appendChild(newTag)
                     randomTags = []
+                    firstTag.closest('.tags-item-manager__input').querySelector('input').value = ''
+                    firstTag.closest('.tags-item-manager__input').querySelector('.tags-item-manager__clear').classList.remove('active')
                     firstTag.closest('.tags-item-manager__input').querySelector('.manager-tags-results').innerHTML = ''
+
+
                     firstTag.remove()
                 }
             }
