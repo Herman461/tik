@@ -3,21 +3,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     let randomTags = [
-        { id: '1', value: 'Tagname1' },
-        { id: '2', value: 'Tagname1' },
-        { id: '3', value: 'Tagname1' },
-        { id: '4', value: 'Tagname1' },
-        { id: '5', value: 'Tagname1' },
+        { id: '1', value: 'Tagname12' },
+        { id: '2', value: 'Tagname22' },
+        { id: '3', value: 'Tagname11' },
+        { id: '4', value: 'Tagname2' },
+        { id: '5', value: 'Tagname23' },
         { id: '6', value: 'Tag2' },
-        { id: '7', value: 'Tag2' },
-        { id: '8', value: 'Tag2' },
-        { id: '9', value: 'Tag2' },
-        { id: '10', value: 'Tag2' },
-        { id: '11', value: 'Tag3' },
-        { id: '12', value: 'Tag3' },
-        { id: '13', value: 'Tag3' },
-        { id: '14', value: 'Tag3' },
-        { id: '15', value: 'Tag3' },
+        { id: '7', value: 'Tag5' },
+        { id: '8', value: 'Tag3' },
+        { id: '9', value: 'Tag5' },
+        { id: '10', value: 'Tag7' },
+        { id: '11', value: 'Tag8' },
+        { id: '12', value: 'Tag9' },
+        { id: '13', value: 'Tag31' },
+        { id: '14', value: 'Tag24' },
+        { id: '15', value: 'Tag12' },
     ]
 
     let selectedCheckboxesCount = 0

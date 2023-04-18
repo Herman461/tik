@@ -211,6 +211,17 @@
 
 .tags-item-manager__input {
   position: relative;
+  margin-right: 13px;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  position: relative;
 }
 
 .tags-item-manager__clear {
@@ -681,20 +692,6 @@
     -webkit-box-direction: normal !important;
     -ms-flex-direction: row !important;
     flex-direction: row !important;
-  }
-
-  .tags-item-manager__input {
-    margin-right: 13px;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-    position: relative;
   }
 
   .tags-item-manager__input::before {
