@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
 
     let randomTags = [
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalManagerLabel = document.querySelector('.total-manager__label')
     const totalManagerCheckbox = document.querySelector('.total-manager__checkbox input')
 
-    if (window.matchMedia("(min-width: 991.98px)").matches) {
+    if (window.matchMedia("(min-width: 767.98px)").matches) {
         window.addEventListener('click', function(e) {
             onWindowClick(e)
             if (e.target.closest('.total-manager__checkbox')) {
@@ -375,6 +373,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return false
         })
     }
+
+    function removeTagResults() {
+        const wrapper = document.querySelector('.manager-tags-results')
+        if (wrapper) {
+            wrapper.remove()
+        }
+    }
 })
-
-

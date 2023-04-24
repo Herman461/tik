@@ -574,7 +574,7 @@ if (select.length > 0) {
 
 		}
 
-		const disabledOption = item.querySelector('option[disabled]')
+		const baseHeadText = item.dataset.head
 		const duration = 400
 
 		item.querySelector('select').hidden = true
@@ -584,7 +584,7 @@ if (select.length > 0) {
 
 		head.classList.add('base-select__head')
 
-		text.textContent = disabledOption ? disabledOption.textContent : selectedOption.textContent
+		text.textContent = baseHeadText ? baseHeadText : selectedOption.textContent
 
 		head.append(text)
 		item.append(head)
@@ -623,10 +623,13 @@ if (select.length > 0) {
 
 		selectList.hidden = true
 		head.addEventListener('click', function(e) {
+			if (e.target.closest('.base-select_h')) return;
 			if (!document.querySelector('.base-select__list.slide') && e.target.closest('.base-select__head')) {
 				if (activeSelect && !e.target.closest('.base-select__head').nextElementSibling.isEqualNode(activeSelect)) {
 					slideUp(activeSelect)
 					activeSelect.closest('.base-select').querySelector('.base-select__head').classList.remove('active')
+
+
 				}
 				activeSelect = e.target.closest('.base-select__head').nextElementSibling
 				e.currentTarget.classList.toggle('active')
@@ -666,7 +669,13 @@ if (select.length > 0) {
 
 				target.classList.add('active')
 				e.target.closest('.base-select').querySelector('select').dispatchEvent(new Event('change'))
-				slideUp(selectList)
+
+				if (e.target.closest('.base-select_h')) {
+					slideUp(e.target.closest('.base-select__wrapper'))
+				} else {
+					slideUp(selectList)
+				}
+
 			}
 		})
 	}
