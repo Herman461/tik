@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/style.css?_v=20230424202623">
-    <link rel="stylesheet" href="assets/css/plugins/pikaday.css?_v=20230424202623">
-    <link rel="stylesheet" href="assets/css/plugins/nouislider.min.css?_v=20230424202623">
-    <link rel="stylesheet" href="assets/css/plugins/simplebar.css?_v=20230424202623">
-    <link rel="stylesheet" href="assets/css/pages/upload.css?_v=20230424202623">
+    <link rel="stylesheet" href="assets/css/style.css?_v=20230426060022">
+    <link rel="stylesheet" href="assets/css/plugins/pikaday.css?_v=20230426060022">
+    <link rel="stylesheet" href="assets/css/plugins/nouislider.min.css?_v=20230426060022">
+    <link rel="stylesheet" href="assets/css/plugins/simplebar.css?_v=20230426060022">
+    <link rel="stylesheet" href="assets/css/pages/upload.css?_v=20230426060022">
 
 
     <title>Upload</title>
@@ -471,16 +471,24 @@
                         <span class="upload__line"></span>
                     </div>
                     <form action="#" class="upload__form">
+                        <input value="" name="file_name" type="hidden">
+                        <input value="" name="scheduled_time" type="hidden">
+                        <input value="" name="time_start" type="hidden">
+                        <input value="" name="time_end" type="hidden">
+                        <input value="" name="name" type="hidden">
                         <div data-upload-step="0" class="upload__select select-upload active">
                             <input accept=".mov,.mp4" class="select-upload__input" type="file">
                             <div class="select-upload__body">
-                                <div class="select-upload__icon">
+                                <div class="select-upload__plus">
+                                    <svg>
+                                        <use xlink:href="assets/images/icons/icons-2.svg#plus-round"></use>
+                                    </svg>
+                                </div>
+                                <div class="select-upload__camera">
                                     <svg>
                                         <use xlink:href="assets/images/icons/icons-2.svg#camera"></use>
                                     </svg>
-                                    <svg>
-                                        <use xlink:href="assets/images/icons/icons-2.svg#camera-pink"></use>
-                                    </svg>
+
                                 </div>
 
                                 <div class="select-upload__title">Choose file</div>
@@ -500,77 +508,8 @@
 
                             </div>
                             <div class="cutter-upload__progress progress-cutter-upload">
-                                <div class="progress-cutter-upload__items">
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
-                                    <div class="progress-cutter-upload__item">
-                                        <picture>
-                                            <source srcset="assets/images/preview.webp" type="image/webp">
-                                            <source srcset="assets/images/preview.jpg" type="image/jpeg">
-                                            <img alt="" src="assets/images/preview.jpg">
-                                        </picture>
-                                    </div>
+                                <div class="progress-cutter-upload__body">
+                                    <img src="assets/images/videotape-default.jpg" alt="">
                                     <div class="progress-cutter-upload__slider"></div>
                                 </div>
 
@@ -728,7 +667,41 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="schedule-upload__calendar"></div>
+                                    <div class="schedule-upload__calendar calendar-schedule-upload">
+                                        <div class="calendar-schedule-upload__wrapper">
+                                            <div class="calendar-schedule-upload__header">
+                                                <div class="calendar-schedule-upload__title">Select a date</div>
+                                                <div class="calendar-schedule-upload__close">
+                                                    <svg>
+                                                        <use xlink:href="assets/images/icons/icons.svg#close"></use>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="calendar-schedule-upload__body">
+                                                <ul class="calendar-schedule-upload__days">
+                                                    <li data-day="0" class="calendar-schedule-upload__day">
+                                                        <span>Today</span>
+                                                    </li>
+                                                    <li data-day="1" class="calendar-schedule-upload__day">
+                                                        <span>Tomorrow</span>
+                                                    </li>
+                                                    <li data-day="2" class="calendar-schedule-upload__day">
+                                                        <span>The day after tomorrow</span>
+                                                    </li>
+                                                    <li data-day="3" class="calendar-schedule-upload__day">
+                                                        <span>After 3 days</span>
+                                                    </li>
+                                                    <li data-day="4" class="calendar-schedule-upload__day">
+                                                        <span>After 4 days</span>
+                                                    </li>
+                                                    <li data-day="5" class="calendar-schedule-upload__day">
+                                                        <span>After 5 days</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -968,14 +941,15 @@
         </div>
 
     </div>
-    <script src="assets/js/plugins/pikaday.js?_v=20230424202623"></script>
-    <script src="assets/js/plugins/nouislider.min.js?_v=20230424202623"></script>
-    <script src="assets/js/plugins/simplebar.min.js?_v=20230424202623"></script>
-    <script src="assets/js/script.js?_v=20230424202623"></script>
-    <script src="assets/js/app.js?_v=20230424202623"></script>
+    <script src="assets/js/plugins/pikaday.js?_v=20230426060022"></script>
+    <script src="assets/js/plugins/wNumb.min.js?_v=20230426060022"></script>
+    <script src="assets/js/plugins/nouislider.min.js?_v=20230426060022"></script>
+    <script src="assets/js/plugins/simplebar.min.js?_v=20230426060022"></script>
+    <script src="assets/js/script.js?_v=20230426060022"></script>
+    <script src="assets/js/app.js?_v=20230426060022"></script>
 
 
-    <script src="assets/js/pages/upload.js?_v=20230424202623"></script>
+    <script src="assets/js/pages/upload.js?_v=20230426060022"></script>
 </body>
 
 </html>

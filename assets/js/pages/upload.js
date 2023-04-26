@@ -1,7 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    window.addEventListener('click', function(e) {
+    const currentDate = new Date()
 
+    const file_name = document.querySelector('input[name="file_name"]')
+    const time_start = document.querySelector('input[name="time_start"]')
+    const time_end = document.querySelector('input[name="time_end"]')
+    const scheduled_time = document.querySelector('input[name="scheduled_time"]')
+    const name = document.querySelector('input[name="name"]')
+
+    let calendarValue = 0;
+    let timeValue = 0;
+
+    Date.prototype.addDays = function(days) {
+        const date = new Date(this.valueOf())
+        date.setDate(date.getDate() + days)
+        return date
+    }
+
+
+    window.addEventListener('click', function(e) {
+        if (e.target.closest('.calendar-schedule-upload__day span')) {
+            const daysCount = Number( e.target.closest('.calendar-schedule-upload__day').dataset.day )
+            const dateInput = document.querySelector('.schedule-upload__date input')
+
+
+
+            const newDate = currentDate.addDays(daysCount)
+            const day = newDate.getDate()
+            const month = newDate.getMonth() + 1
+            const year = newDate.getFullYear()
+
+            dateInput.value = `${day}/${month}/${year}`;
+
+            calendarValue = Math.floor( newDate.getTime() / 1000 )
+            calculateTime()
+            if (window.matchMedia('(max-width: 991.98px)').matches) {
+                e.target.closest('.schedule-upload__calendar').classList.remove('active')
+            }
+        }
         if (e.target.closest('.copy-success-upload__button')) {
             const copyUrlBtn = e.target.closest('.copy-success-upload__button')
             const link = copyUrlBtn.parentElement.querySelector('span').textContent
@@ -35,16 +71,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     if (document.querySelector('.schedule-upload__calendar')) {
+
         const picker = new Pikaday({
             field: document.querySelector('.schedule-upload__date input'),
-            container: document.querySelector('.schedule-upload__calendar'),
+            container: document.querySelector('.calendar-schedule-upload__body'),
             bound: false,
-            minDate: new Date(),
+            minDate: currentDate,
             maxDate: new Date(Date.now() + (1000 * 60 * 60 * 24 * 19)),
             onOpen: buildCalendarArrows,
-            onDraw: buildCalendarArrows
+            onDraw: buildCalendarArrows,
+            onSelect() {
+                if (window.matchMedia('(max-width: 991.98px)').matches) {
+                    document.querySelector('.schedule-upload__calendar').classList.remove('active')
+                }
+            },
+            toString(date, format) {
+                calendarValue = Math.floor( date.getTime() / 1000 )
+
+                const day = date.getDate();
+                const month = date.getMonth() + 1;
+                const year = date.getFullYear();
+                calculateTime()
+                return `${day}/${month}/${year}`;
+            }
         })
 
+        document.querySelector('.schedule-upload__time select').addEventListener('change', function() {
+
+            timeValue = Number( document.querySelector('.schedule-upload__time option[selected]').value )
+            calculateTime()
+        })
+
+        function calculateTime() {
+            scheduled_time.value = timeValue + calendarValue
+        }
+
+        const closeButton = document.querySelector('.calendar-schedule-upload__close')
+
+        closeButton.addEventListener('click', function(e) {
+            e.target.closest('.schedule-upload__calendar').classList.remove('active')
+        })
         function buildCalendarArrows() {
             const pikaPrev = document.querySelector('.pika-prev')
             const pikaNext = document.querySelector('.pika-next')
@@ -150,14 +216,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectUploadBody = document.querySelector('.select-upload__body')
         const selectUploadInput = document.querySelector('.select-upload__input')
 
-        selectUploadBody.addEventListener('click', function(e) {
-            document.querySelector('.select-upload__input').click()
-        })
-
-        selectUploadInput.addEventListener('change', function(e) {
-            const files = e.target.files
-            const file = files[0];
-            const urlBlob = URL.createObjectURL(file);
+        function setNewVideo(videoFile) {
+            console.log(videoFile)
+            const urlBlob = URL.createObjectURL(videoFile);
 
             const video = document.createElement('video')
             document.querySelector('.cutter-upload__video').appendChild(video)
@@ -166,33 +227,119 @@ document.addEventListener('DOMContentLoaded', function() {
 
             video.setAttribute('muted', '')
             video.setAttribute('autoplay', '')
+            video.setAttribute('loop', '')
 
             video.src = urlBlob
+
+            file_name.value = urlBlob
 
             video.load()
             video.onloadeddata = function() {
                 video.play()
+                addCutter()
             }
 
 
+        }
+
+        selectUploadBody.addEventListener('click', function(e) {
+            document.querySelector('.select-upload__input').click()
         })
 
+        selectUploadInput.addEventListener('change', function(e) {
+            const files = e.target.files
+            const file = files[0];
+            setNewVideo(file)
+        })
+
+        const dropContainer = document.querySelector('.select-upload__body')
+
+        selectUploadBody.ondragover = selectUploadBody.ondragenter = function(evt) {
+            evt.preventDefault();
+        };
+        selectUploadBody.ondrop = function(evt) {
+
+            selectUploadInput.files = evt.dataTransfer.files
+
+            const dT = new DataTransfer()
+            dT.items.add(evt.dataTransfer.files[0])
+
+            selectUploadInput.files = dT.files
+            evt.preventDefault()
+
+            setNewVideo(selectUploadInput.files[0])
+        }
+
+        selectUploadBody.addEventListener('dragenter', function() {
+            if (!selectUploadBody.classList.contains('drop')) {
+                selectUploadBody.classList.add('drop')
+            }
+        })
+        selectUploadBody.addEventListener('dragleave', function() {
+            if (selectUploadBody.classList.contains('drop')) {
+                selectUploadBody.classList.remove('drop')
+            }
+        })
     }
 
 
     // Обрезка видео
 
-    if (document.querySelector('.upload__cutter')) {
+    function addCutter() {
         const cutterSlider = document.querySelector('.progress-cutter-upload__slider');
+        const newVideo = document.querySelector('.cutter-upload__video video')
 
-        noUiSlider.create(cutterSlider, {
-            start: [0, 100],
-            connect: true,
-            range: {
-                'min': 20,
-                'max': 80
+        let videoSlider;
+
+        const videoDuration = Math.ceil(newVideo.duration)
+        const limit = 60
+
+        let minTime = 0
+        let maxTime = videoDuration > limit ? limit : videoDuration
+
+        if (!videoSlider) {
+            videoSlider = noUiSlider.create(cutterSlider, {
+                start: [minTime, maxTime],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': videoDuration
+                },
+                limit: limit,
+                tooltips: true,
+                format: wNumb({
+                    decimals: 0
+                }),
+            });
+        }
+
+        videoSlider.on('update', debounce(function(values) {
+            minTime = Number( values[0] )
+            maxTime = Number( values[1] )
+
+            time_start.value = minTime
+            time_end.value = maxTime
+            // Воспроизводим каждый раз сначала при обновлении значения слайдера
+            newVideo.currentTime = minTime
+            // Не воспроизводить сначала при изменении значения слайдера
+            // if (minTime > newVideo.currentTime) {
+            //     newVideo.currentTime = minTime
+            // }
+
+        }, 300));
+
+
+        newVideo.addEventListener('ended', function() {
+            newVideo.currentTime = minTime
+        })
+
+        newVideo.addEventListener('timeupdate', function() {
+            if (newVideo.currentTime > maxTime) {
+                newVideo.currentTime = minTime
             }
-        });
+        })
+
+
 
     }
 
@@ -263,6 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('click', function(e) {
 
 
+
+
             if (e.target.closest('.tags-upload__item')) {
                 const selectedTag = e.target.closest('.tags-upload__item')
 
@@ -308,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 slideUp(document.querySelector('.schedule-upload__time .base-select__list'))
             }
 
+
         })
 
         const tagsInput = document.querySelector('.tags-upload__input input')
@@ -320,7 +470,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!re.test(value)) {
                 e.target.value = value.slice(0, -1)
-
 
             }
 
