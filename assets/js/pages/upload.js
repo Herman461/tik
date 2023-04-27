@@ -294,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             video.muted = true
             video.setAttribute('autoplay', '')
+            video.setAttribute('playsinline', '')
 
             video.src = urlBlob
 

@@ -13,8 +13,6 @@
 
 .upload {
   margin: 24px 0;
-  -webkit-box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
 }
 
@@ -247,7 +245,6 @@
   border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   cursor: pointer;
-  background: var(--body-background);
   -webkit-transition: all var(--transition) ease 0s;
   transition: all var(--transition) ease 0s;
 }
@@ -1179,6 +1176,12 @@
   .upload {
     padding: 24px;
     background: #000;
+    -webkit-box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .select-upload__body {
+    background: var(--body-background);
   }
 
   .categories-upload__row {
