@@ -1301,6 +1301,10 @@
 }
 
 @media (max-width: 991.98px) {
+  .upload__steps {
+    margin-bottom: 35px;
+  }
+
   .schedule-upload__calendar {
     position: fixed;
     width: 100%;
