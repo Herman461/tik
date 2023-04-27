@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             calendarValue = Math.floor( newDate.getTime() / 1000 )
             calculateTime()
             if (window.matchMedia('(max-width: 991.98px)').matches) {
+                document.querySelector('.schedule-upload__date input').blur()
                 e.target.closest('.schedule-upload__calendar').classList.remove('active')
             }
         }
@@ -86,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             onDraw: buildCalendarArrows,
             onSelect() {
                 if (window.matchMedia('(max-width: 991.98px)').matches) {
+                    document.querySelector('.schedule-upload__date input').blur()
                     document.querySelector('.schedule-upload__calendar').classList.remove('active')
                 }
             },
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const closeButton = document.querySelector('.calendar-schedule-upload__close')
 
         closeButton.addEventListener('click', function(e) {
+            document.querySelector('.schedule-upload__date input').blur()
             e.target.closest('.schedule-upload__calendar').classList.remove('active')
         })
         function buildCalendarArrows() {
@@ -316,8 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
         selectUploadInput.addEventListener('change', function(e) {
             const files = e.target.files
             file = files[0];
-
-
 
             setNewVideo()
             e.target.value = null
@@ -553,11 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
         addTagsToDOM(randomTags)
 
-        window.addEventListener('click', function(e) {
-
-
-
-
+        function onWindowClick(e) {
             if (e.target.closest('.tags-upload__item')) {
                 const selectedTag = e.target.closest('.tags-upload__item')
 
@@ -605,8 +602,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 slideUp(document.querySelector('.schedule-upload__time .base-select__list'))
             }
 
+        }
+        if (window.matchMedia("(min-width: 767.98px)").matches) {
+            window.addEventListener('click', onWindowClick)
+        } else {
+            window.addEventListener('touchend', onWindowClick)
+        }
 
-        })
 
         const tagsInput = document.querySelector('.tags-upload__input input')
 
