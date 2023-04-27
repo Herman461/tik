@@ -771,8 +771,8 @@
   border: 1px solid var(--body-pink-color);
   min-height: 23px;
   color: var(--body-white-color);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .bottom-item-videos {

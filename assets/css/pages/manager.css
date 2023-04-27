@@ -205,8 +205,8 @@
   width: 12px;
   height: 12px;
   fill: var(--body-gray-color);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .tags-item-manager__input {
@@ -233,8 +233,8 @@
   right: 8px;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .tags-item-manager__clear.active {
@@ -345,8 +345,8 @@
 .copy-item-manager__button svg {
   width: 16px;
   height: 16px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .socials-item-manager__title {
@@ -368,8 +368,8 @@
 }
 
 .socials-item-manager__link svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 24px;
   height: 24px;
   fill: var(--body-main-color);
@@ -400,8 +400,8 @@
 }
 
 .actions-manager__item span {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   font-size: 14px;
   line-height: 17px;
 }
@@ -540,8 +540,8 @@
 }
 
 .modal__close svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 24px;
   height: 24px;
   fill: #fff;
@@ -560,8 +560,8 @@
   -webkit-transform: translate(0, 100%);
   transform: translate(0, 100%);
   left: 0;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   z-index: 3;
   background: #0D0D0E;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -696,8 +696,8 @@
 
   .tags-item-manager__input::before {
     pointer-events: none;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+    -webkit-transition: all var(--transition) ease 0s;
+    transition: all var(--transition) ease 0s;
     content: "";
     position: absolute;
     top: 0;

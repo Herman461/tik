@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     const currentDate = new Date()
+    const prevButton = document.querySelector('.top-upload__prev')
 
     const file_name = document.querySelector('input[name="file_name"]')
     const time_start = document.querySelector('input[name="time_start"]')
@@ -10,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let calendarValue = 0;
     let timeValue = 0;
+    let wasVideoCreated = false
+
+    let file;
 
     Date.prototype.addDays = function(days) {
         const date = new Date(this.valueOf())
@@ -177,8 +181,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const circles = document.querySelectorAll('.upload__step')
 
     let currentStep = 0
+
+    prevButton.addEventListener('click', showPrevStep)
+
+    function isPrevButtonHidden() {
+        if (currentStep === 0) {
+            prevButton.classList.add('hide')
+        }
+
+        if (currentStep !== 0 && prevButton.classList.contains('hide')) {
+            prevButton.classList.remove('hide')
+        }
+
+
+
+    }
+    isPrevButtonHidden()
+    function showPrevStep(e) {
+        if (currentStep === 0) return
+        currentStep--
+        document.querySelector('[data-upload-step].active').classList.remove('active')
+
+        const block = document.querySelector(`[data-upload-step="${currentStep}"]`)
+        block.classList.add('active')
+
+        isPrevButtonHidden()
+
+        if (currentStep === 0) {
+            document.querySelector('.upload__steps').classList.remove('visible')
+            document.querySelector('.upload__bottom').classList.remove('visible')
+
+            document.querySelector('.cutter-upload__video').innerHTML = ''
+            document.querySelector('.progress-cutter-upload__slider').noUiSlider.destroy();
+            document.querySelector('.progress-cutter-upload__slider').innerHTML = ''
+            document.querySelector('.progress-cutter-upload__slider').className = 'progress-cutter-upload__slider'
+        }
+
+        if (currentStep !== 5) {
+            progressBar.style.width = `calc(${currentStep * 33.333 - 33.333}% - 4px)`
+        }
+        if (currentStep === 3 && uploadButton.hasAttribute('disabled')) {
+            uploadButton.removeAttribute('disabled')
+        }
+
+        if (currentStep === 2) {
+            document.querySelector('.cutter-upload__video video').play()
+        }
+        e.preventDefault()
+    }
     function showNextStep() {
+
+        if (currentStep === 4 && !wasVideoCreated) {
+            uploadButton.setAttribute('disabled', '')
+            createNewVideo()
+            return
+        }
+
         currentStep++
+
+
 
         document.querySelector('[data-upload-step].active').classList.remove('active')
 
@@ -198,13 +259,19 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.upload__bottom').classList.add('visible')
         }
 
+        if (currentStep === 3) {
+            document.querySelector('.cutter-upload__video video').pause()
+        }
         if (currentStep === 4) {
             uploadButton.setAttribute('disabled', '')
         }
         if (currentStep === 5) {
             document.querySelector('.upload__steps').classList.remove('visible')
             document.querySelector('.upload__bottom').classList.remove('visible')
+            document.querySelector('.upload__top').classList.add('hide')
         }
+
+        isPrevButtonHidden()
     }
 
     uploadButton.addEventListener('click', showNextStep)
@@ -216,18 +283,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectUploadBody = document.querySelector('.select-upload__body')
         const selectUploadInput = document.querySelector('.select-upload__input')
 
-        function setNewVideo(videoFile) {
-            console.log(videoFile)
-            const urlBlob = URL.createObjectURL(videoFile);
+        function setNewVideo() {
+
+            const urlBlob = URL.createObjectURL(file);
 
             const video = document.createElement('video')
             document.querySelector('.cutter-upload__video').appendChild(video)
 
             showNextStep()
 
-            video.setAttribute('muted', '')
+            video.muted = true
             video.setAttribute('autoplay', '')
-            video.setAttribute('loop', '')
 
             video.src = urlBlob
 
@@ -248,11 +314,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
         selectUploadInput.addEventListener('change', function(e) {
             const files = e.target.files
-            const file = files[0];
-            setNewVideo(file)
+            file = files[0];
+
+
+
+            setNewVideo()
+            e.target.value = null
         })
 
-        const dropContainer = document.querySelector('.select-upload__body')
+        function createNewVideo() {
+            document.querySelector('.upload__progressbar').classList.remove('hide')
+            const progressbar = document.querySelector('.progressbar-upload__line span')
+            const progress = document.querySelector('.progressbar-upload__label span')
+            const url = "http://localhost:3000/"
+            const xhr = new XMLHttpRequest()
+            xhr.file = file
+            xhr.addEventListener('progress', function(e) {
+                const done = e.position || e.loaded, total = e.totalSize || e.total
+                const currentProgress = Math.trunc( Math.floor(done/total*1000)/10 ) + '%'
+                progressbar.style.width = currentProgress
+                progress.textContent = currentProgress
+            }, false)
+            if ( xhr.upload ) {
+                xhr.upload.onprogress = function(e) {
+                    const done = e.position || e.loaded, total = e.totalSize || e.total
+                    currentProgress = Math.trunc( Math.floor(done/total*1000)/10 ) + '%'
+                    progressbar.style.width = currentProgress
+                    progress.textContent = currentProgress
+
+                }
+            }
+            xhr.onreadystatechange = function(e) {
+                if ( 4 == this.readyState ) {
+                    wasVideoCreated = true
+                    showNextStep()
+                    document.querySelector('.upload__progressbar').classList.add('hide')
+                }
+            };
+            xhr.open('post', url, true)
+            xhr.setRequestHeader("Content-Type","multipart/form-data")
+            xhr.send(file)
+        }
+
 
         selectUploadBody.ondragover = selectUploadBody.ondragenter = function(evt) {
             evt.preventDefault();
@@ -267,7 +370,8 @@ document.addEventListener('DOMContentLoaded', function() {
             selectUploadInput.files = dT.files
             evt.preventDefault()
 
-            setNewVideo(selectUploadInput.files[0])
+            file = selectUploadInput.files[0]
+            setNewVideo()
         }
 
         selectUploadBody.addEventListener('dragenter', function() {
@@ -283,13 +387,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Обрезка видео
+
+
+
+
 
     function addCutter() {
+        // Обрезка видео
         const cutterSlider = document.querySelector('.progress-cutter-upload__slider');
-        const newVideo = document.querySelector('.cutter-upload__video video')
-
         let videoSlider;
+
+        const newVideo = document.querySelector('.cutter-upload__video video')
 
         const videoDuration = Math.ceil(newVideo.duration)
         const limit = 60
@@ -305,32 +413,60 @@ document.addEventListener('DOMContentLoaded', function() {
                     'min': 0,
                     'max': videoDuration
                 },
-                limit: limit,
+
                 tooltips: true,
                 format: wNumb({
                     decimals: 0
                 }),
             });
+
+            videoSlider.on('slide', function(values) {
+
+                const lowerValue = Number( values[0] )
+                const upperValue = Number( values[1] )
+                // videoSlider.set(values[0], upperValue)
+                if (minTime !== lowerValue) {
+                    minTime = lowerValue
+
+                    if (upperValue - lowerValue > limit) {
+
+                        videoSlider.set([String(lowerValue), String(lowerValue + limit)])
+                    }
+                }
+
+                if (maxTime !== upperValue) {
+                    maxTime = upperValue
+
+                    if (upperValue - lowerValue > limit) {
+                        videoSlider.set([String(upperValue - limit), String(upperValue)])
+                    }
+                }
+
+
+            })
+            videoSlider.on('update', debounce(function(values) {
+                minTime = Number( values[0] )
+                maxTime = Number( values[1] )
+
+                time_start.value = minTime
+                time_end.value = maxTime
+                // Воспроизводим каждый раз сначала при обновлении значения слайдера
+                newVideo.currentTime = minTime
+                // Не воспроизводить сначала при изменении значения слайдера
+                // if (minTime > newVideo.currentTime) {
+                //     newVideo.currentTime = minTime
+                // }
+
+            }, 300));
         }
 
-        videoSlider.on('update', debounce(function(values) {
-            minTime = Number( values[0] )
-            maxTime = Number( values[1] )
 
-            time_start.value = minTime
-            time_end.value = maxTime
-            // Воспроизводим каждый раз сначала при обновлении значения слайдера
-            newVideo.currentTime = minTime
-            // Не воспроизводить сначала при изменении значения слайдера
-            // if (minTime > newVideo.currentTime) {
-            //     newVideo.currentTime = minTime
-            // }
-
-        }, 300));
 
 
         newVideo.addEventListener('ended', function() {
+            console.log(minTime)
             newVideo.currentTime = minTime
+            newVideo.play()
         })
 
         newVideo.addEventListener('timeupdate', function() {
@@ -348,6 +484,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.upload__tags')) {
         const tagsWrapper = document.querySelector('.tags-upload__items')
         let activeTagsValues = []
+
+        function createNewTag(value) {
+            const hiddenInput = document.createElement('input')
+            hiddenInput.setAttribute('type', 'hidden')
+            hiddenInput.setAttribute('name', 'tag')
+            hiddenInput.value = value
+            document.querySelector('.upload__form').appendChild(hiddenInput)
+        }
+
         function addTagsToDOM(tags) {
 
             const allCurrentTags = tagsWrapper.querySelectorAll('.tags-upload__item')
@@ -421,12 +566,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     activeTagsValues = activeTagsValues.filter(activeTagValue => activeTagValue !== selectedTag.textContent)
 
+                    document.querySelector(`input[name="tag"][value="${selectedTag.textContent}"]`).remove()
 
                 } else {
                     selectedTag.classList.add('active')
                     tagsWrapper.insertBefore(selectedTag, tagsWrapper.firstChild);
 
                     activeTagsValues.push(selectedTag.textContent)
+                    createNewTag(selectedTag.textContent)
                 }
 
                 if (activeTagsValues.length >= 3 && activeTagsValues.length <= 15) {

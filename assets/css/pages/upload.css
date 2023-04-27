@@ -24,6 +24,10 @@
   padding-bottom: 24px;
 }
 
+.upload__top.hide {
+  display: none;
+}
+
 .upload__bottom {
   display: none;
 }
@@ -61,8 +65,8 @@
 }
 
 .upload__line {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   z-index: 3;
   content: "";
   position: absolute;
@@ -154,8 +158,8 @@
 }
 
 .top-upload__prev svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   -webkit-transform: rotate(-180deg);
   transform: rotate(-180deg);
   width: 20px;
@@ -164,8 +168,8 @@
 }
 
 .top-upload__prev span {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   color: var(--body-pink-color);
   font-size: 14px;
   margin-left: 8px;
@@ -188,8 +192,8 @@
 }
 
 .select-upload__plus svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 80px;
   height: 80px;
   color: #fff;
@@ -200,16 +204,16 @@
 }
 
 .select-upload__camera svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 80px;
   height: 80px;
   fill: var(--body-pink-color);
 }
 
 .select-upload__title {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 14px;
@@ -218,8 +222,8 @@
 }
 
 .select-upload__label {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   line-height: 133.3333333333%;
 }
 
@@ -244,8 +248,8 @@
   border-radius: 10px;
   cursor: pointer;
   background: var(--body-background);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .select-upload__body.drop {
@@ -275,8 +279,8 @@
   margin-right: 24px;
   line-height: 17px;
   font-size: 14px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .select-upload__link:last-child {
@@ -338,8 +342,8 @@
   color: var(--body-pink-color);
   width: 16px;
   height: 16px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .pika-prev svg {
@@ -396,8 +400,8 @@
 .pika-table .pika-button {
   color: var(--body-white-color);
   font-family: var(--body-font-family);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   height: 40px;
   font-weight: 700;
   text-align: center;
@@ -532,8 +536,8 @@
   z-index: 5;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   bottom: 0;
   left: 0;
 }
@@ -585,8 +589,8 @@
   background: #0C020B;
   padding: 2px 16px;
   position: relative;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   cursor: pointer;
 }
 
@@ -631,8 +635,8 @@
 }
 
 .cutter-upload__video video {
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
   border-radius: 10px;
   width: 100%;
   height: 300px;
@@ -688,8 +692,8 @@
 .progress-cutter-upload__slider .noUi-handle .noUi-tooltip {
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.3s ease 2s;
-  transition: all 0.3s ease 2s;
+  -webkit-transition: all var(--transition) 2s;
+  transition: all var(--transition) 2s;
 }
 
 .progress-cutter-upload__slider .noUi-handle.noUi-active {
@@ -701,8 +705,8 @@
 .progress-cutter-upload__slider .noUi-handle.noUi-active .noUi-tooltip {
   opacity: 1;
   visibility: visible;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .progress-cutter-upload__slider .noUi-handle.noUi-handle-lower::before {
@@ -849,8 +853,8 @@
 .copy-success-upload__button svg {
   width: 16px;
   height: 16px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .socials-success-upload__title {
@@ -875,8 +879,8 @@
 }
 
 .socials-success-upload__link svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 24px;
   height: 24px;
   fill: #fff;
@@ -900,23 +904,23 @@
 }
 
 .links-success-upload__item svg {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   width: 16px;
   height: 16px;
 }
 
 .links-success-upload__item svg path {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .links-success-upload__item a {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   font-size: 14px;
   line-height: 17px;
   color: var(--body-pink-color);
@@ -953,8 +957,8 @@
   color: var(--body-white-color);
   min-height: 23px;
   padding: 1px 8px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .tags-success-upload__button {
@@ -991,8 +995,8 @@
   margin-right: 24px;
   font-size: 14px;
   line-height: 17px;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
   color: #D8D8D8;
 }
 
@@ -1049,8 +1053,8 @@
   font-size: 14px;
   line-height: 17px;
   color: var(--body-white-color);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
 }
 
 .calendar-schedule-upload__day span {
@@ -1079,6 +1083,57 @@
 
 .pika-lendar {
   margin: 0 !important;
+}
+
+.progressbar-upload {
+  background: linear-gradient(223.97deg, rgba(232, 43, 213, 0.1) -20.81%, rgba(50, 46, 237, 0.1) 118.24%);
+  border-radius: 6px;
+  padding: 32px;
+  margin-top: 24px;
+}
+
+.progressbar-upload.hide {
+  display: none;
+}
+
+.progressbar-upload__label {
+  font-size: 12px;
+  line-height: 15px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--body-gray-color);
+}
+
+.progressbar-upload__label span {
+  color: var(--body-white-color);
+}
+
+.progressbar-upload__line {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  height: 4px;
+  width: 100%;
+  position: relative;
+}
+
+.progressbar-upload__line span {
+  -webkit-transition: all var(--transition) ease 0s;
+  transition: all var(--transition) ease 0s;
+  background: linear-gradient(223.97deg, #E82BD5 -20.81%, #322EED 118.24%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  display: block;
+  -webkit-box-shadow: 0px 0px 15px #E82BD5;
+  box-shadow: 0px 0px 15px #E82BD5;
+  border-radius: 2px;
+}
+
+.options-upload__checkbox .checkbox__circle,
+.schedule-upload__checkbox .checkbox__circle {
+  top: 9px !important;
 }
 
 @media (min-width: 575.98px) {
