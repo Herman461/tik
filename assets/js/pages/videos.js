@@ -148,12 +148,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 quality = 'sd'
 
                 allowedHd = false
-                button.closest('.videos-model__items').classList.remove('hd')
+
+                document.querySelector('.videos-model__items_list').classList.remove('hd')
+                if (document.querySelector('.base-video')) {
+                    document.querySelector('.base-video .item-videos').classList.remove('hd')
+                }
+
                 button.parentElement.querySelector('.quality-item-videos__button.sd').classList.add('active')
             } else {
                 quality = 'hd'
                 allowedHd = true
-                button.closest('.videos-model__items').classList.add('hd')
+
+                document.querySelector('.videos-model__items_list').classList.add('hd')
+                if (document.querySelector('.base-video')) {
+                    document.querySelector('.base-video .item-videos').classList.add('hd')
+                }
+
                 button.parentElement.querySelector('.quality-item-videos__button.hd').classList.add('active')
             }
 

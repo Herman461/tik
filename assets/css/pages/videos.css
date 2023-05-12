@@ -943,6 +943,22 @@
   display: block !important;
 }
 
+.base-video .item-videos .quality-item-videos__button:first-child {
+  display: block !important;
+}
+
+.base-video .item-videos .quality-item-videos__button:last-child {
+  display: none !important;
+}
+
+.base-video .item-videos.hd .quality-item-videos__button:first-child {
+  display: none !important;
+}
+
+.base-video .item-videos.hd .quality-item-videos__button:last-child {
+  display: block !important;
+}
+
 @media (min-width: 660.98px) {
   .item-videos_full .vjs-progress-control {
     width: 100%;
