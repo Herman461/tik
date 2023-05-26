@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('body') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
-            document.body.requestFullscreen()
+            setFullscreen()
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('body') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            document.exitFullscreen()
+            unsetFullscreen()
             document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
@@ -88,14 +88,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    if (window.matchMedia("(min-width: 767.98px)").matches) {
-        window.addEventListener('click', activateFullscreenMode)
-        window.addEventListener('click', deactivateFullscreenMode)
-    } else {
-        window.addEventListener('touchend', activateFullscreenMode)
-        window.addEventListener('touchend', deactivateFullscreenMode)
-    }
 
+    function setFullscreen() {
+        if (document.body.requestFullscreen) {
+            document.body.requestFullscreen();
+        }
+        else if (document.body.mozRequestFullScreen) {
+            document.body.mozRequestFullScreen();
+        }
+        else if (document.body.webkitRequestFullScreen) {
+            document.body.webkitRequestFullScreen();
+        }
+    }
+    function unsetFullscreen() {
+        if (document.body.exitFullscreen) {
+            document.body.exitFullscreen();
+        }
+        else if (document.body.mozExitFullScreen) {
+            document.body.mozExitFullScreen();
+        }
+        else if (document.body.webkitExitFullScreen) {
+            document.body.webkitExitFullScreen();
+        }
+    }
+    window.addEventListener('click', activateFullscreenMode)
+    window.addEventListener('click', deactivateFullscreenMode)
+
+    window.addEventListener('touchend', activateFullscreenMode)
+    window.addEventListener('touchend', deactivateFullscreenMode)
 
 
 
