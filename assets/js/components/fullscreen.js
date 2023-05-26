@@ -88,11 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    window.addEventListener('click', activateFullscreenMode)
-    window.addEventListener('touchend', activateFullscreenMode)
+    if (window.matchMedia("(min-width: 767.98px)").matches) {
+        window.addEventListener('click', activateFullscreenMode)
+        window.addEventListener('click', deactivateFullscreenMode)
+    } else {
+        window.addEventListener('touchend', activateFullscreenMode)
+        window.addEventListener('touchend', deactivateFullscreenMode)
+    }
 
-    window.addEventListener('click', deactivateFullscreenMode)
-    window.addEventListener('touchend', deactivateFullscreenMode)
+
+
 
     window.addEventListener('swiped-up', debounce(function() {
         if (!document.body.classList.contains('fullscreen')) return
