@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let tempCurrentVideo = currentFullscreenVideo
         setTimeout(function() {
             tempCurrentVideo.querySelector('video').pause()
-        }, 150)
+        }, 400)
 
         prevFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = nextFullscreenVideo
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let tempCurrentVideo = currentFullscreenVideo
         setTimeout(function() {
             tempCurrentVideo.querySelector('video').pause()
-        }, 150)
+        }, 400)
 
         nextFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = prevFullscreenVideo
