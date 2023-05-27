@@ -14,11 +14,6 @@ html:fullscreen .videos-model__items_list {
   display: flex !important;
 }
 
-.video-js.vjs-fullscreen:not(.vjs-ios-native-fs) {
-  -webkit-transform: translate(0, -50%) !important;
-  transform: translate(0, -50%) !important;
-}
-
 html:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   position: fixed;
   top: 0;
