@@ -1,14 +1,14 @@
-body:-webkit-full-screen .videos-model__items_list {
+html:-webkit-full-screen .videos-model__items_list {
   display: -webkit-box !important;
   display: flex !important;
 }
 
-body:-ms-fullscreen .videos-model__items_list {
+html:-ms-fullscreen .videos-model__items_list {
   display: -ms-flexbox !important;
   display: flex !important;
 }
 
-body:fullscreen .videos-model__items_list {
+html:fullscreen .videos-model__items_list {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -19,7 +19,7 @@ body:fullscreen .videos-model__items_list {
   transform: translate(0, -50%) !important;
 }
 
-body:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
+html:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@ body:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   transform: translate(0, 0);
 }
 
-body:-ms-fullscreen .item-videos.fullscreen-current .item-videos__main {
+html:-ms-fullscreen .item-videos.fullscreen-current .item-videos__main {
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +40,7 @@ body:-ms-fullscreen .item-videos.fullscreen-current .item-videos__main {
   transform: translate(0, 0);
 }
 
-body:fullscreen .item-videos.fullscreen-current .item-videos__main {
+html:fullscreen .item-videos.fullscreen-current .item-videos__main {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,7 +56,7 @@ body:fullscreen .item-videos.fullscreen-current .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:-webkit-full-screen .item-videos.fullscreen-next .item-videos__main {
+html:-webkit-full-screen .item-videos.fullscreen-next .item-videos__main {
   position: fixed;
   top: 100%;
   left: 0;
@@ -67,7 +67,7 @@ body:-webkit-full-screen .item-videos.fullscreen-next .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:-ms-fullscreen .item-videos.fullscreen-next .item-videos__main {
+html:-ms-fullscreen .item-videos.fullscreen-next .item-videos__main {
   position: fixed;
   top: 100%;
   left: 0;
@@ -78,7 +78,7 @@ body:-ms-fullscreen .item-videos.fullscreen-next .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:fullscreen .item-videos.fullscreen-next .item-videos__main {
+html:fullscreen .item-videos.fullscreen-next .item-videos__main {
   position: fixed;
   top: 100%;
   left: 0;
@@ -89,7 +89,7 @@ body:fullscreen .item-videos.fullscreen-next .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
+html:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
   position: fixed;
   top: -100%;
   left: 0;
@@ -100,7 +100,7 @@ body:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:-ms-fullscreen .item-videos.fullscreen-prev .item-videos__main {
+html:-ms-fullscreen .item-videos.fullscreen-prev .item-videos__main {
   position: fixed;
   top: -100%;
   left: 0;
@@ -111,7 +111,7 @@ body:-ms-fullscreen .item-videos.fullscreen-prev .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:fullscreen .item-videos.fullscreen-prev .item-videos__main {
+html:fullscreen .item-videos.fullscreen-prev .item-videos__main {
   position: fixed;
   top: -100%;
   left: 0;
@@ -122,26 +122,26 @@ body:fullscreen .item-videos.fullscreen-prev .item-videos__main {
   transition: all 0.4s ease 0s;
 }
 
-body:-webkit-full-screen .fullscreen-control-item-videos__button_open {
+html:-webkit-full-screen .fullscreen-control-item-videos__button_open {
   display: none;
 }
 
-body:-ms-fullscreen .fullscreen-control-item-videos__button_open {
+html:-ms-fullscreen .fullscreen-control-item-videos__button_open {
   display: none;
 }
 
-body:fullscreen .fullscreen-control-item-videos__button_open {
+html:fullscreen .fullscreen-control-item-videos__button_open {
   display: none;
 }
 
-body:-webkit-full-screen .fullscreen-control-item-videos__button_opened {
+html:-webkit-full-screen .fullscreen-control-item-videos__button_opened {
   display: block !important;
 }
 
-body:-ms-fullscreen .fullscreen-control-item-videos__button_opened {
+html:-ms-fullscreen .fullscreen-control-item-videos__button_opened {
   display: block !important;
 }
 
-body:fullscreen .fullscreen-control-item-videos__button_opened {
+html:fullscreen .fullscreen-control-item-videos__button_opened {
   display: block !important;
 }
