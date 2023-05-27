@@ -160,21 +160,34 @@ document.addEventListener('DOMContentLoaded', function() {
         nextFullscreenVideo.classList.remove('fullscreen-next')
 
         let tempCurrentVideo = currentFullscreenVideo
-        setTimeout(function() {
+
+        if (tempCurrentVideo.querySelector('video')) {
             tempCurrentVideo.querySelector('video').pause()
-        }, 400)
+        }
+
+
+        setTimeout(function() {
+            if (tempCurrentVideo.querySelector('video')) {
+                tempCurrentVideo.querySelector('video').currentTime = 0
+            }
+
+        }, 800)
 
         prevFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = nextFullscreenVideo
         nextFullscreenVideo = currentFullscreenVideo.nextElementSibling
 
+
         setTimeout(function() {
-            currentFullscreenVideo.querySelector('video').play()
-        }, 400)
+            if (currentFullscreenVideo.querySelector('video')) {
+                currentFullscreenVideo.querySelector('video').play()
+            }
+
+        }, 800)
 
 
 
-        if (nextFullscreenVideo && !nextFullscreenVideo.classList.contains('item-videos')) {
+        if (nextFullscreenVideo && !nextFullscreenVideo.hasAttribute('data-fullscreen-item')) {
             nextFullscreenVideo = null
         }
 
@@ -206,23 +219,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let tempCurrentVideo = currentFullscreenVideo
         setTimeout(function() {
-            tempCurrentVideo.querySelector('video').pause()
-        }, 400)
+            if (currentFullscreenVideo.querySelector('video')) {
+                tempCurrentVideo.querySelector('video').pause()
+            }
+
+        }, 800)
 
         nextFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = prevFullscreenVideo
         prevFullscreenVideo = currentFullscreenVideo.previousElementSibling
 
         setTimeout(function() {
-            currentFullscreenVideo.querySelector('video').play()
-        }, 400)
+            if (currentFullscreenVideo.querySelector('video')) {
+                currentFullscreenVideo.querySelector('video').play()
+            }
+
+        }, 800)
 
         if (!prevFullscreenVideo) {
             prevFullscreenVideo = document.querySelector('.item-videos_main')
         }
 
 
-        if (prevFullscreenVideo && !prevFullscreenVideo.classList.contains('item-videos')) {
+        if (prevFullscreenVideo && !prevFullscreenVideo.hasAttribute('data-fullscreen-item')) {
             prevFullscreenVideo = null
         }
 
