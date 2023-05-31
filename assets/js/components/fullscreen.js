@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    window.addEventListener('click', activateFullscreenMode)
-    window.addEventListener('click', deactivateFullscreenMode)
-    // if (window.matchMedia("(min-width: 767.98px)").matches) {
-    //
-    // } else {
-    //     window.addEventListener('touchstart', activateFullscreenMode)
-    //     window.addEventListener('touchstart', deactivateFullscreenMode)
-    // }
+
+    if (window.matchMedia("(min-width: 767.98px)").matches) {
+        window.addEventListener('click', activateFullscreenMode)
+        window.addEventListener('click', deactivateFullscreenMode)
+    } else {
+        window.addEventListener('touchend', activateFullscreenMode)
+        window.addEventListener('touchend', deactivateFullscreenMode)
+    }
 
 
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').currentTime = 0
             }
 
-        }, 300)
+        }, 800)
 
         prevFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = nextFullscreenVideo
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 300)
+        }, 800)
 
 
 
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lockSwapVideo = true
         setTimeout(function() {
             lockSwapVideo = false
-        }, 300)
+        }, 400)
     }
     function setPrevFullscreenVideo() {
         if (!prevFullscreenVideo) return
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').pause()
             }
 
-        }, 300)
+        }, 800)
 
         nextFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = prevFullscreenVideo
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 300)
+        }, 800)
 
         if (!prevFullscreenVideo) {
             prevFullscreenVideo = document.querySelector('.item-videos_main')
