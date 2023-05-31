@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 docElm.requestFullscreen()
             } else if (docElm.mozRequestFullScreen) {
                 docElm.mozRequestFullScreen()
-            } else if (docElm.webkitRequestFullScreen) {
-                docElm.webkitRequestFullScreen()
+            } else if (docElm.webkitRequestFullscreen) {
+                docElm.webkitRequestFullscreen()
             } else if (docElm.msRequestFullscreen) {
                 docElm.msRequestFullscreen()
             }
