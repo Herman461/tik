@@ -120,15 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
-
-    if (window.matchMedia("(min-width: 767.98px)").matches) {
-        window.addEventListener('click', activateFullscreenMode)
-        window.addEventListener('click', deactivateFullscreenMode)
-    } else {
-        window.addEventListener('touchend', activateFullscreenMode)
-        window.addEventListener('touchend', deactivateFullscreenMode)
-    }
+    $(window).click(activateFullscreenMode)
+    $(window).click(deactivateFullscreenMode)
 
 
 
