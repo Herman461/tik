@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').currentTime = 0
             }
 
-        }, 800)
+        }, 300)
 
         prevFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = nextFullscreenVideo
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 800)
+        }, 300)
 
 
 
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lockSwapVideo = true
         setTimeout(function() {
             lockSwapVideo = false
-        }, 400)
+        }, 300)
     }
     function setPrevFullscreenVideo() {
         if (!prevFullscreenVideo) return
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').pause()
             }
 
-        }, 800)
+        }, 300)
 
         nextFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = prevFullscreenVideo
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 800)
+        }, 300)
 
         if (!prevFullscreenVideo) {
             prevFullscreenVideo = document.querySelector('.item-videos_main')
