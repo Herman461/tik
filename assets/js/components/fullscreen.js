@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-
-    if (window.matchMedia("(min-width: 767.98px)").matches) {
-        window.addEventListener('click', activateFullscreenMode)
-        window.addEventListener('click', deactivateFullscreenMode)
-    } else {
-        window.addEventListener('touchend', activateFullscreenMode)
-        window.addEventListener('touchend', deactivateFullscreenMode)
-    }
+    window.addEventListener('click', activateFullscreenMode)
+    window.addEventListener('click', deactivateFullscreenMode)
+    // if (window.matchMedia("(min-width: 767.98px)").matches) {
+    //
+    // } else {
+    //     window.addEventListener('touchstart', activateFullscreenMode)
+    //     window.addEventListener('touchstart', deactivateFullscreenMode)
+    // }
 
 
 
