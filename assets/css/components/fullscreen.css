@@ -3,14 +3,9 @@ html:-webkit-full-screen .videos-model__items_list {
   display: flex !important;
 }
 
-html:-ms-fullscreen .videos-model__items_list {
-  display: -ms-flexbox !important;
-  display: flex !important;
-}
-
-html:fullscreen .videos-model__items_list {
+html:fullscreen .videos-model__items_list,
+html:-webkit-full-screen .videos-model__items_list {
   display: -webkit-box !important;
-  display: -ms-flexbox !important;
   display: flex !important;
 }
 
@@ -25,17 +20,8 @@ html:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   transform: translate(0, 0);
 }
 
-html:-ms-fullscreen .item-videos.fullscreen-current .item-videos__main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 998;
-  transform: translate(0, 0);
-}
-
-html:fullscreen .item-videos.fullscreen-current .item-videos__main {
+html:fullscreen .item-videos.fullscreen-current .item-videos__main,
+html:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   position: fixed;
   top: 0;
   left: 0;
@@ -51,12 +37,8 @@ html:-webkit-full-screen .item-videos.fullscreen-current .item-videos__main {
   transition: top 0.3s ease 0s;
 }
 
-html:-ms-fullscreen .item-videos.fullscreen-current .item-videos__main {
-  -ms-transition: top 0.3s ease 0s;
-  transition: top 0.3s ease 0s;
-}
-
-html:fullscreen .item-videos.fullscreen-current .item-videos__main {
+html:fullscreen .item-videos.fullscreen-current .item-videos__main,
+html:-webkit-full-screen.item-videos.fullscreen-current .item-videos__main {
   -webkit-transition: top 0.3s ease 0s;
   transition: top 0.3s ease 0s;
 }
@@ -74,18 +56,8 @@ html:-webkit-full-screen .item-videos.fullscreen-next .item-videos__main {
   transition: top 0.3s ease 0s, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
 }
 
-html:-ms-fullscreen .item-videos.fullscreen-next .item-videos__main {
-  position: fixed;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  -ms-transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-}
-
-html:fullscreen .item-videos.fullscreen-next .item-videos__main {
+html:fullscreen .item-videos.fullscreen-next .item-videos__main,
+html:-webkit-full-screen .item-videos.fullscreen-next .item-videos__main {
   position: fixed;
   top: 100%;
   left: 0;
@@ -116,23 +88,8 @@ html:-webkit-full-screen .videos__banner.fullscreen-next {
   align-items: center;
 }
 
-html:-ms-fullscreen .videos__banner.fullscreen-next {
-  -ms-transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  position: fixed;
-  top: 100%;
-  width: 100%;
-  height: 100%;
-  z-index: 600;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-html:fullscreen .videos__banner.fullscreen-next {
+html:fullscreen .videos__banner.fullscreen-next,
+html:-webkit-full-screen .videos__banner.fullscreen-next {
   -webkit-transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, transform 0.3s ease 0s;
@@ -143,13 +100,10 @@ html:fullscreen .videos__banner.fullscreen-next {
   height: 100%;
   z-index: 600;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -173,24 +127,8 @@ html:-webkit-full-screen .videos__banner.fullscreen-prev {
   align-items: center;
 }
 
-html:-ms-fullscreen .videos__banner.fullscreen-prev {
-  -ms-transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  position: fixed;
-  top: 100%;
-  transform: translate(0, -100%);
-  width: 100%;
-  height: 100%;
-  z-index: 600;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-html:fullscreen .videos__banner.fullscreen-prev {
+html:fullscreen .videos__banner.fullscreen-prev,
+html:-webkit-full-screen .videos__banner.fullscreen-prev {
   -webkit-transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, transform 0.3s ease 0s;
@@ -203,13 +141,10 @@ html:fullscreen .videos__banner.fullscreen-prev {
   height: 100%;
   z-index: 600;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -233,24 +168,8 @@ html:-webkit-full-screen .videos__banner.fullscreen-current {
   align-items: center;
 }
 
-html:-ms-fullscreen .videos__banner.fullscreen-current {
-  -ms-transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  position: fixed;
-  top: 0;
-  transform: translate(0, 0);
-  width: 100%;
-  height: 100%;
-  z-index: 600;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-html:fullscreen .videos__banner.fullscreen-current {
+html:fullscreen .videos__banner.fullscreen-current,
+html:-webkit-full-screen .videos__banner.fullscreen-current {
   -webkit-transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
   transition: top 0.3s ease 0s, transform 0.3s ease 0s;
@@ -263,13 +182,10 @@ html:fullscreen .videos__banner.fullscreen-current {
   height: 100%;
   z-index: 600;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -284,18 +200,8 @@ html:-webkit-full-screen body::before {
   background: var(--body-background);
 }
 
-html:-ms-fullscreen body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 500;
-  background: var(--body-background);
-}
-
-html:fullscreen body::before {
+html:fullscreen body::before,
+html:-webkit-full-screen body::before {
   content: "";
   position: fixed;
   top: 0;
@@ -321,19 +227,8 @@ html:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
   transition: top 0.3s ease 0s, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
 }
 
-html:-ms-fullscreen .item-videos.fullscreen-prev .item-videos__main {
-  position: fixed;
-  top: -100%;
-  transform: translate(0, -100%);
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  -ms-transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-  transition: top 0.3s ease 0s, transform 0.3s ease 0s;
-}
-
-html:fullscreen .item-videos.fullscreen-prev .item-videos__main {
+html:fullscreen .item-videos.fullscreen-prev .item-videos__main,
+html:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
   position: fixed;
   top: -100%;
   -webkit-transform: translate(0, -100%);
@@ -352,11 +247,8 @@ html:-webkit-full-screen .fullscreen-control-item-videos__button_open {
   display: none;
 }
 
-html:-ms-fullscreen .fullscreen-control-item-videos__button_open {
-  display: none;
-}
-
-html:fullscreen .fullscreen-control-item-videos__button_open {
+html:fullscreen .fullscreen-control-item-videos__button_open,
+html:-webkit-full-screen .fullscreen-control-item-videos__button_open {
   display: none;
 }
 
@@ -364,10 +256,7 @@ html:-webkit-full-screen .fullscreen-control-item-videos__button_opened {
   display: block !important;
 }
 
-html:-ms-fullscreen .fullscreen-control-item-videos__button_opened {
-  display: block !important;
-}
-
-html:fullscreen .fullscreen-control-item-videos__button_opened {
+html:fullscreen .fullscreen-control-item-videos__button_opened,
+html:-webkit-full-screen .fullscreen-control-item-videos__button_opened {
   display: block !important;
 }

@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
-            // toggleFullscreen()
-            let fullscreen = createFullscreen(API_LIST, document);
-            fullscreen.request();
+            toggleFullscreen()
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -77,9 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            // toggleFullscreen()
-            let fullscreen = createFullscreen(API_LIST, document);
-            fullscreen.exit();
+            toggleFullscreen()
             document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
@@ -102,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const docElm = document.documentElement
 
         if (!isInFullScreen) {
-            console.log('1')
+
             if (docElm.webkitRequestFullscreen) {
                 docElm.webkitRequestFullscreen()
             } else if (docElm.mozRequestFullScreen) {
