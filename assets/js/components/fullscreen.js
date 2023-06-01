@@ -96,25 +96,36 @@ document.addEventListener('DOMContentLoaded', function() {
             (document.msFullscreenElement && document.msFullscreenElement !== null)
 
         const docElm = document.documentElement
+
         if (!isInFullScreen) {
-            if (docElm.requestFullscreen) {
-                docElm.requestFullscreen()
+            console.log('1')
+            if (docElm.webkitRequestFullscreen) {
+                docElm.webkitRequestFullscreen()
             } else if (docElm.mozRequestFullScreen) {
                 docElm.mozRequestFullScreen()
             } else if (docElm.webkitRequestFullscreen) {
                 docElm.webkitRequestFullscreen()
             } else if (docElm.msRequestFullscreen) {
                 docElm.msRequestFullscreen()
+            } else {
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen()
+                }
             }
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen()
+
+            if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen()
             } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen()
             } else if (document.mozCancelFullScreen) {
                 document.mozCancelFullScreen()
             } else if (document.msExitFullscreen) {
                 document.msExitFullscreen()
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                }
             }
 
         }
