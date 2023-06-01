@@ -1,16 +1,54 @@
 document.addEventListener('DOMContentLoaded', function() {
+    function cancelFullScreen() {
+        var el = document;
+        var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen||el.webkitExitFullscreen;
+        if (requestMethod) { // cancel full screen.
+            requestMethod.call(el);
+        } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    }
 
+    function requestFullScreen(el) {
+        // Supports most browsers and their versions.
+        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+
+        if (requestMethod) { // Native full screen.
+            requestMethod.call(el);
+        } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+        return false
+    }
+
+    function toggleFullScreen(el) {
+        if (!el) {
+            el = document.body; // Make the body go full screen.
+        }
+        var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
+
+        if (isInFullScreen) {
+            cancelFullScreen();
+        } else {
+            requestFullScreen(el);
+        }
+        return false;
+    }
     document.addEventListener('fullscreenchange', onFullScreenChange, false)
     document.addEventListener('webkitfullscreenchange', onFullScreenChange, false)
     document.addEventListener('mozfullscreenchange', onFullScreenChange, false)
 
     function onFullScreenChange() {
-        const fullscreenElement =
-            document.fullscreenElement ||
-            document.mozFullScreenElement ||
-            document.webkitFullscreenElement
+        var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
 
-        if (!fullscreenElement) {
+
+        if (!isInFullScreen) {
             document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
@@ -36,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
-            toggleFullscreen()
+            toggleFullScreen()
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -75,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            toggleFullscreen()
+            toggleFullScreen()
             document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
@@ -89,47 +127,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    function toggleFullscreen() {
-        // const isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
-        //     (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
-        //     (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
-        //     (document.msFullscreenElement && document.msFullscreenElement !== null)
-        //
-        // const docElm = document.documentElement
-        //
-        // if (!isInFullScreen) {
-        //
-        //     if (docElm.webkitRequestFullscreen) {
-        //         docElm.webkitEnterFullscreen()
-        //     } else if (docElm.mozRequestFullScreen) {
-        //         docElm.mozRequestFullScreen()
-        //     } else if (docElm.webkitRequestFullscreen) {
-        //         docElm.webkitRequestFullscreen()
-        //     } else if (docElm.msRequestFullscreen) {
-        //         docElm.msRequestFullscreen()
-        //     } else {
-        //         if (docElm.requestFullscreen) {
-        //             docElm.requestFullscreen()
-        //         }
-        //     }
-        // } else {
-        //
-        //     if (document.webkitExitFullscreen) {
-        //         document.webkitExitFullscreen()
-        //     } else if (document.webkitExitFullscreen) {
-        //         document.webkitExitFullscreen()
-        //     } else if (document.mozCancelFullScreen) {
-        //         document.mozCancelFullScreen()
-        //     } else if (document.msExitFullscreen) {
-        //         document.msExitFullscreen()
-        //     } else {
-        //         if (document.exitFullscreen) {
-        //             document.exitFullscreen()
-        //         }
-        //     }
-        //
-        // }
-    }
+    // function toggleFullscreen() {
+    //     // const isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+    //     //     (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+    //     //     (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+    //     //     (document.msFullscreenElement && document.msFullscreenElement !== null)
+    //     //
+    //     // const docElm = document.documentElement
+    //     //
+    //     // if (!isInFullScreen) {
+    //     //
+    //     //     if (docElm.webkitRequestFullscreen) {
+    //     //         docElm.webkitEnterFullscreen()
+    //     //     } else if (docElm.mozRequestFullScreen) {
+    //     //         docElm.mozRequestFullScreen()
+    //     //     } else if (docElm.webkitRequestFullscreen) {
+    //     //         docElm.webkitRequestFullscreen()
+    //     //     } else if (docElm.msRequestFullscreen) {
+    //     //         docElm.msRequestFullscreen()
+    //     //     } else {
+    //     //         if (docElm.requestFullscreen) {
+    //     //             docElm.requestFullscreen()
+    //     //         }
+    //     //     }
+    //     // } else {
+    //     //
+    //     //     if (document.webkitExitFullscreen) {
+    //     //         document.webkitExitFullscreen()
+    //     //     } else if (document.webkitExitFullscreen) {
+    //     //         document.webkitExitFullscreen()
+    //     //     } else if (document.mozCancelFullScreen) {
+    //     //         document.mozCancelFullScreen()
+    //     //     } else if (document.msExitFullscreen) {
+    //     //         document.msExitFullscreen()
+    //     //     } else {
+    //     //         if (document.exitFullscreen) {
+    //     //             document.exitFullscreen()
+    //     //         }
+    //     //     }
+    //     //
+    //     // }
+    // }
 
     $(window).click(activateFullscreenMode)
     $(window).click(deactivateFullscreenMode)
