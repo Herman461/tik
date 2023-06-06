@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100)
 
         }
-    }, 50))
+    }, 100))
 
 
 
