@@ -174,16 +174,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     window.addEventListener('swiped-up', debounce(function() {
-        if (!document.body.classList.contains('fullscreen')) return
-        setNextFullscreenVideo()
 
-    }, 50))
+        if (!document.body.classList.contains('fullscreen')) return
+
+        setTimeout(function() {
+            setNextFullscreenVideo()
+        }, 100)
+
+
+    }, 100))
 
     window.addEventListener('swiped-down', debounce(function() {
+
         if (!document.body.classList.contains('fullscreen')) return
 
-        setPrevFullscreenVideo()
-    }, 50))
+        setTimeout(function() {
+            setPrevFullscreenVideo()
+        }, 100)
+
+    }, 100))
 
     let lockSwapVideo = false
 
@@ -212,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').currentTime = 0
             }
 
-        }, 800)
+        }, 400)
 
         prevFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = nextFullscreenVideo
@@ -224,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 800)
+        }, 400)
 
 
 
@@ -264,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCurrentVideo.querySelector('video').pause()
             }
 
-        }, 800)
+        }, 400)
 
         nextFullscreenVideo = currentFullscreenVideo
         currentFullscreenVideo = prevFullscreenVideo
@@ -275,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentFullscreenVideo.querySelector('video').play()
             }
 
-        }, 800)
+        }, 400)
 
         if (!prevFullscreenVideo) {
             prevFullscreenVideo = document.querySelector('.item-videos_main')
@@ -304,9 +313,15 @@ document.addEventListener('DOMContentLoaded', function() {
         var y = e.deltaY || e.detail || e.wheelDelta
 
         if (y > 0) {
-            setNextFullscreenVideo()
+            setTimeout(function() {
+                setNextFullscreenVideo()
+            }, 100)
+
         } else {
-            setPrevFullscreenVideo()
+            setTimeout(function() {
+                setPrevFullscreenVideo()
+            }, 100)
+
         }
     }, 50))
 
