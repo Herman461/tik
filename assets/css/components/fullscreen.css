@@ -125,6 +125,30 @@ html:-webkit-full-screen .item-videos.fullscreen-prev .item-videos__main {
   transition: top 0.3s ease 0s, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
 }
 
+body.fullscreen .item-videos__backdrop img {
+  -webkit-transition: all 0.3s ease 0.3s;
+  transition: all 0.3s ease 0.3s;
+  opacity: 0 !important;
+}
+
+body.fullscreen .vjs-poster {
+  -webkit-transition: all 0.3s ease 0.3s;
+  transition: all 0.3s ease 0.3s;
+  opacity: 0 !important;
+}
+
+body.fullscreen .vjs-play-control .vjs-icon-placeholder {
+  -webkit-transition: all 0.3s ease 0.3s;
+  transition: all 0.3s ease 0.3s;
+  opacity: 0 !important;
+}
+
+body.fullscreen .item-videos.fullscreen-current .item-videos__backdrop img,
+body.fullscreen .item-videos.fullscreen-current .vjs-play-control .vjs-icon-placeholder,
+body.fullscreen .item-videos.fullscreen-current .vjs-poster {
+  opacity: 1 !important;
+}
+
 body.fullscreen .fullscreen-control-item-videos__button_open,
 html:-webkit-full-screen .fullscreen-control-item-videos__button_open {
   display: none;
