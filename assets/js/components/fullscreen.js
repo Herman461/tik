@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function requestFullScreen(el) {
+        console.log(el.webkitRequestFullscreen)
         // Supports most browsers and their versions.
-        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+        var requestMethod = el.requestFullScreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
 
         if (requestMethod) { // Native full screen.
             requestMethod.call(el);
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!el) {
             el = document.body; // Make the body go full screen.
         }
-        var isInFullScreen = document.body.classList.contains('fullscreen')
+        var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
         if (isInFullScreen) {
 
             cancelFullScreen();
