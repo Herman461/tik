@@ -86,3 +86,29 @@ body.fullscreen .videos__banner img {
   max-width: 100%;
   height: auto;
 }
+
+body.fullscreen .vjs-paused {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.1s ease 0s;
+  transition: all 0.1s ease 0s;
+}
+
+body.fullscreen .vjs-paused video {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.fullscreen .vjs-playing {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0s ease 0.1s;
+  transition: all 0s ease 0.1s;
+}
+
+body.fullscreen .vjs-playing video {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0s ease 0.1s;
+  transition: all 0s ease 0.1s;
+}

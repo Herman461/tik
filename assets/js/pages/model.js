@@ -112,9 +112,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             document.querySelector('.model__tags').classList.add('hide')
         }
 
-        //! Добавлена проверка
-        if (!tagsItems) return
-        if (!tagsToggler) return
+
+
         const width = tagsItems.offsetWidth * 2 - tagsToggler.offsetWidth
 
         let acc = 0
@@ -147,10 +146,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         tagsToggler.textContent = `+${diff}`
         tagsToggler.classList.add('more')
     }
-    if (tagsToggler) {
-        tagsToggler.addEventListener('click', toggleTags)
-    }
-
+    tagsToggler.addEventListener('click', toggleTags)
 
 
     const modelAvatar = document.querySelector('.body-model__avatar')
