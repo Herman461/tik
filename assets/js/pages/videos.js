@@ -356,6 +356,12 @@ document.addEventListener('DOMContentLoaded', function() {
             playOnScroll()
 
         }, 50));
+
+        document.querySelector('.videos-model__items_list').addEventListener('scroll', debounce(function() {
+            appendActionsToVideo()
+            playOnScroll()
+
+        }, 50));
         setTimeout(function() {
             playOnScroll();
         }, 300);
