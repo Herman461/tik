@@ -1,263 +1,158 @@
-/**
- * @type {Array} The list of all possible fullscreen APIs.
- */
-const API_LIST = [
+/* eslint-disable promise/prefer-await-to-then */
+
+const methodMap = [
     [
         'requestFullscreen',
         'exitFullscreen',
         'fullscreenElement',
         'fullscreenEnabled',
         'fullscreenchange',
-        'fullscreenerror'
-    ], [
+        'fullscreenerror',
+    ],
+    // New WebKit
+    [
         'webkitRequestFullscreen',
         'webkitExitFullscreen',
         'webkitFullscreenElement',
         'webkitFullscreenEnabled',
         'webkitfullscreenchange',
-        'webkitfullscreenerror'
-    ], [
+        'webkitfullscreenerror',
+
+    ],
+    // Old WebKit
+    [
         'webkitRequestFullScreen',
         'webkitCancelFullScreen',
         'webkitCurrentFullScreenElement',
         'webkitCancelFullScreen',
         'webkitfullscreenchange',
-        'webkitfullscreenerror'
-    ], [
+        'webkitfullscreenerror',
+
+    ],
+    [
         'mozRequestFullScreen',
         'mozCancelFullScreen',
         'mozFullScreenElement',
         'mozFullScreenEnabled',
         'mozfullscreenchange',
-        'mozfullscreenerror'
-    ], [
+        'mozfullscreenerror',
+    ],
+    [
         'msRequestFullscreen',
         'msExitFullscreen',
         'msFullscreenElement',
         'msFullscreenEnabled',
         'MSFullscreenChange',
-        'MSFullscreenError'
-    ]
+        'MSFullscreenError',
+    ],
 ];
 
-/**
- * Finds a supported fullscreen API.
- *
- * @param   {Array}    apiList      The list of possible fullscreen APIs.
- * @param   {Document} document     The source of the fullscreen interface.
- * @returns {Object}
- */
-function findSupported(apiList, document) {
+const nativeAPI = (() => {
+    if (typeof document === 'undefined') {
+        return false;
+    }
 
-    let standardApi = apiList[0];
-    let supportedApi = null;
+    const unprefixedMethods = methodMap[0];
+    const returnValue = {};
 
-    for (let i = 0, len = apiList.length; i < len; i++) {
+    for (const methodList of methodMap) {
+        const exitFullscreenMethod = methodList?.[1];
+        if (exitFullscreenMethod in document) {
+            for (const [index, method] of methodList.entries()) {
+                returnValue[unprefixedMethods[index]] = method;
+            }
 
-        let api = apiList[ i ];
-
-        if (api[1] in document) {
-            supportedApi = api;
-            break;
+            return returnValue;
         }
     }
 
-    if (Array.isArray(supportedApi)) {
+    return false;
+})();
 
-        return supportedApi.reduce((result, funcName, i) => {
-            result[ standardApi[ i ] ] = funcName;
-            return result;
-        }, {});
+const eventNameMap = {
+    change: nativeAPI.fullscreenchange,
+    error: nativeAPI.fullscreenerror,
+};
 
-    } else {
+// eslint-disable-next-line import/no-mutable-exports
+let screenfull = {
+    // eslint-disable-next-line default-param-last
+    request(element = document.documentElement, options) {
+        return new Promise((resolve, reject) => {
+            const onFullScreenEntered = () => {
+                screenfull.off('change', onFullScreenEntered);
+                resolve();
+            };
 
-        return null;
-    }
-}
+            screenfull.on('change', onFullScreenEntered);
 
-/**
- * Creates a new fullscreen controller.
- *
- * @param   {Array}    apiList      The list of possible fullscreen APIs.
- * @param   {Document} document     The source of the fullscreen interface.
- * @returns {Object}
- */
-function createFullscreen(apiList, document) {
+            const returnPromise = element[nativeAPI.requestFullscreen](options);
 
-    const API = findSupported(apiList, document);
-    const TEST_VIDEO = document.createElement('video');
-
-    let activeVideo = null;
-
-    return {
-
-        /**
-         * Gets the internal mapping of the browser supported fullscreen API.
-         *
-         * @returns {Object}
-         */
-        get api() {
-
-            return API;
-        },
-
-        /**
-         * Checks whether fullscreen is enabled.
-         *
-         * @returns {Boolean}
-         */
-        get enabled() {
-
-            let elementEnabled = API && document[ API['fullscreenEnabled'] ];
-            let videoEnabled = TEST_VIDEO['webkitEnterFullscreen'];
-
-            return Boolean(elementEnabled || videoEnabled);
-        },
-
-        /**
-         * Gets the element that is currently in fullscreen mode.
-         *
-         * @returns {HTMLElement}
-         */
-        get element() {
-
-            if (API) {
-
-                return document[ API['fullscreenElement'] ];
-
-            } else {
-
-                return (activeVideo && activeVideo['webkitDisplayingFullscreen']) ? activeVideo : null;
+            if (returnPromise instanceof Promise) {
+                returnPromise.then(onFullScreenEntered).catch(reject);
             }
-        },
-
-        /**
-         * Returns whether fullscreen is active for an element, or any element if one is not specified.
-         *
-         * @param   {HTMLElement}      el       The element to check for fullscreen.
-         * @param   {HTMLVideoElement} video    The video element to check for fullscreen.
-         * @returns {Boolean}
-         */
-        isFullscreen({ el, video } = {}) {
-
-            if (API) {
-
-                return el ? el === this.element : Boolean(this.element);
-
-            } else {
-
-                return video ? video === this.element : Boolean(this.element);
+        });
+    },
+    exit() {
+        return new Promise((resolve, reject) => {
+            if (!screenfull.isFullscreen) {
+                resolve();
+                return;
             }
-        },
 
-        /**
-         * Requests fullscreen.
-         *
-         * @param {HTMLElement}      el         The element to make the request for. Defaults to the document element.
-         * @param {HTMLVideoElement} video      The video element to make the request for.
-         */
-        request({ el, video } = {}) {
+            const onFullScreenExit = () => {
+                screenfull.off('change', onFullScreenExit);
+                resolve();
+            };
 
-            if (API) {
+            screenfull.on('change', onFullScreenExit);
 
-                el = el || document.documentElement;
-                el[ API['requestFullscreen'] ]();
+            const returnPromise = document[nativeAPI.exitFullscreen]();
 
-            } else if (video) {
-
-                try {
-
-                    video['webkitEnterFullscreen']();
-                    activeVideo = video;
-
-                } catch (e) {}
+            if (returnPromise instanceof Promise) {
+                returnPromise.then(onFullScreenExit).catch(reject);
             }
-        },
-
-        /**
-         * Exits fullscreen.
-         */
-        exit() {
-
-            if (API) {
-
-                document[ API['exitFullscreen'] ]();
-
-            } else if (activeVideo) {
-
-                try {
-
-                    activeVideo['webkitExitFullscreen']();
-                    activeVideo = null;
-
-                } catch (e) {}
-            }
-        },
-
-        /**
-         * Toggles fullscreen.
-         *
-         * @param {Object} target
-         */
-        toggle(target) {
-
-            if (this.isFullscreen(target)) {
-
-                this.exit();
-
-            } else {
-
-                this.request(target);
-            }
-        },
-
-        /**
-         * Adds a listener for the fullscreen change event.
-         *
-         * @param {Function} listener
-         */
-        onChange(listener) {
-
-            if (API) {
-                document.addEventListener(API['fullscreenchange'], listener, false);
-            }
-        },
-
-        /**
-         * Removes a listener from the fullscreen change event.
-         *
-         * @param {Function} listener
-         */
-        offChange(listener) {
-
-            if (API) {
-                document.removeEventListener(API['fullscreenchange'], listener, false);
-            }
-        },
-
-        /**
-         * Adds a listener for the fullscreen error event.
-         *
-         * @param {Function} listener
-         */
-        onError(listener) {
-
-            if (API) {
-                document.addEventListener(API['fullscreenerror'], listener, false);
-            }
-        },
-
-        /**
-         * Removes a listener from the fullscreen error event.
-         *
-         * @param {Function} listener
-         */
-        offError(listener) {
-
-            if (API) {
-                document.removeEventListener(API['fullscreenerror'], listener, false);
-            }
+        });
+    },
+    toggle(element, options) {
+        return screenfull.isFullscreen ? screenfull.exit() : screenfull.request(element, options);
+    },
+    onchange(callback) {
+        screenfull.on('change', callback);
+    },
+    onerror(callback) {
+        screenfull.on('error', callback);
+    },
+    on(event, callback) {
+        const eventName = eventNameMap[event];
+        if (eventName) {
+            document.addEventListener(eventName, callback, false);
         }
-    };
-}
+    },
+    off(event, callback) {
+        const eventName = eventNameMap[event];
+        if (eventName) {
+            document.removeEventListener(eventName, callback, false);
+        }
+    },
+    raw: nativeAPI,
+};
 
+Object.defineProperties(screenfull, {
+    isFullscreen: {
+        get: () => Boolean(document[nativeAPI.fullscreenElement]),
+    },
+    element: {
+        enumerable: true,
+        get: () => document[nativeAPI.fullscreenElement] ?? undefined,
+    },
+    isEnabled: {
+        enumerable: true,
+        // Coerce to boolean in case of old WebKit.
+        get: () => Boolean(document[nativeAPI.fullscreenEnabled]),
+    },
+});
+
+if (!nativeAPI) {
+    screenfull = {isEnabled: false};
+}

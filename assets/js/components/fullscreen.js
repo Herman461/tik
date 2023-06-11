@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const videosList = document.querySelector('.videos-model__items_list')
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
-            toggleFullScreen(videosList)
+            screenfull.request(videosList)
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            toggleFullScreen(videosList)
+            screenfull.exit(videosList)
 
 
             if (document.querySelector('.fullscreen-current')) {
