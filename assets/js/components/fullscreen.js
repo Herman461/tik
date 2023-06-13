@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    window.addEventListener('click', activateFullscreenMode)
-    window.addEventListener('click', deactivateFullscreenMode)
+    $(window).click(activateFullscreenMode)
+    $(window).click(deactivateFullscreenMode)
 
 
 
