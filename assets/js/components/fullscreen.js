@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
-            screenfull.request(videosList)
+            toggleFullScreen(videosList)
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            screenfull.exit(videosList)
+            toggleFullScreen(videosList)
 
 
             if (document.querySelector('.fullscreen-current')) {
