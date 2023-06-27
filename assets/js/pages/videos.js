@@ -390,3 +390,42 @@ document.addEventListener('DOMContentLoaded', function() {
     appendActionsToVideo()
 
 })
+
+window.addEventListener('click', async function(e) {
+    if (e.target.closest('.item-videos__download')) {
+        // const element = document.createElement('a');
+        // element.hidden = true
+        // element.setAttribute('download', '');
+        //
+        // const uri = 'https://assets.tiktits.com/upload/lepistok1687378009_sd.mp4'
+        // const data = await fetch(uri)
+        // const blob = await data.blob()
+        // const objectUrl = URL.createObjectURL(blob)
+        //
+        // element.setAttribute('href', objectUrl);
+        // e.preventDefault()
+        // document.body.appendChild(element);
+        //
+        // element.click();
+        //
+        // document.body.removeChild(element);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://via.placeholder.com/150', true);
+        xhr.responseType = 'blob';
+        xhr.onload = function () {
+            var urlCreator = window.URL || window.webkitURL;
+            var imageUrl = urlCreator.createObjectURL(this.response);
+            var tag = document.createElement('a');
+            tag.href = imageUrl;
+            tag.target = '_blank';
+            tag.download = 'sample.png';
+            document.body.appendChild(tag);
+            tag.click();
+            document.body.removeChild(tag);
+        };
+        xhr.onerror = err => {
+            alert('Failed to download picture');
+        };
+        xhr.send();
+    }
+})
