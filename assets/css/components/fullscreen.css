@@ -31,7 +31,6 @@ body.fullscreen {
   position: fixed;
   -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;
-  display: block !important;
 }
 
 body.fullscreen::-webkit-scrollbar {
