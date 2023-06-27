@@ -365,9 +365,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function requestFullScreen(el) {
-
         // Supports most browsers and their versions.
-        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen || el.webkitRequestFullscreen;
+        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
 
         if (requestMethod) { // Native full screen.
             requestMethod.call(el);
@@ -385,17 +384,17 @@ document.addEventListener('DOMContentLoaded', function() {
             el = document.body; // Make the body go full screen.
         }
         var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
-        if (isInFullScreen) {
 
+        if (isInFullScreen) {
             cancelFullScreen();
         } else {
             requestFullScreen(el);
         }
         return false;
     }
-    document.body.addEventListener('fullscreenchange', onFullScreenChange, false)
-    document.body.addEventListener('webkitfullscreenchange', onFullScreenChange, false)
-    document.body.addEventListener('mozfullscreenchange', onFullScreenChange, false)
+    document.addEventListener('fullscreenchange', onFullScreenChange, false)
+    document.addEventListener('webkitfullscreenchange', onFullScreenChange, false)
+    document.addEventListener('mozfullscreenchange', onFullScreenChange, false)
 
     function onFullScreenChange() {
         // const isInFullScreen = document.body.classList.contains('fullscreen')
