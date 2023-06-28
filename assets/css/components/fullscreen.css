@@ -25,12 +25,13 @@ body.fullscreen .videos-model__paging {
   display: none;
 }
 
-body.fullscreen {
+body.fullscreen .videos-model__items_list {
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;
   -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;
+  display: block !important;
 }
 
 body.fullscreen::-webkit-scrollbar {
@@ -84,10 +85,6 @@ body.fullscreen .videos__banner {
 body.fullscreen .videos__banner img {
   max-width: 100%;
   height: auto;
-}
-
-body.fullscreen > * {
-  display: none;
 }
 
 body.fullscreen .videos__item {
