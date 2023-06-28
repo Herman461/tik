@@ -743,6 +743,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function onFullScreenChange() {
         var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
 
+        console.log(document.body.classList.contains('fullscreen'))
         if (document.body.classList.contains('fullscreen')) {
             const mainVideo = videosList.querySelector('.item-videos_main')
 
@@ -756,6 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 prependChild(videosList, mainVideo)
             }
         }
+        document.body.classList.toggle('fullscreen')
         //         // const isInFullScreen = document.body.classList.contains('fullscreen')
 //         if (document.body.classList.contains('fullscreen')) {
 //             const mainVideo = document.body.querySelector('.item-videos_main')
@@ -792,7 +794,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         if (!isInFullScreen) {
-            document.body.classList.remove('fullscreen')
+            // document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
@@ -838,7 +840,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // toggleFullScreen()
             videosList.click()
-            document.body.classList.add('fullscreen')
+            // document.body.classList.add('fullscreen')
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
             }
@@ -876,8 +878,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
 
-            toggleFullScreen()
-            document.body.classList.remove('fullscreen')
+            // toggleFullScreen()
+            videosList.click()
+            // document.body.classList.remove('fullscreen')
 
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')

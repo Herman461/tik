@@ -34,11 +34,11 @@ body.fullscreen .videos-model__items_list {
   display: block !important;
 }
 
-body.fullscreen::-webkit-scrollbar {
+body.fullscreen .videos-model__items_list::-webkit-scrollbar {
   width: 0;
 }
 
-body.fullscreen {
+body.fullscreen .videos-model__items_list {
   scrollbar-width: 0;
 }
 
