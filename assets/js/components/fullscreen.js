@@ -798,7 +798,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.body.classList.contains('fullscreen')) return
 
             toggleFullScreen()
-
+            document.body.classList.add('fullscreen')
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
             }
@@ -829,7 +829,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     prevFullscreenVideo.classList.add('fullscreen-prev')
                 }
             }
-            document.body.classList.add('fullscreen')
+
         }
     }
     function deactivateFullscreenMode(e) {
