@@ -6,8 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var cancelFullScreen = document.exitFullscreen || document.mozCancelFullScreen || document.webkitExitFullscreen;
 
         if (!document.body.classList.contains('fullscreen')) {
+            alert('fullscreen1')
             if (videosList.webkitRequestFullscreen) {
+
                 videosList.webkitRequestFullscreen()
+                alert('fullscreen2')
             } else if (videosList.mozRequestFullScreen) {
                 videosList.mozRequestFullScreen()
             } else if (videosList.webkitRequestFullscreen) {
