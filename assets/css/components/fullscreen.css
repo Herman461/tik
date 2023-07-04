@@ -132,6 +132,11 @@ body.default [data-fullscreen-item] {
   transform: none !important;
 }
 
+.videos__item.lazy .item-videos__block {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @media (max-width: 991.98px) {
   body.fullscreen .vjs-paused {
     opacity: 0;

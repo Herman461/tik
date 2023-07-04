@@ -14,32 +14,98 @@ document.addEventListener('DOMContentLoaded', function() {
         this.pause();
     }
 
-    const baseVideos = document.querySelectorAll('.video-js')
+    const lazyVideoItems = document.querySelectorAll('.item-videos video');
 
-    if (baseVideos.length > 0) {
-        for (let index = 0; index < baseVideos.length; index++) {
-            const video = baseVideos[index]
-
-            videojs(
-                video.id,
-                {
-                    preload: 'none',
-                    inactivityTimeout: 0,
-                    userActions: {
-                        doubleClick: onVideoDoubleClick
-                    }
-                }
-            ).ready(function(){
-                window.customPlayer = this;
-                players.set(video.id, customPlayer)
-
-
-                // window.addEventListener('click', () => {
-                //     this.requestFullscreen()
-                // })
-            });
-        }
-    }
+    // if (lazyVideoItems.length > 0) {
+    //     window.addEventListener('scroll', initVideosOnScroll);
+    //
+    //     function initVideosOnScroll() {
+    //
+    //         for (let index = 0; index < lazyVideoItems.length; index++) {
+    //             const lazyItem = lazyVideoItems[index];
+    //             const currentWrapper = lazyItem.closest('.item-videos')
+    //             const lazyItemHeight = currentWrapper.offsetHeight;
+    //             const lazyItemOffset = offset(currentWrapper).top;
+    //             const lazyStart = 3;
+    //
+    //
+    //
+    //             let lazyItemPoint = window.innerHeight - lazyItemHeight / lazyStart;
+    //             if (lazyItemHeight > window.innerHeight) {
+    //                 lazyItemPoint = window.innerHeight - window.innerHeight / lazyStart;
+    //             }
+    //             console.log(currentWrapper)
+    //             if (
+    //                 pageYOffset > lazyItemOffset - lazyItemPoint &&
+    //                 pageYOffset < lazyItemOffset + lazyItemHeight
+    //             ) {
+    //                 if (lazyItem.classList.contains('lazy')) {
+    //                     videojs(
+    //                         lazyItem.id,
+    //                         {
+    //                             preload: 'none',
+    //                             inactivityTimeout: 0,
+    //                             userActions: {
+    //                                 doubleClick: onVideoDoubleClick
+    //                             }
+    //                         }
+    //                     ).ready(function () {
+    //                         window.customPlayer = this;
+    //                         players.set(lazyItem.id, customPlayer)
+    //
+    //
+    //                         // window.addEventListener('click', () => {
+    //                         //     this.requestFullscreen()
+    //                         // })
+    //
+    //
+    //                         const currentBlock = currentWrapper.querySelector('.item-videos__block')
+    //                         console.log(currentBlock)
+    //                         currentWrapper.querySelector('.video-js').appendChild(currentBlock)
+    //                         currentWrapper.classList.remove('lazy')
+    //                         lazyItem.classList.remove('lazy')
+    //                     });
+    //
+    //                 }
+    //
+    //             }
+    //         }
+    //     }
+    //     function offset(el) {
+    //         const rect = el.getBoundingClientRect();
+    //         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    //         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    //         return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+    //     }
+    //     initVideosOnScroll();
+    //
+    // }
+    // const baseVideos = document.querySelectorAll('.video-js')
+    //
+    // if (baseVideos.length > 0) {
+    //     for (let index = 0; index < baseVideos.length; index++) {
+    //         const video = baseVideos[index]
+    //
+    //         videojs(
+    //             video.id,
+    //             {
+    //                 preload: 'none',
+    //                 inactivityTimeout: 0,
+    //                 userActions: {
+    //                     doubleClick: onVideoDoubleClick
+    //                 }
+    //             }
+    //         ).ready(function(){
+    //             window.customPlayer = this;
+    //             players.set(video.id, customPlayer)
+    //
+    //
+    //             // window.addEventListener('click', () => {
+    //             //     this.requestFullscreen()
+    //             // })
+    //         });
+    //     }
+    // }
 
     // Воспроизведение главного видео после загрузки страницы
     if (document.querySelector('.item-videos_main.video-js')) {
@@ -237,6 +303,38 @@ document.addEventListener('DOMContentLoaded', function() {
             const videoItem = videoItems[index];
 
             if (Visible(videoItem)) {
+                if (videoItem.classList.contains('lazy')) {
+                    videojs(
+                        videoItem.id,
+                        {
+                            preload: 'none',
+                            inactivityTimeout: 0,
+                            userActions: {
+                                doubleClick: onVideoDoubleClick
+                            }
+                        }
+                    ).ready(function () {
+                        window.customPlayer = this;
+                        players.set(videoItem.id, customPlayer)
+
+
+                        // window.addEventListener('click', () => {
+                        //     this.requestFullscreen()
+                        // })
+
+                        const currentWrapper = videoItem.closest('.item-videos')
+                        const currentBlock = currentWrapper.querySelector('.item-videos__block')
+
+                        currentWrapper.querySelector('.video-js').appendChild(currentBlock)
+                        currentWrapper.classList.remove('lazy')
+                        videoItem.classList.remove('lazy')
+                        currentWrapper.querySelector('.item-videos__live').hidden = false
+                        currentWrapper.querySelector('.item-videos__live').classList.remove('vjs-hidden')
+                        currentWrapper.querySelector('.item-videos__download').hidden = false
+                        currentWrapper.querySelector('.item-videos__download').classList.remove('vjs-hidden')
+
+                    });
+                }
 
                 if (videoItem.classList.contains('vjs-playing')) break;
 
@@ -303,6 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             customPlayer.play();
 
                             players.set(videoItem.id, customPlayer)
+
                         });
                     }
 

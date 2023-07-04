@@ -114,6 +114,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     })
+
+
+    const creatorSliders = document.querySelectorAll('[data-creators]')
+
+    for (let index = 0; index < creatorSliders.length; index++) {
+        const slider = creatorSliders[index]
+
+        let wasSliderChanged = false
+        let wasImagesLoaded = false
+        const swiperSlider = new Swiper(slider.querySelector('.slider__body'), {
+            speed: 500,
+            spaceBetween: 16,
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            breakpoints: {
+                1300.98: {
+                    slidesPerView: 7,
+                    slidesPerGroup: 7
+                },
+                1100.98: {
+                    slidesPerView: 6,
+                    slidesPerGroup: 6
+                },
+                900.98: {
+                    slidesPerView: 5,
+                    slidesPerGroup: 5
+                },
+                767.98: {
+                    slidesPerView: 4,
+                    slidesPerGroup: 4
+                },
+                575.98: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3
+                }
+            },
+            on: {
+                afterInit() {
+
+                    slider.classList.add('init')
+                },
+
+                slideChange() {
+                    if (wasSliderChanged) {
+                        wasSliderChanged = true
+                        return;
+                    }
+
+                    if (wasImagesLoaded) return
+
+                    const slides = slider.querySelectorAll('.slider__item')
+
+                    let index = 6
+
+                    while (slides.length > index) {
+
+                        const slide = slides[index]
+
+                        if (!slide) break;
+
+                        const preview = slide.querySelector('.block-video__preview')
+                        const img = document.createElement('img')
+                        img.src = preview.dataset.imageSrc
+                        img.alt = preview.dataset.imageAlt
+
+                        preview.appendChild(img)
+
+                        index++
+                    }
+                    wasImagesLoaded = true
+                }
+
+            },
+            navigation: {
+                nextEl:
+                    slider.querySelector('.slider-button-next'),
+                prevEl:
+                    slider.querySelector('.slider-button-prev')
+            },
+        })
+    }
 })
 
 function onSliderInit(strElement) {
@@ -156,49 +237,7 @@ const firstSlider = new Swiper('.slider__body_first', {
 })
 
 
-const secondSlider = new Swiper('.slider__body_second', {
-    speed: 500,
-    spaceBetween: 16,
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    breakpoints: {
-        1300.98: {
-            slidesPerView: 7,
-            slidesPerGroup: 7
-        },
-        1100.98: {
-            slidesPerView: 6,
-            slidesPerGroup: 6
-        },
-        900.98: {
-            slidesPerView: 5,
-            slidesPerGroup: 5
-        },
-        767.98: {
-            slidesPerView: 4,
-            slidesPerGroup: 4
-        },
-        575.98: {
-            slidesPerView: 3,
-            slidesPerGroup: 3
-        }
-    },
-    on: {
-        afterInit() {
 
-            onSliderInit('.slider__body_second')
-        },
-
-    },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_second').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_second').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
-})
 
 
 const thirdSlider = new Swiper('.slider__body_third', {
