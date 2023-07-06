@@ -1,7 +1,3 @@
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const players = new Map()
     let allowedSound = false
@@ -30,6 +26,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 //     this.requestFullscreen()
                 // })
 
+                if (allowedHd) {
+                    const videoWrapper = videoItem.closest('.item-videos')
+
+                    const sourceTag = videoWrapper.querySelector('source[data-video-quality="hd"]')
+
+                    videoWrapper.querySelector('.item-videos__download').href = sourceTag.src
+                    videoWrapper.classList.add('hd')
+                    const hdButton = videoWrapper.querySelector('.quality-item-videos__button.hd')
+                    const sdButton = videoWrapper.querySelector('.quality-item-videos__button.sd')
+
+                    if (!hdButton.classList.contains('active')) {
+                        videoWrapper.querySelector('.quality-item-videos__button.hd').classList.add('active')
+                    }
+
+                    if (sdButton.classList.contains('active')) {
+                        videoWrapper.querySelector('.quality-item-videos__button.sd').classList.remove('active')
+                    }
+
+
+
+                    videoWrapper.querySelector('video').currentTime = 0
+                    videoWrapper.querySelector('video').src = sourceTag.src
+
+                }
 
                 const currentBlock = currentWrapper.querySelector('.item-videos__block')
 
@@ -71,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!globalPlayer) return
 
-        console.log(globalPlayer)
+
         globalPlayer.pause()
 
 
@@ -452,9 +472,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isInFullScreen) {
             cancelFullScreen();
 
-            nextFullscreenVideo.style.transform = 'none'
-            currentFullscreenVideo.style.transform = 'none'
-            prevFullscreenVideo.style.transform = 'none'
+            // nextFullscreenVideo.style.transform = 'none'
+            // currentFullscreenVideo.style.transform = 'none'
+            // prevFullscreenVideo.style.transform = 'none'
+
+
+
         } else {
             requestFullScreen(el);
         }
@@ -464,13 +487,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('webkitfullscreenchange', onFullScreenChange, false)
     document.addEventListener('mozfullscreenchange', onFullScreenChange, false)
 
+    const videosList = document.querySelector('.videos-model__items_list')
     function onFullScreenChange() {
         var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
+
+
+
 
 
         if (!isInFullScreen) {
             document.body.classList.remove('fullscreen')
             document.body.classList.add('default')
+
+            const mainVideo = videosList.querySelector('.item-videos_main')
+
+            if (mainVideo) {
+                document.querySelector('.base-video__content').appendChild(mainVideo)
+            }
+
             if (document.querySelector('.fullscreen-current')) {
                 document.querySelector('.fullscreen-current').classList.remove('fullscreen-current')
             }
@@ -490,6 +524,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if  (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_open')) {
             if (document.body.classList.contains('fullscreen')) return
 
+            const mainVideo = document.querySelector('.base-video .videos__item')
+
+            if (mainVideo) {
+                prependChild(videosList, mainVideo)
+            }
+
             toggleFullScreen()
 
             if (document.querySelector('.fullscreen-current')) {
@@ -508,16 +548,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-            currentFullscreenVideo.style.top = '0'
-            currentFullscreenVideo.style.transform = 'translate(0, 0)'
+            // currentFullscreenVideo.style.top = '0'
+            // currentFullscreenVideo.style.transform = 'translate(0, 0)'
 
             if (currentFullscreenVideo.classList.contains('item-videos_main')) {
                 nextFullscreenVideo = document.querySelector('.videos-model .item-videos')
 
                 nextFullscreenVideo.classList.add('fullscreen-next')
 
-                nextFullscreenVideo.style.top = '100%'
-                nextFullscreenVideo.style.transform = 'translate(0, 0)'
+                // nextFullscreenVideo.style.top = '100%'
+                // nextFullscreenVideo.style.transform = 'translate(0, 0)'
             } else {
                 nextFullscreenVideo = currentFullscreenVideo.nextElementSibling
                 prevFullscreenVideo = currentFullscreenVideo.previousElementSibling
@@ -525,15 +565,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (nextFullscreenVideo) {
                     nextFullscreenVideo.classList.add('fullscreen-next')
 
-                    nextFullscreenVideo.style.top = '100%'
-                    nextFullscreenVideo.style.transform = 'translate(0, 0)'
+                    // nextFullscreenVideo.style.top = '100%'
+                    // nextFullscreenVideo.style.transform = 'translate(0, 0)'
                 }
 
                 if (prevFullscreenVideo) {
                     prevFullscreenVideo.classList.add('fullscreen-prev')
 
-                    prevFullscreenVideo.style.top = '-100%'
-                    prevFullscreenVideo.style.transform = 'translate(0, -100%)'
+                    // prevFullscreenVideo.style.top = '-100%'
+                    // prevFullscreenVideo.style.transform = 'translate(0, -100%)'
                 }
             }
             document.body.classList.add('fullscreen')
@@ -543,6 +583,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function deactivateFullscreenMode(e) {
         if (e.target.closest('html') && e.target.closest('.fullscreen-control-item-videos__button_opened')) {
             if (!document.body.classList.contains('fullscreen')) return
+
 
             toggleFullScreen()
             document.body.classList.remove('fullscreen')
@@ -637,17 +678,17 @@ document.addEventListener('DOMContentLoaded', function() {
         prevFullscreenVideo.classList.add('fullscreen-prev')
         currentFullscreenVideo.classList.add('fullscreen-current')
 
-        prevFullscreenVideo.style.top = '-100%'
-        prevFullscreenVideo.style.transform = 'translate(0, -100%)'
-
-        currentFullscreenVideo.style.top = '0'
-        currentFullscreenVideo.style.transform = 'translate(0, 0)'
+        // prevFullscreenVideo.style.top = '-100%'
+        // prevFullscreenVideo.style.transform = 'translate(0, -100%)'
+        //
+        // currentFullscreenVideo.style.top = '0'
+        // currentFullscreenVideo.style.transform = 'translate(0, 0)'
 
         if (nextFullscreenVideo) {
             nextFullscreenVideo.classList.add('fullscreen-next')
 
-            nextFullscreenVideo.style.top = '100%'
-            nextFullscreenVideo.style.transform = 'translate(0, 100%)'
+            // nextFullscreenVideo.style.top = '100%'
+            // nextFullscreenVideo.style.transform = 'translate(0, 100%)'
 
         }
 
@@ -700,17 +741,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         currentFullscreenVideo.classList.add('fullscreen-current')
 
-        nextFullscreenVideo.style.top = '100%'
-        nextFullscreenVideo.style.transform = 'translate(0, 100%)'
-
-        currentFullscreenVideo.style.top = '0'
-        currentFullscreenVideo.style.transform = 'translate(0, 0)'
+        // nextFullscreenVideo.style.top = '100%'
+        // nextFullscreenVideo.style.transform = 'translate(0, 100%)'
+        //
+        // currentFullscreenVideo.style.top = '0'
+        // currentFullscreenVideo.style.transform = 'translate(0, 0)'
 
         if (!prevFullscreenVideo) {
             prevFullscreenVideo = document.querySelector('.item-videos_main')
 
-            prevFullscreenVideo.style.top = '-100%'
-            prevFullscreenVideo.style.transform = 'translate(0, -100%)'
+            // prevFullscreenVideo.style.top = '-100%'
+            // prevFullscreenVideo.style.transform = 'translate(0, -100%)'
         }
 
 
@@ -743,6 +784,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 if (document.body.classList.contains('fullscreen')) {
                     setNextFullscreenVideo()
+
                 }
 
             }, 100)
@@ -787,3 +829,4 @@ window.addEventListener('click', async function(e) {
 
 
 })
+
