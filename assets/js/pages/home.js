@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    var Visible = function (target) {
+        const offset = 1
+        // Все позиции элемента
+        var targetPosition = {
+                top: window.pageYOffset + target.getBoundingClientRect().top + offset,
+                left: window.pageXOffset + target.getBoundingClientRect().left,
+                right: window.pageXOffset + target.getBoundingClientRect().right,
+                bottom: window.pageYOffset + target.getBoundingClientRect().bottom - offset
+            },
+            // Получаем позиции окна
+            windowPosition = {
+                top: window.pageYOffset,
+                left: window.pageXOffset,
+                right: window.pageXOffset + document.documentElement.clientWidth,
+                bottom: window.pageYOffset + document.documentElement.clientHeight
+            };
+        if (targetPosition.bottom > windowPosition.top && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
+            targetPosition.top < windowPosition.bottom && // Если позиция верхней части элемента меньше позиции нижней чайти окна, то элемент виден снизу
+            targetPosition.right > windowPosition.left && // Если позиция правой стороны элемента больше позиции левой части окна, то элемент виден слева
+            targetPosition.left < windowPosition.right) { // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
+            return true
+        } else {
+            return false
+        }
+    };
 
     // Воспроизведение видео
 
@@ -48,6 +73,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     }
+
+    let lockLoadPosters = false
+    function loadPosters() {
+
+
+        if (lockLoadPosters) return
+
+        lockLoadPosters = true;
+
+        const videoSliders = document.querySelectorAll('.page__slider')
+
+        if (videoSliders.length > 0) {
+            for (let index = 0; index < videoSliders.length; index++) {
+                const videoSlider = videoSliders[index]
+
+                if (videoSlider.classList.contains('posters-loaded')) continue
+
+                if (Visible(videoSlider)) {
+
+                    const videos = videoSlider.querySelectorAll('video')
+                    console.log(videos)
+                    for (let index = 0; index < videos.length; index++) {
+                        const video = videos[index]
+                        video.poster = video.dataset.poster
+
+                    }
+                    videoSlider.classList.add('posters-loaded')
+                }
+            }
+        }
+
+        setTimeout(function() {
+            lockLoadPosters = false
+        }, 100)
+    }
+    loadPosters()
+    document.body.addEventListener('scroll', loadPosters)
     function playVideo(e) {
         if (e.target.closest('.block-video')) {
             const video = e.target.closest('.block-video').querySelector('video')
@@ -226,14 +288,6 @@ const firstSlider = new Swiper('.slider__body_first', {
         },
 
     },
-    navigation: {
-        nextEl:
-            document.querySelector('.slider__body_first').closest('.slider__main')
-                .querySelector('.slider-button-next'),
-        prevEl:
-            document.querySelector('.slider__body_first').closest('.slider__main')
-                .querySelector('.slider-button-prev')
-    },
 })
 
 
@@ -312,5 +366,41 @@ if (document.querySelector('.slider__body_fourth')) {
     })
 }
 
+if (document.querySelector('.slider__body_fifth')) {
+    const fifthSlider = new Swiper('.slider__body_fifth', {
+        speed: 500,
+        spaceBetween: 16,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        breakpoints: {
+            1300.98: {
+
+                slidesPerGroup: 5
+            },
+            767.98: {
+                slidesPerGroup: 4,
+
+            },
+            575.98: {
+                slidesPerGroup: 3,
+            }
+        },
+        on: {
+            afterInit() {
+
+                onSliderInit('.slider__body_fourth')
+            },
+
+        },
+        navigation: {
+            nextEl:
+                document.querySelector('.slider__body_fourth').closest('.slider__main')
+                    .querySelector('.slider-button-next'),
+            prevEl:
+                document.querySelector('.slider__body_fourth').closest('.slider__main')
+                    .querySelector('.slider-button-prev')
+        },
+    })
+}
 
 

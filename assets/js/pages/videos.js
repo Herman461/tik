@@ -103,7 +103,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     window.addEventListener('click', function(e) {
+        if (e.target.closest('.item-videos__download')) {
 
+            const uri = e.target.closest('.item-videos__download').href
+
+            e.preventDefault()
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', uri, true);
+            xhr.responseType = 'blob';
+            xhr.onload = function () {
+                var urlCreator = window.URL || window.webkitURL;
+                var imageUrl = urlCreator.createObjectURL(this.response);
+                var tag = document.createElement('a');
+                tag.href = imageUrl;
+                tag.target = '_blank';
+
+                const arr = uri.split("/")
+                const name = arr[arr.length - 1]
+
+                tag.download = name;
+                document.body.appendChild(tag);
+                tag.click();
+                document.body.removeChild(tag);
+            };
+            xhr.onerror = err => {
+                alert('Failed to download video');
+            };
+            xhr.send();
+        }
         if (e.target.closest('.vjs-volume-panel')) {
 
             allowedSound = !!e.target.closest('.vjs-vol-0');
